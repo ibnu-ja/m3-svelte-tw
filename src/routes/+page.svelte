@@ -1,4 +1,4 @@
-<script lang="ts">
+<script module lang="ts">
   import { slide } from "svelte/transition";
   import { easeEmphasized } from "$lib/misc/easing";
   import StandardSideSheet from "$lib/containers/StandardSideSheet.svelte";
@@ -27,14 +27,16 @@
 
   let innerWidth: number;
 
-  type DocData = {
+  export type DocData = {
     name: string;
     minimalDemo: string;
     relevantLinks: { title: string; link: string }[];
   };
+
   let doc: DocData | undefined;
-  const showCode = (e: { detail: DocData }) => {
-    doc = e.detail;
+  const showCode = (docData: DocData) => {
+    console.log(docData)
+    doc = docData;
   };
 </script>
 
@@ -55,24 +57,24 @@
 <div class="side-wrapper">
   <Hero />
   <div class="cards">
-    <Demo0 on:showCode={showCode} />
-    <Demo1 on:showCode={showCode} />
-    <Demo2 on:showCode={showCode} />
-    <Demo3 on:showCode={showCode} />
-    <Demo4 on:showCode={showCode} />
-    <Demo5 on:showCode={showCode} />
-    <Demo6 on:showCode={showCode} />
-    <Demo7 on:showCode={showCode} />
-    <Demo8 on:showCode={showCode} />
-    <Demo9 on:showCode={showCode} />
-    <Demo10 on:showCode={showCode} />
-    <Demo11 on:showCode={showCode} />
-    <Demo12 on:showCode={showCode} />
-    <Demo13 on:showCode={showCode} />
-    <Demo14 on:showCode={showCode} />
-    <Demo15 on:showCode={showCode} />
-    <Demo16 on:showCode={showCode} />
-    <Demo17 on:showCode={showCode} />
+    <Demo0 showCode="{(docData: DocData) => {doc = docData}}" />
+    <!--<Demo1 on:showCode={showCode} />-->
+    <!--<Demo2 on:showCode={showCode} />-->
+    <!--<Demo3 on:showCode={showCode} />-->
+    <!--<Demo4 on:showCode={showCode} />-->
+    <!--<Demo5 on:showCode={showCode} />-->
+    <!--<Demo6 on:showCode={showCode} />-->
+    <!--<Demo7 on:showCode={showCode} />-->
+    <!--<Demo8 on:showCode={showCode} />-->
+    <!--<Demo9 on:showCode={showCode} />-->
+    <!--<Demo10 on:showCode={showCode} />-->
+    <!--<Demo11 on:showCode={showCode} />-->
+    <!--<Demo12 on:showCode={showCode} />-->
+    <!--<Demo13 on:showCode={showCode} />-->
+    <!--<Demo14 on:showCode={showCode} />-->
+    <!--<Demo15 on:showCode={showCode} />-->
+    <!--<Demo16 on:showCode={showCode} />-->
+    <!--<Demo17 on:showCode={showCode} />-->
   </div>
   {#if doc && innerWidth >= 600}
     <div class="sheet" transition:slide={{ easing: easeEmphasized, duration: 500, axis: "x" }}>
