@@ -8,6 +8,7 @@
   import InternalCard from "./_card.svelte";
   import Button from "$lib/buttons/Button.svelte";
   import type { DocData } from "./+page.svelte";
+  import { Switch } from "$lib";
 
   let { showCode }: { showCode: (docData: DocData) => void } = $props();
 
@@ -20,42 +21,40 @@
     "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/ButtonLink.svelte"
   }];
 
-  let variant: ComponentProps<typeof Button>["variant"] = $state("elevated");
-  let size: ComponentProps<typeof Button>["size"] = $state();
-  let disabled: ComponentProps<typeof Button>["disabled"] = $state();
-
-  const availableVariant = ["elevated", "filled", "tonal", "outlined", "text"];
+  let type: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("elevated");
+  let iconType: "none" | "left" | "full" = $state("none");
+  let disabled: boolean = $state(false);
 
 
 </script>
 
 <InternalCard eventDispatcher={() => {showCode({ name: "Button", minimalDemo, relevantLinks })}} title="Button">
-  {#if variant != null}
+  {#if type != null}
     <label>
-      <Arrows list={availableVariant} bind:value={variant} />
-      {variant[0].toUpperCase() + variant.slice(1)}
+      <Arrows list={["elevated", "filled", "tonal", "outlined", "text"]} bind:value={type} />
+      {type[0].toUpperCase() + type.slice(1)}
     </label>
   {/if}
+  <label>
+    <Arrows list={["none", "left", "full"]} bind:value={iconType} />
+    {iconType === "none" ? "No icon" : iconType === "left" ? "Left icon" : "Icon"}
+  </label>
+  <label>
+    <Switch checked={!disabled} />
+    {!disabled ? "Enabled" : "Disabled"}
+  </label>
   <!--<label>-->
-  <!--  <Arrows list={["none", "left", "full"]} bind:value={iconType} />-->
-  <!--  {iconType == "none" ? "No icon" : iconType == "left" ? "Left icon" : "Icon"}-->
-  <!--</label>-->
-  <!--<label>-->
-  <!--  <Switch bind:checked={enabled} />-->
-  <!--  {enabled ? "Enabled" : "Disabled"}-->
-  <!--</label>-->
-  <!--<label>-->
-  <!--  <Switch bind:checked={link} />-->
+  <!--  <Switch checked={link} />-->
   <!--  {link ? "Link" : "Button"}-->
   <!--</label>-->
   {#snippet demo()}
-    <Button {size} {variant} {disabled}>
-      {#if size === "icon-left"}
-        <Icon icon={iconCircle} />
+    <Button {iconType} {type} {disabled}>
+      {#if iconType === "none"}
         Hello
-      {:else if size === "icon-full"}
+      {:else if iconType === "full"}
         <Icon icon={iconCircle} />
       {:else}
+        <Icon icon={iconCircle} />
         Hello
       {/if}
     </Button>

@@ -14,7 +14,7 @@
   let { eventDispatcher, title, children, demo }: Props = $props();
 </script>
 
-<div class="container">
+<div class="containerr">
   {#if children != null}
     <h2 class="m3-font-headline-medium">
       {title}
@@ -39,7 +39,7 @@
 </div>
 
 <style>
-    .container {
+    .containerr {
         display: flex;
         flex-direction: column;
     }
