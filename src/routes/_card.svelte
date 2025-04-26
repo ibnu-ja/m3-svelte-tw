@@ -35,7 +35,9 @@
       <Icon icon={iconCode} width="1.5rem" height="1.5rem" />
     </button>
   {/if}
-  {@render demo?.()}
+  <div>
+    {@render demo?.()}
+  </div>
 </div>
 
 <style>
