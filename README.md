@@ -2,6 +2,12 @@
 
 M3 Svelte implements the Material 3 design system in Svelte. See the [website](https://ktibow.github.io/m3-svelte/) for demos and usage instructions.
 
+## fork notes:
+- inline styling with tailwind class
+- no more passing extraOptions
+- customize (almost) everything with classes
+- can pass component with Primitive (ie. usage: InertiaLink components), no two components (Button, ButtonLink)
+
 ## Conversion to TailwindCSS progress
 
 - Buttons
