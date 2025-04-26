@@ -23,7 +23,7 @@
 
   let type: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("elevated");
   let iconType: "none" | "left" | "full" = $state("none");
-  let disabled: boolean = $state(false);
+  let enabled: boolean = $state(true);
 
 
 </script>
@@ -40,15 +40,15 @@
     {iconType === "none" ? "No icon" : iconType === "left" ? "Left icon" : "Icon"}
   </label>
   <label>
-    <Switch checked={!disabled} />
-    {!disabled ? "Enabled" : "Disabled"}
+    <Switch bind:checked={enabled} />
+    {enabled ? "Enabled" : "Disabled"}
   </label>
   <!--<label>-->
   <!--  <Switch checked={link} />-->
   <!--  {link ? "Link" : "Button"}-->
   <!--</label>-->
   {#snippet demo()}
-    <Button {iconType} {type} {disabled}>
+    <Button {iconType} {type} disabled={!enabled}>
       {#if iconType === "none"}
         Hello
       {:else if iconType === "full"}

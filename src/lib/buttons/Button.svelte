@@ -4,6 +4,8 @@
   import { cn } from "$lib/misc/utils";
   import { buttonVariants, type ButtonVariantProps } from "$lib/buttons";
   import type { Snippet } from "svelte";
+  import Primitive from "$lib/primitive/Primitive.svelte";
+  import type { PrimitiveProps } from "$lib/primitive";
 
   /*
   *   import type { HTMLButtonAttributes } from "svelte/elements";
@@ -15,24 +17,28 @@
   export let disabled = false;
   * */
 
-  type ButtonProps = {
+  interface ButtonProps extends PrimitiveProps {
     iconType?: ButtonVariantProps["iconType"]
     type?: ButtonVariantProps["type"]
-    disabled?: ButtonVariantProps["disabled"]
-    onclick?: MouseEventHandler<HTMLButtonElement> | null
+    //TODO handle type any
+    onclick?: MouseEventHandler<any> | null
     children?: Snippet,
-    className?: HTMLAttributes<HTMLButtonElement>["class"]
+    //TODO handle type any
+    class?: HTMLAttributes<any>["class"],
+    [key: string]: any;
   }
 
-  let { iconType = "none", type = "elevated", disabled = false, children, className, onclick }: ButtonProps = $props();
+  let { as = 'button', iconType = "none", type = "elevated", disabled = false, children, class: className, onclick, ...attrs }: ButtonProps = $props();
 
 </script>
 
-<button
+<Primitive
+  {as}
   {disabled}
   {onclick}
   class={cn(buttonVariants({ type, iconType }), className)}
+  {...attrs}
 >
   <Layer />
   {@render children?.()}
-</button>
+</Primitive>

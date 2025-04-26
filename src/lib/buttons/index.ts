@@ -1,125 +1,101 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonVariants = cva(
-  // ─── BASE STYLES ─────────────────────────────────────────────────────────────
   [
-    // layout & sizing
-    "inline-flex",
+    "inline-flex", //default display
+    //"border-none",
     "items-center",
     "justify-center",
-    "h-10", // 2.5rem
-
-    // positioning & overflow
-    "relative",
-    "overflow-hidden",
-
-    // padding & shape
-    "px-6", // 1.5rem
-    "rounded-full",
-
-    // prevent inner flex children from shrinking
-    "[&>*]:flex-shrink-0",
-
-    // transitions & print/tap tweaks
     "transition-all",
     "duration-200",
-    "[tap-highlight-color:transparent]",
-    "print:print-color-adjust-exact",
-    "webkit-print-color-adjust-exact",
+    "h-10", // 2.5rem
+    "px-6", // 1.5rem
+    "rounded-full", // border-radius: var(--m3-button-shape);
+    "cursor-pointer",
+    "relative",
+    "overflow-hidden",
+    "m3-font-label-large",
+    //.m3-container > :global(*) {
+    //    flex-shrink: 0;
+    //}
+    "[&>*]:flex-shrink-0",
+    "disabled:bg-on-surface/12",
+    "disabled:text-on-surface/38",
+    "disabled:cursor-auto",
+    // -webkit-tap-highlight-color: transparent;
+    // [ -webkit-tap-highlight-color:transparent ]
+    // print-color-adjust: exact;
   ],
   {
-    // ─── VARIANTS ────────────────────────────────────────────────────────────────
     variants: {
       type: {
         elevated: [
-          "bg-[rgb(var(--m3-scheme-surface-container-low))]",
-          "text-[rgb(var(--m3-scheme-primary))]",
-          "shadow-[var(--m3-util-elevation-1)]",
-          "hover:shadow-[var(--m3-util-elevation-2)]",
+          "[@media(screen and (forced-colors:active))]:bg-transparent",
+          "[@media(screen and (forced-colors:active))]:border",
+          "[@media(screen and (forced-colors:active))]:opacity-38",
+          "enabled:bg-surface-container-low",
+          "enabled:text-primary",
+          "enabled:shadow-(--m3-util-elevation-1)",
+          "enabled:hover:shadow-(--m3-util-elevation-2)",
         ],
         filled: [
-          "bg-[rgb(var(--m3-scheme-primary))]",
-          "text-[rgb(var(--m3-scheme-on-primary))]",
-          "hover:shadow-[var(--m3-util-elevation-1)]",
+          "[@media(screen and (forced-colors:active))]:bg-transparent",
+          "[@media(screen and (forced-colors:active))]:border",
+          "[@media(screen and (forced-colors:active))]:opacity-38",
+          "enabled:bg-primary",
+          "enabled:text-on-primary",
+          "enabled:hover:shadow-(--m3-util-elevation-1)",
         ],
         tonal: [
-          "bg-[rgb(var(--m3-scheme-secondary-container))]",
-          "text-[rgb(var(--m3-scheme-on-secondary-container))]",
-          "hover:shadow-[var(--m3-util-elevation-1)]",
+          "[@media(screen and (forced-colors:active))]:bg-transparent",
+          "[@media(screen and (forced-colors:active))]:border",
+          "[@media(screen and (forced-colors:active))]:opacity-38",
+          "enabled:bg-secondary-container",
+          "enabled:text-on-secondary-container",
+          "enabled:hover:shadow-(--m3-util-elevation-1)",
         ],
         outlined: [
-          "bg-transparent",
+          "disabled:bg-transparent",
+          "border-on-surface/12",
           "border",
-          "border-[rgb(var(--m3-scheme-outline))]",
-          "text-[rgb(var(--m3-scheme-primary))]",
+          "enabled:border-outline",
         ],
-        text: [
-          "bg-transparent",
-          "px-3", // override base px-6
-          "text-[rgb(var(--m3-scheme-primary))]",
-        ],
+        text: ["disabled:bg-transparent", "px-3", "text-primary"],
       },
+
       iconType: {
         none: [],
         left: [
           "pl-4", // 1rem
           "gap-2", // 0.5rem
+          //  .icon-left > :global(svg) {
+          //    width: 1.125rem;
+          //    height: 1.125rem;
+          //}
+          "[&>svg]:w-[1.125rem]",
+          "[&>svg]:h-[1.125rem]",
         ],
         full: [
-          "w-10", // 2.5rem
+          "w-10", // 2.5rem square
           "p-0",
+          "[&>svg]:w-[1.5rem]",
+          "[&>svg]:h-[1.5rem]",
         ],
-      },
-      disabled: {
-        true: [
-          "bg-[rgb(var(--m3-scheme-on-surface))/0.12]",
-          "text-[rgb(var(--m3-scheme-on-surface))/0.38]",
-          "cursor-auto",
-          "shadow-none",
-        ],
-        false: [],
       },
     },
 
-    // ─── COMPOUND VARIANTS ───────────────────────────────────────────────────────
     compoundVariants: [
-      {
-        disabled: true,
-        type: "elevated",
-        class: ["shadow-none", "hover:shadow-none"],
-      },
-      {
-        disabled: true,
-        type: "filled",
-        class: ["hover:shadow-none"],
-      },
-      {
-        disabled: true,
-        type: "tonal",
-        class: ["hover:shadow-none"],
-      },
-      {
-        disabled: true,
-        type: "outlined",
-        class: ["border-[rgb(var(--m3-scheme-on-surface)/0.12)]"],
-      },
-      {
-        disabled: true,
-        type: "text",
-        class: ["opacity-38"], // mimic forced-colors
-      },
+      //// text + left-icon needs extra right padding
       {
         type: "text",
         iconType: "left",
-        class: ["pr-4"], // override right padding
+        class: "pr-4",
       },
     ],
 
-    // ─── DEFAULTS ────────────────────────────────────────────────────────────────
     defaultVariants: {
       type: "elevated",
       iconType: "none",
-      disabled: false,
     },
   },
 );
