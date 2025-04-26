@@ -28,7 +28,7 @@
 
 </script>
 
-<InternalCard eventDispatcher={() => {showCode({ name: "Button", minimalDemo, relevantLinks })}} title="Button">
+<InternalCard showCode={() => {showCode({ name: "Button", minimalDemo, relevantLinks })}} title="Button">
   {#if type != null}
     <label>
       <Arrows list={["elevated", "filled", "tonal", "outlined", "text"]} bind:value={type} />

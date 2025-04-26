@@ -5,13 +5,13 @@
   import type { Snippet } from "svelte";
 
   type Props = {
-    eventDispatcher: (e: any) => void
+    showCode: (e: any) => void
     title: string
     children: Snippet
     demo: Snippet
   }
 
-  let { eventDispatcher, title, children, demo }: Props = $props();
+  let { showCode, title, children, demo }: Props = $props();
 </script>
 
 <div class="containerr">
@@ -23,13 +23,13 @@
       <div>
         {@render children()}
       </div>
-      <button onclick={eventDispatcher}>
+      <button onclick={showCode}>
         <Layer />
         <Icon icon={iconCode} width="1.5rem" height="1.5rem" />
       </button>
     </div>
   {:else}
-    <button class="name m3-font-headline-medium" onclick={eventDispatcher}>
+    <button class="name m3-font-headline-medium" onclick={showCode}>
       <Layer />
       {title}
       <Icon icon={iconCode} width="1.5rem" height="1.5rem" />
