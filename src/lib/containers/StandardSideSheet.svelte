@@ -10,7 +10,7 @@
 <div class="m3-container flex">
   <div class="header">
     <span class="m3-font-title-large">{headline}</span>
-    <Button iconType="full" onclick={() => onclose()}>
+    <Button class="text-on-surface-variant" iconType="full" type="text" onclick={() => onclose()}>
       <Icon icon={iconX} />
     </Button>
   </div>
@@ -28,9 +28,5 @@
         justify-content: space-between;
 
         padding: 1.5rem;
-    }
-
-    .header > :global(button.m3-container) {
-        color: rgb(var(--m3-scheme-on-surface-variant));
     }
 </style>
