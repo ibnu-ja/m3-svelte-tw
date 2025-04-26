@@ -25,7 +25,9 @@ ${"<"}/SegmentedButtonContainer>`;
     }
   ];
 
-  let { showCode, multiselect = false }: { showCode: (docData: DocData) => void, multiselect?: boolean } = $props();
+  let multiselect = $state(false)
+
+  let { showCode }: { showCode: (docData: DocData) => void } = $props();
 </script>
 
 <InternalCard title="Segmented Button"
