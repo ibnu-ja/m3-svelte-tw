@@ -56,7 +56,7 @@
   on:touchmove={(e) => moveMouse(e.touches[0])}
   on:touchend={() => (isDragging = false)}
 />
-<!--suppress HtmlDeprecatedAttribute this event is deprecated -->
+<!--suppress HtmlDeprecatedAttribute oncancel event is deprecated -->
 <dialog
   class="m3-container m-auto"
   style="max-height: {height}px"
