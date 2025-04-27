@@ -308,7 +308,7 @@ Minimal demo:
 
 ```svelte
 {#if open}
-  <BottomSheet on:close={() => (open = false)}>Hello</BottomSheet>
+  <BottomSheet close={() => (open = false)}>Hello</BottomSheet>
 {/if}
 ```
 
@@ -327,7 +327,7 @@ let open = false;
 <div slot="demo">
   <Button type="tonal" on:click={() => (open = true)}>Open</Button>
   {#if open}
-    <BottomSheet on:close={() => (open = false)}>Hello</BottomSheet>
+    <BottomSheet close={() => (open = false)}>Hello</BottomSheet>
   {/if}
 </div>
 ```

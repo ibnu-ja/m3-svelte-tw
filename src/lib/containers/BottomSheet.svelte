@@ -12,16 +12,16 @@
   let startY = $state(0);
 
   type Props = {
-    close: (e: string) => void;
+    close?: (closedBy?: string) => void;
     children: Snippet;
-    class: HTMLDialogAttributes["class"];
+    class?: HTMLDialogAttributes["class"];
     [key: string]: any;
   };
 
   let { close, children, class: className, ...attrs }: Props = $props();
 
   $effect(() => {
-    if (height < 48) close("low");
+    if (height < 48) close?.("low");
   });
 
   const open = (node: HTMLDialogElement) => node.showModal();
@@ -30,16 +30,18 @@
     node: HTMLDialogElement,
     options: Record<string, unknown> = {},
   ): TransitionConfig => {
-    if (node.clientHeight < height) height = node.clientHeight;
+    //to prevent this error: Invalid keyframe value for property maxHeight: -9.160396799999939px
+    const clampedHeight = Math.max(height, 48);
     return {
       duration: 400,
       easing: easeEmphasizedDecel,
       ...options,
-      css: (t) => `max-height: ${t * height}px`,
+      css: (t) => `max-height: ${t * clampedHeight}px`,
     };
   };
 
   const moveWheel = (e: WheelEvent) => {
+    e.preventDefault()
     height += e.deltaY;
     if (container && container.clientHeight < height) height = container.clientHeight;
   };
@@ -51,6 +53,7 @@
       startY = e.clientY;
     }
   };
+
 </script>
 
 <svelte:window
