@@ -13,8 +13,8 @@ M3 Svelte implements the Material 3 design system in Svelte. See the [website](h
 - Buttons
   - [x] Button.svelte
   - [x] FAB.svelte
-  - [ ] SegmentedButtonContainer.svelte
-  - [ ] SegmentedButtonItem.svelte
+  - [x] SegmentedButtonContainer.svelte
+  - [x] SegmentedButtonItem.svelte
 - Containers
   - [ ] BottomSheet.svelte
   - [ ] Card.svelte
