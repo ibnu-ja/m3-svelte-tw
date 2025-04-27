@@ -73,7 +73,7 @@
   out:heightAnim={{ easing: easeEmphasizedAccel, duration: 300 }}
   {...attrs}
 >
-  <!--suppress HtmlUnknownAttribute -->
+  <!--suppress HtmlUnknownAttribute ontouchstart -->
   <div
     class="containerr"
     bind:this={container}
