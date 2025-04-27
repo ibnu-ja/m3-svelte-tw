@@ -28,7 +28,8 @@
   let { showCode }: DocProps = $props();
 </script>
 
-<InternalCard title="Bottom sheet" showCode={() => showCode({ name: "Bottom Sheet", minimalDemo, relevantLinks })}>
+<InternalCard title="Bottom sheet"
+              showCode={() => showCode({ name: "Bottom Sheet", minimalDemo, relevantLinks })}>
   {#snippet demo()}
     <Button type="tonal" onclick={() => (open = true)}>Open</Button>
     {#if open}
@@ -40,8 +41,7 @@
           <div>
             Hello
           </div>
-        </BottomSheetContainer>
-      </BottomSheet>
+        </BottomSheetContainer></BottomSheet>
     {/if}
   {/snippet}
 </InternalCard>
