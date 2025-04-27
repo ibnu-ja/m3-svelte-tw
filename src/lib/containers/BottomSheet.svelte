@@ -3,6 +3,8 @@
   import { easeEmphasizedAccel, easeEmphasizedDecel } from "$lib/misc/easing";
   import { outroClass } from "$lib/misc/animation";
   import type { Snippet } from "svelte";
+  import type { HTMLDialogAttributes } from "svelte/elements";
+  import { cn } from "$lib/misc/utils";
 
   let height = $state(480);
   let container: HTMLDivElement | undefined = $state();
@@ -12,10 +14,11 @@
   type Props = {
     close: (e: string) => void;
     children: Snippet;
+    class: HTMLDialogAttributes["class"];
     [key: string]: any;
   };
 
-  let { close, children, ...attrs }: Props = $props();
+  let { close, children, class: className, ...attrs }: Props = $props();
 
   $effect(() => {
     if (height < 48) close("low");
@@ -58,7 +61,21 @@
 />
 <!--suppress HtmlDeprecatedAttribute oncancel event is deprecated -->
 <dialog
-  class="m3-container m-auto"
+  class={cn(
+    "m-auto",
+    "mb-0",
+    "w-full",
+    "max-w-[40rem]",
+    "overflow-hidden",
+    "touch-none",
+    "bg-surface-container-low",
+    "text-on-surface",
+    "rounded-t-xl",
+    "border-none",
+    "p-0",
+    "leaving",
+    className,
+  )}
   style="max-height: {height}px"
   use:open
   use:outroClass
@@ -75,8 +92,8 @@
 >
   <!--suppress HtmlUnknownAttribute ontouchstart -->
   <div
-    class="containerr"
     bind:this={container}
+    class="px-4"
     ontouchstart={(e) => {
       isDragging = true;
       startY = e.touches[0].clientY;
@@ -84,13 +101,13 @@
   >
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
-      class="handle-container"
+      class="flex items-center justify-center w-full h-12 cursor-grab handle-container"
       onmousedown={(e) => {
         isDragging = true;
         startY = e.clientY;
       }}
     >
-      <div class="handle"></div>
+      <div class="bg-on-surface-variant/40 w-8 h-1 rounded handle"></div>
     </div>
     {@render children?.()}
   </div>
@@ -101,20 +118,6 @@
     --m3-bottom-sheet-shape: var(--m3-util-rounding-extra-large);
   }
 
-  .m3-container {
-    margin-bottom: 0;
-    width: 100%;
-    max-width: 40rem;
-    overflow: hidden;
-    touch-action: none;
-
-    background-color: rgb(var(--m3-scheme-surface-container-low));
-    color: rgb(var(--m3-scheme-on-surface));
-    border-radius: var(--m3-bottom-sheet-shape) var(--m3-bottom-sheet-shape) 0 0;
-    border: none;
-    padding: 0;
-  }
-
   dialog::backdrop {
     background-color: rgb(var(--m3-scheme-scrim) / 0.5);
     animation: backdrop 400ms;
@@ -123,26 +126,6 @@
   dialog:global(.leaving)::backdrop {
     background-color: transparent;
     animation: backdropReverse 400ms;
-  }
-
-  .containerr {
-    padding: 0 1rem;
-  }
-
-  .handle-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 3rem;
-    cursor: grab;
-  }
-
-  .handle {
-    background-color: rgb(var(--m3-scheme-on-surface-variant) / 0.4);
-    width: 2rem;
-    height: 0.25rem;
-    border-radius: 0.25rem;
   }
 
   @keyframes backdrop {
