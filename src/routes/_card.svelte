@@ -7,7 +7,7 @@
   type Props = {
     showCode: (e: any) => void
     title: string
-    children: Snippet
+    children?: Snippet
     demo: Snippet
   }
 
@@ -21,7 +21,7 @@
     </h2>
     <div class="controls">
       <div>
-        {@render children()}
+        {@render children?.()}
       </div>
       <button onclick={showCode}>
         <Layer />
