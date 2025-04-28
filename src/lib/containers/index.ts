@@ -10,6 +10,10 @@ export const cardVariants = cva(
     "bg-surface",
     "text-on-surface",
     "rounded-md",
+    "cursor-pointer",
+    "[text-align:inherit]",
+    "[font:inherit]",
+    "[letter-spacing:inherit]",
   ],
   {
     variants: {
@@ -24,7 +28,7 @@ export const cardVariants = cva(
         ],
         outlined: [
           "outline-[0.0625rem]",
-          "outline-outline-variant", // /src/app.css:36
+          "outline-(--m3-scheme-outline)", // /src/app.css:36
           "forced-colors:outline-[0.125rem]",
         ],
       },
