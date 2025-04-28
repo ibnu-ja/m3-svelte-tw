@@ -8,12 +8,13 @@
   import SegmentedButtonItem from "$lib/buttons/SegmentedButtonItem.svelte";
   import type { DocData, DocProps } from "./+page.svelte";
 
-  const minimalDemo = `${"<"}SegmentedButtonContainer>
-  ${"<"}input type="checkbox" id="segmented-0" bind:checked={itemA} />
-  ${"<"}SegmentedButtonItem input="segmented-0">A${"<"}/SegmentedButtonItem>
-  ${"<"}input type="checkbox" id="segmented-1" bind:checked={itemB} />
-  ${"<"}SegmentedButtonItem input="segmented-1">B${"<"}/SegmentedButtonItem>
-${"<"}/SegmentedButtonContainer>`;
+  const minimalDemo = `<SegmentedButtonContainer>
+  <input type="checkbox" id="segmented-0" bind:checked={itemA} />
+  <SegmentedButtonItem input="segmented-0">A</SegmentedButtonItem>
+  <input type="checkbox" id="segmented-1" bind:checked={itemB} />
+  <SegmentedButtonItem input="segmented-1">B</SegmentedButtonItem>
+</SegmentedButtonContainer>`;
+
   const relevantLinks = [
     {
       "title": "SegmentedButtonContainer.sv",
