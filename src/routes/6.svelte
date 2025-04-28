@@ -2,12 +2,12 @@
   import InternalCard from "./_card.svelte";
   import Button from "$lib/buttons/Button.svelte";
   import BottomSheet from "$lib/containers/BottomSheet.svelte";
-  import type { DocData } from "./+page.svelte";
+  import type { DocData, DocProps } from "./+page.svelte";
 
   let open = $state(false);
 
   const minimalDemo = `{#if open}
-  ${"<"}BottomSheet close={() => (open = false)}>Hello${"<"}/BottomSheet>
+  <BottomSheet close={() => (open = false)}>Hello</BottomSheet>
 {/if}`;
   const relevantLinks = [
     {
@@ -16,7 +16,7 @@
     }
   ];
 
-  let { showCode }: { showCode: (docData: DocData) => void } = $props();
+  let { showCode }: DocProps = $props();
 </script>
 
 <InternalCard title="Bottom Sheet"

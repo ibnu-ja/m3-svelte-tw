@@ -1,24 +1,23 @@
 <!--<svelte:options customElement="my-stepper" />-->
 
 <script lang="ts">
-  import type { ComponentProps } from "svelte";
   import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
   import Icon from "$lib/misc/_icon.svelte";
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
   import Button from "$lib/buttons/Button.svelte";
-  import type { DocData } from "./+page.svelte";
+  import type { DocProps } from "./+page.svelte";
   import { Switch } from "$lib";
 
-  let { showCode }: { showCode: (docData: DocData) => void } = $props();
+  let { showCode }: DocProps = $props();
 
-  const minimalDemo = `${"<"}Button type="elevated" on:click={() => alert("!")}>Hello${"<"}/Button>`;
+  const minimalDemo = `<Button type="elevated" on:click={() => alert("!")}>Hello</Button>`;
   const relevantLinks = [{
     "title": "Button.sv",
-    "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/Button.svelte"
+    "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/Button.svelte",
   }, {
     "title": "ButtonLink.sv",
-    "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/ButtonLink.svelte"
+    "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/ButtonLink.svelte",
   }];
 
   let type: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("elevated");

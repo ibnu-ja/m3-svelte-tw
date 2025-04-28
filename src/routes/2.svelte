@@ -8,7 +8,7 @@
   let color: "primary" | "surface" | "secondary" | "tertiary" = $state("primary");
   let size: "small" | "normal" | "large" | "extended" = $state("normal");
 
-  const minimalDemo = `${"<"}FAB color="primary" icon={iconCircle} on:click={() => alert("!")} />`;
+  const minimalDemo = `<FAB color="primary" icon={iconCircle} on:click={() => alert("!")} />`;
   const relevantLinks = [
     {
       "title": "FAB.sv",

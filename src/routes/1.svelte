@@ -6,7 +6,7 @@
   import InternalCard from "./_card.svelte";
   import SegmentedButtonContainer from "$lib/buttons/SegmentedButtonContainer.svelte";
   import SegmentedButtonItem from "$lib/buttons/SegmentedButtonItem.svelte";
-  import type { DocData } from "./+page.svelte";
+  import type { DocData, DocProps } from "./+page.svelte";
 
   const minimalDemo = `${"<"}SegmentedButtonContainer>
   ${"<"}input type="checkbox" id="segmented-0" bind:checked={itemA} />
@@ -27,7 +27,7 @@ ${"<"}/SegmentedButtonContainer>`;
 
   let multiselect = $state(false)
 
-  let { showCode }: { showCode: (docData: DocData) => void } = $props();
+  let { showCode }: DocProps = $props();
 </script>
 
 <InternalCard title="Segmented Button"
