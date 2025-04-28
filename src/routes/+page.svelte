@@ -9,6 +9,7 @@
   import Demo0 from "./0.svelte";
   import Demo1 from "./1.svelte";
   import Demo2 from "./2.svelte";
+  import Demo3 from "./3.svelte";
   import Demo6 from "./6.svelte";
 
   let innerWidth: number | undefined = $state();
@@ -50,6 +51,7 @@
     <Demo0 {showCode} />
     <Demo1 {showCode} />
     <Demo2 {showCode} />
+    <Demo3 {showCode} />
     <Demo6 {showCode} />
   </div>
   {#if doc && innerWidth != null && innerWidth >= 600}
