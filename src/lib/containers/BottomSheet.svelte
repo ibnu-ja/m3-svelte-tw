@@ -76,17 +76,17 @@
     "rounded-t-xl",
     "border-none",
     "p-0",
-    "leaving",
+    //"leaving",
     className,
   )}
   style="max-height: {height}px"
   use:open
   use:outroClass
   onmousedown={() => {
-    close("click");
+    close?.("click");
   }}
   oncancel={() => {
-    close("browser");
+    close?.("browser");
   }}
   onwheel={moveWheel}
   in:heightAnim
@@ -106,6 +106,7 @@
     <div
       class="flex items-center justify-center w-full h-12 cursor-grab handle-container"
       onmousedown={(e) => {
+        e.preventDefault()
         isDragging = true;
         startY = e.clientY;
       }}

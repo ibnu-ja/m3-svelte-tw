@@ -56,7 +56,7 @@
   </div>
   {#if doc && innerWidth != null && innerWidth >= 600}
     <div
-      class="flex flex-col w-64 ml-4 border-l-outline border-l-[1px] sticky top-0 h-full overflow-auto row-start-1 row-span-3 col-start-2 sm:ml-6"
+      class="flex flex-col w-64 ml-4 border-l-outline border-l-[1px] sticky top-0 h-screen overflow-auto row-start-1 row-span-3 col-start-2 sm:ml-6"
       transition:slide={{ easing: easeEmphasized, duration: 500, axis: "x" }}>
       <StandardSideSheet headline={doc.name} onclose={() => (doc = undefined)}>
         {@render docs()}
