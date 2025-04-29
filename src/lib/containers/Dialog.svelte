@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { type Snippet } from "svelte";
+  import Icon from "$lib/misc/_icon.svelte";
+  import type { IconifyIcon } from "@iconify/types";
+  import { createEventDispatcher } from "svelte";
   import type { HTMLDialogAttributes } from "svelte/elements";
   import { cn } from "$lib/misc/utils";
 
@@ -112,9 +114,9 @@
   /*    opacity 200ms 100ms backwards;*/
   /*}*/
 
-  @media print, (forced-colors: active) {
-    dialog {
-      outline: solid 0.125rem canvastext;
+    @media print, (forced-colors: active) {
+        dialog {
+            outline: solid 0.125rem canvastext;
+        }
     }
-  }
 </style>
