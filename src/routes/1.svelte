@@ -31,7 +31,7 @@
   let { showCode }: DocProps = $props();
 </script>
 
-<InternalCard title="Segmented Button"
+<InternalCard title="Segmented button"
               showCode={() => showCode({ name: "Segmented Button", minimalDemo, relevantLinks })}>
   <label>
     <Switch bind:checked={multiselect} />

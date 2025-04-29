@@ -19,8 +19,7 @@
   let { showCode }: DocProps = $props();
 </script>
 
-<InternalCard title="Bottom Sheet"
-              showCode={() => showCode({ name: "Bottom Sheet", minimalDemo, relevantLinks })}>
+<InternalCard title="Bottom sheet" showCode={() => showCode({ name: "Bottom Sheet", minimalDemo, relevantLinks })}>
   {#snippet demo()}
     <Button type="tonal" onclick={() => (open = true)}>Open</Button>
     {#if open}
