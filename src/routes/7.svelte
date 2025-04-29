@@ -1,35 +1,50 @@
 <script lang="ts">
-import { createEventDispatcher } from "svelte";
-import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
-import iconSquare from "@ktibow/iconset-material-symbols/square-outline";
-import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
-import Switch from "$lib/forms/Switch.svelte";
-import Icon from "$lib/misc/_icon.svelte";
-import Arrows from "./_arrows.svelte";
-import InternalCard from "./_card.svelte";
-import Button from "$lib/buttons/Button.svelte";
-import Dialog from "$lib/containers/Dialog.svelte";
-let open = false;
+  import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
+  import InternalCard from "./_card.svelte";
+  import Button from "$lib/buttons/Button.svelte";
+  import Dialog from "$lib/containers/Dialog.svelte";
+  import type { DocProps } from "./+page.svelte";
+  import { Icon } from "$lib";
 
-const dispatch = createEventDispatcher();
-const minimalDemo = `${"<"}Dialog headline="Hello" bind:open>
-  I'm alive
-  ${"<"}svelte:fragment slot="buttons">
-    ${"<"}Button type="tonal" on:click={() => (open = false)}>OK${"<"}/Button>
-  ${"<"}/svelte:fragment>
-${"<"}/Dialog>`;
-const relevantLinks = [{"title":"Dialog.sv","link":"https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/Dialog.svelte"}];
-</script>
+  let open = $state(false);
 
-<InternalCard title="Dialog" on:showCode={() => dispatch("showCode", { name: "Dialog", minimalDemo, relevantLinks })}>
-<div slot="demo">
-  <Button type="tonal" on:click={() => (open = true)}>Open</Button>
-  <Dialog icon={iconCircle} headline="Hello" bind:open>
+  //const dispatch = createEventDispatcher();
+  const minimalDemo = `<Dialog bind:open>
+  <h4 class="m3-font-headline-small text-on-surface mt-0 mb-4 animate-[opacity_150ms]">Hello</h4>
+  <div class="grow m3-font-body-medium text-on-surface-variant mb-6 relative animate-[opacity_200ms]">
     Anything is possible at ZomboCom! You can do anything at ZomboCom! The infinite is possible at
     ZomboCom! The unattainable is unknown at ZomboCom!
-    <svelte:fragment slot="buttons">
-      <Button type="tonal" on:click={() => (open = false)}>OK</Button>
-    </svelte:fragment>
-  </Dialog>
-</div>
+  </div>
+  <div class="flex justify-end gap-2 animation-[buttonsIn_500ms_var(--m3-easing-decel)] animate-[opacity_200ms_100ms_backwards]">
+    <Button type="tonal" onclick={() => (open = false)}>OK</Button>
+  </div>
+</Dialog>;`;
+  const relevantLinks = [{
+    "title": "Dialog.sv",
+    "link": "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/Dialog.svelte",
+  }];
+
+  let { showCode }: DocProps = $props();
+</script>
+
+<InternalCard title="Dialog" showCode={() => showCode( { name: "Dialog", minimalDemo, relevantLinks })}>
+  {#snippet demo()}
+    <Button type="tonal" onclick={() => (open = true)}>Open</Button>
+    <Dialog bind:open>
+      <div class="m-auto flex flex-col p-6 w-full">
+        <Icon icon={iconCircle} class="mb-4 shrink h-6 w-6 text-secondary self-center" />
+        <!--headline/icon-->
+        <h4 class="m3-font-headline-small text-center text-on-surface mt-0 mb-4 animate-[opacity_150ms]">Hello</h4>
+        <!--content-->
+        <div class="grow m3-font-body-medium text-on-surface-variant mb-6 relative animate-[opacity_200ms]">
+          Anything is possible at ZomboCom! You can do anything at ZomboCom! The infinite is possible at
+          ZomboCom! The unattainable is unknown at ZomboCom!
+        </div>
+        <div class="flex justify-end gap-2 animation-[buttonsIn_500ms_var(--m3-easing-decel)] animate-[opacity_200ms_100ms_backwards]">
+          <Button type="text" onclick={() => (open = false)}>Cancel</Button>
+          <Button type="text" onclick={() => (open = false)}>OK</Button>
+        </div>
+      </div>
+    </Dialog>
+  {/snippet}
 </InternalCard>
