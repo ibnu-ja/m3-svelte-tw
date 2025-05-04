@@ -2,14 +2,20 @@
   import type { TransitionConfig } from "svelte/transition";
   import { easeEmphasizedAccel, easeEmphasizedDecel } from "$lib/misc/easing";
   import { outroClass } from "$lib/misc/animation";
-  import type { Snippet } from "svelte";
+  import { setContext, type Snippet } from "svelte";
   import type { HTMLDialogAttributes } from "svelte/elements";
   import { cn } from "$lib/misc/utils";
+  import { type BottomSheetContext, internalBottomSheetContextKey } from "$lib/containers/bottom-sheet/index";
 
   let height = $state(480);
-  let container: HTMLDivElement | undefined = $state();
-  let isDragging = $state(false);
-  let startY = $state(0);
+
+  let context: BottomSheetContext = $state({
+    startY: 0,
+    isDragging: false,
+    containerHeightSignal: undefined,
+  });
+
+  setContext<BottomSheetContext>(internalBottomSheetContextKey, context);
 
   type Props = {
     close?: (closedBy?: string) => void;
@@ -43,22 +49,23 @@
   const moveWheel = (e: WheelEvent) => {
     e.preventDefault();
     height += e.deltaY;
-    if (container && container.clientHeight < height) height = container.clientHeight;
+    if (context.containerHeightSignal && context.containerHeightSignal < height)
+      height = context.containerHeightSignal;
   };
   const moveMouse = (e: { clientY: number }) => {
-    if (isDragging) {
-      const distance = e.clientY - startY;
+    if (context.isDragging) {
+      const distance = e.clientY - context.startY;
       height -= distance;
-      startY = e.clientY;
+      context.startY = e.clientY;
     }
   };
 </script>
 
 <svelte:window
   on:mousemove={moveMouse}
-  on:mouseup={() => (isDragging = false)}
+  on:mouseup={() => (context.isDragging = false)}
   on:touchmove={(e) => moveMouse(e.touches[0])}
-  on:touchend={() => (isDragging = false)}
+  on:touchend={() => (context.isDragging = false)}
 />
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -91,30 +98,9 @@
   onwheel={moveWheel}
   in:heightAnim
   out:heightAnim={{ easing: easeEmphasizedAccel, duration: 300 }}
+  {...attrs}
 >
-  <div
-    class="py-0 px-4"
-    bind:this={container}
-    ontouchstart={(e) => {
-      isDragging = true;
-      startY = e.touches[0].clientY;
-    }}
-  >
-    <!--handle container-->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div
-      class="flex items-center justify-center w-full h-12 cursor-grab"
-      onmousedown={(e) => {
-        e.preventDefault();
-        isDragging = true;
-        startY = e.clientY;
-      }}
-    >
-      <!--handle-->
-      <div class="bg-on-surface-variant/40 w-8 h-1 rounded forced-colors:bg-[canvastext]"></div>
-    </div>
-    {@render children?.()}
-  </div>
+  {@render children?.()}
 </dialog>
 
 <style>

@@ -12,7 +12,7 @@ export { default as SegmentedButtonContainer } from "./buttons/SegmentedButtonCo
 export { default as SegmentedButtonItem } from "./buttons/SegmentedButtonItem.svelte";
 export { default as FAB } from "./buttons/FAB.svelte";
 
-export { default as BottomSheet } from "./containers/BottomSheet.svelte";
+export * from "./containers/bottom-sheet";
 export { default as Card } from "./containers/Card.svelte";
 export { default as CardClickable } from "./containers/CardClickable.svelte";
 export { default as Dialog } from "./containers/Dialog.svelte";

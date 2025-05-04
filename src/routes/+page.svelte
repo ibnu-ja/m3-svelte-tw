@@ -2,7 +2,7 @@
   import { slide } from "svelte/transition";
   import { easeEmphasized } from "$lib/misc/easing";
   import StandardSideSheet from "$lib/containers/StandardSideSheet.svelte";
-  import BottomSheet from "$lib/containers/BottomSheet.svelte";
+  import BottomSheet from "$lib/containers/bottom-sheet/BottomSheet.svelte";
 
   import Doc from "./_doc.svelte";
   import Hero from "./Hero.svelte";
