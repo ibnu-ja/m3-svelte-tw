@@ -12,6 +12,12 @@
   import Demo3 from "./3.svelte";
   import Demo6 from "./6.svelte";
   import Demo7 from "./7.svelte";
+  import {
+    BottomSheet,
+    BottomSheetContainer,
+    BottomSheetHandle,
+    BottomSheetHandleContainer,
+  } from "$lib";
 
   let innerWidth: number | undefined = $state();
 
@@ -26,11 +32,10 @@
     doc = docData;
   };
 
-  export type DocProps = { showCode: (docData: DocData) => void }
-
+  export type DocProps = { showCode: (docData: DocData) => void };
 </script>
 
-<svelte:window bind:innerWidth={innerWidth} />
+<svelte:window bind:innerWidth />
 <svelte:head>
   <title>M3 Svelte</title>
   <meta
@@ -48,7 +53,8 @@
   <Hero />
   <!--cards-->
   <div
-    class="grid gap-y-12 gap-x-6 px-4 mb-4 col-start-1 sm:[grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))] sm:px-6 sm:mb-6">
+    class="grid gap-y-12 gap-x-6 px-4 mb-4 col-start-1 sm:[grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))] sm:px-6 sm:mb-6"
+  >
     <Demo0 {showCode} />
     <Demo1 {showCode} />
     <Demo2 {showCode} />
@@ -59,14 +65,20 @@
   {#if doc && innerWidth != null && innerWidth >= 600}
     <div
       class="flex flex-col w-64 ml-4 border-l-outline border-l-[1px] sticky top-0 h-screen overflow-auto row-start-1 row-span-3 col-start-2 sm:ml-6"
-      transition:slide={{ easing: easeEmphasized, duration: 500, axis: "x" }}>
+      transition:slide={{ easing: easeEmphasized, duration: 500, axis: "x" }}
+    >
       <StandardSideSheet headline={doc.name} onclose={() => (doc = undefined)}>
         {@render docs()}
       </StandardSideSheet>
     </div>
   {:else if doc}
     <BottomSheet close={() => (doc = undefined)}>
-      {@render docs()}
+      <BottomSheetContainer>
+        <BottomSheetHandleContainer>
+          <BottomSheetHandle></BottomSheetHandle>
+        </BottomSheetHandleContainer>
+        {@render docs()}
+      </BottomSheetContainer>
     </BottomSheet>
   {/if}
 </div>

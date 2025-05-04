@@ -8,7 +8,6 @@
   } from "$lib/containers/bottom-sheet/index";
 
   type Props = {
-    //onmousedown?: MouseEventHandler<HTMLDivElement> | null
     children?: Snippet;
     class?: SvelteHTMLElements["div"]["class"];
     [key: string]: any;

@@ -5,7 +5,10 @@
   import { setContext, type Snippet } from "svelte";
   import type { HTMLDialogAttributes } from "svelte/elements";
   import { cn } from "$lib/misc/utils";
-  import { type BottomSheetContext, internalBottomSheetContextKey } from "$lib/containers/bottom-sheet/index";
+  import {
+    type BottomSheetContext,
+    internalBottomSheetContextKey,
+  } from "$lib/containers/bottom-sheet/index";
 
   let height = $state(480);
 
