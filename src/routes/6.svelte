@@ -5,7 +5,6 @@
   import { BottomSheet, BottomSheetContainer, BottomSheetHandle, BottomSheetHandleContainer } from "$lib/containers/bottom-sheet";
 
   let open = $state(false);
-  let open2 = $state(false);
 
   const minimalDemo = `{#if open}
   <BottomSheet close={() => (open = false)}>
