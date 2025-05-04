@@ -18,14 +18,8 @@ export const cardVariants = cva(
   {
     variants: {
       type: {
-        elevated: [
-          "bg-surface-container-low",
-          "shadow-elevation-1",
-        ],
-        filled: [
-          "bg-surface-container-highest",
-          "forced-colors:outline-[0.125rem]",
-        ],
+        elevated: ["bg-surface-container-low", "shadow-elevation-1"],
+        filled: ["bg-surface-container-highest", "forced-colors:outline-[0.125rem]"],
         outlined: [
           "outline-[0.0625rem]",
           "outline-(--m3-scheme-outline)", // /src/app.css:36
@@ -41,3 +35,28 @@ export const cardVariants = cva(
 );
 
 export type CardVariantProps = VariantProps<typeof cardVariants>;
+
+export const listItemContent = cva(
+  ["m-0"],
+  /*
+   * 
+  .supporting,
+  .overline {
+    color: rgb(var(--m3-scheme-on-surface-variant));
+  }
+  .headline {
+    color: rgb(var(--m3-scheme-on-surface));
+  } 
+   */
+  {
+    variants: {
+      type: {
+        overline: ["m3-font-label-small", "text-on-surface-variant"],
+        headline: ["m3-font-label-large", "text-on-surface"],
+        supporting: ["m3-font-label-medium", "text-on-surface-variant"],
+      },
+    },
+  },
+);
+
+export type ListItemContentVariants = VariantProps<typeof listItemContent>;

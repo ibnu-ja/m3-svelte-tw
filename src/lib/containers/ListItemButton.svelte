@@ -1,23 +1,27 @@
 <script lang="ts">
-  import type { HTMLButtonAttributes } from "svelte/elements";
-  import Layer from "$lib/misc/Layer.svelte";
+  import { type Snippet } from "svelte";
+  import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
+  import type { PrimitiveProps } from "$lib/primitive";
+  import { Layer } from "$lib/index";
 
-  export let display = "flex";
-  export let extraOptions: HTMLButtonAttributes = {};
-  export let overline = "";
-  export let headline = "";
-  export let supporting = "";
-  export let lines: number | undefined = undefined;
-  $: _lines = lines || (overline && supporting ? 3 : overline || supporting ? 2 : 1);
+  interface Props extends PrimitiveProps {
+    lines: 1 | 2 | 3 | "1" | "2" | "3"
+    overline?: string
+    headline?: string
+    supporting?: string
+    extraOptions?: HTMLButtonAttributes
+    leading?: Snippet
+    trailing?: Snippet
+  }
+
+  let { lines, overline, headline, supporting, extraOptions, leading, trailing, ...attrs } : Props = $props()
+
+  let _lines = $derived(lines || (overline && supporting ? 3 : overline || supporting ? 2 : 1));
 </script>
 
-<button on:click class="m3-container lines-{_lines}" style="display: {display}" {...extraOptions}>
+<button class="flex pt-2 pr-6 pb-4 pl-4 items-center gap-4 lines-{_lines}" {...extraOptions} {...attrs}>
   <Layer />
-  {#if $$slots.leading}
-    <div class="leading">
-      <slot name="leading" />
-    </div>
-  {/if}
+  {@render leading?.()}
   <div class="body">
     {#if overline}
       <p class="overline m3-font-label-small">{overline}</p>
@@ -27,11 +31,12 @@
       <p class="supporting m3-font-body-medium">{supporting}</p>
     {/if}
   </div>
-  {#if $$slots.trailing}
-    <div class="trailing m3-font-label-small">
-      <slot name="trailing" />
-    </div>
-  {/if}
+  {@render trailing?.()}
+  <!--{#if $$slots.trailing}-->
+  <!--  <div class="trailing m3-font-label-small">-->
+  <!--    <slot name="trailing" />-->
+  <!--  </div>-->
+  <!--{/if}-->
 </button>
 
 <style>

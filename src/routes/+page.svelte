@@ -9,6 +9,7 @@
   import Demo1 from "./1.svelte";
   import Demo2 from "./2.svelte";
   import Demo3 from "./3.svelte";
+  import Demo4 from "./4.svelte";
   import Demo6 from "./6.svelte";
   import Demo7 from "./7.svelte";
 
@@ -59,6 +60,7 @@
     <Demo1 {showCode} />
     <Demo2 {showCode} />
     <Demo3 {showCode} />
+    <Demo4 {showCode} />
     <Demo6 {showCode} />
     <Demo7 {showCode} />
   </div>

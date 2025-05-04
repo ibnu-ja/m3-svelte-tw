@@ -1,43 +1,50 @@
 <script lang="ts">
+  import { type Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
+  import type { PrimitiveProps } from "$lib/primitive";
+  import ListItemOverline from "$lib/containers/list-item/ListItemOverline.svelte";
 
-  export let display = "flex";
-  export let extraOptions: HTMLAttributes<HTMLDivElement> = {};
-  export let overline = "";
-  export let headline = "";
-  export let supporting = "";
-  export let lines: number | undefined = undefined;
-  $: _lines = lines || (overline && supporting ? 3 : overline || supporting ? 2 : 1);
+  interface Props extends PrimitiveProps {
+    lines: 1 | 2 | 3 | "1" | "2" | "3"
+    overline?: string
+    headline?: string
+    supporting?: string
+    extraOptions?: HTMLAttributes<HTMLDivElement>
+    leading?: Snippet
+    trailing?: Snippet
+  }
+
+  let { lines, overline, headline, supporting, extraOptions, leading, trailing, ...attrs } : Props = $props()
+
+  let _lines = $derived(lines || (overline && supporting ? 3 : overline || supporting ? 2 : 1));
 </script>
 
-<div class="m3-container lines-{_lines}" style="display: {display}" {...extraOptions}>
-  {#if $$slots.leading}
-    <div class="leading">
-      <slot name="leading" />
-    </div>
-  {/if}
+<div class="flex pt-2 pr-6 pb-4 pl-4 items-center gap-4 lines-{_lines}" {...extraOptions} {...attrs}>
+  {@render leading?.()}
+  <!--{#if $$slots.leading}-->
+  <!--  <div class="leading">-->
+  <!--    <slot name="leading" />-->
+  <!--  </div>-->
+  <!--{/if}-->
   <div class="body">
     {#if overline}
-      <p class="overline m3-font-label-small">{overline}</p>
+      <ListItemOverline>{overline}</ListItemOverline>
     {/if}
+      <!--<ListItemSupporting></ListItemSupporting>-->
     <p class="headline m3-font-body-large">{headline}</p>
     {#if supporting}
       <p class="supporting m3-font-body-medium">{supporting}</p>
     {/if}
   </div>
-  {#if $$slots.trailing}
-    <div class="trailing m3-font-label-small">
-      <slot name="trailing" />
-    </div>
-  {/if}
+  {@render trailing?.()}
+  <!--{#if $$slots.trailing}-->
+  <!--  <div class="trailing m3-font-label-small">-->
+  <!--    <slot name="trailing" />-->
+  <!--  </div>-->
+  <!--{/if}-->
 </div>
 
 <style>
-  .m3-container {
-    padding: 0.5rem 1.5rem 0.5rem 1rem;
-    align-items: center;
-    gap: 1rem;
-  }
   .lines-1 {
     height: 3.5rem;
   }
