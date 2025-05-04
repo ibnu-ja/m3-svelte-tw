@@ -1,27 +1,16 @@
 <script lang="ts">
-  import Icon from "$lib/misc/_icon.svelte";
-  import type { IconifyIcon } from "@iconify/types";
-  import { createEventDispatcher } from "svelte";
+  import { type Snippet } from "svelte";
   import type { HTMLDialogAttributes } from "svelte/elements";
   import { cn } from "$lib/misc/utils";
 
-  //Breaking changes:
-  //removed icon, hheadline, and buttons props. Delegate everything to parent component
-  //export let display = "flex";
-  //export let extraOptions: HTMLDialogAttributes = {};
-  //export let icon: IconifyIcon | undefined = undefined;
-  //export let headline: string;
-  //export let open: boolean;
-  //export let closeOnEsc = true;
-  //export let closeOnClick = true;
-  //
-  //const dispatch = createEventDispatcher();
   let dialog: HTMLDialogElement | undefined = $state();
+
   $effect(() => {
     if (!dialog) return;
     if (open) dialog.showModal();
     else dialog.close();
   });
+
   type Props = {
     open?: boolean;
     closeOnEsc?: boolean;
@@ -63,13 +52,15 @@
       "transition-opacity",
       "transition-visibility",
       "backdrop:animate-[opacity_400ms]",
-      "open:animate-(--dialog-animation)",
+      "open:animate-[dialogIn_500ms_var(--m3-easing-decel),_opacity_100ms_var(--m3-easing-decel)]",
       "open:opacity-100",
       "open:visible",
       "pointer-events-auto",
       "backdrop:bg-scrim/30",
-      "backdrop:animate-opacity",
-      "backdrop:duration-400",
+      "backdrop:animate-[opacity_400ms]",
+      "forced-colors:outline-2",
+      "forced-colors:outline-solid",
+      "forced-colors:outline-[canvastext]",
     ],
     className,
   )}
@@ -92,31 +83,3 @@
 >
   {@render children?.()}
 </dialog>
-
-<style>
-  :root {
-    --m3-dialog-shape: var(--m3-util-rounding-extra-large);
-    --dialog-animation: dialogIn 500ms var(--m3-easing-decel), opacity 100ms var(--m3-easing-decel);
-  }
-
-  /*dialog[open] .headline {*/
-  /*  animation: opacity 150ms;*/
-  /*}*/
-
-  /*dialog[open] .content {*/
-  /*  animation: opacity 200ms;*/
-  /*}*/
-
-  /*dialog[open] .buttons {*/
-  /*  position: relative;*/
-  /*  animation:*/
-  /*    buttonsIn 500ms var(--m3-easing-decel),*/
-  /*    opacity 200ms 100ms backwards;*/
-  /*}*/
-
-    @media print, (forced-colors: active) {
-        dialog {
-            outline: solid 0.125rem canvastext;
-        }
-    }
-</style>
