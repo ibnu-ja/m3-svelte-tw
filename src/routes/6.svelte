@@ -1,13 +1,23 @@
 <script lang="ts">
   import InternalCard from "./_card.svelte";
   import Button from "$lib/buttons/Button.svelte";
-  import BottomSheet from "$lib/containers/BottomSheet.svelte";
   import type { DocData, DocProps } from "./+page.svelte";
+  import { BottomSheet, BottomSheetContainer, BottomSheetHandle, BottomSheetHandleContainer } from "$lib/containers/bottom-sheet";
 
   let open = $state(false);
+  let open2 = $state(false);
 
   const minimalDemo = `{#if open}
-  <BottomSheet close={() => (open = false)}>Hello</BottomSheet>
+  <BottomSheet close={() => (open = false)}>
+    <BottomSheetContainer>
+      <BottomSheetHandleContainer>
+        <BottomSheetHandle></BottomSheetHandle>
+      </BottomSheetHandleContainer>
+      <div>
+        Hello
+      </div>
+    </BottomSheetContainer>
+  </BottomSheet>
 {/if}`;
   const relevantLinks = [
     {
@@ -23,7 +33,16 @@
   {#snippet demo()}
     <Button type="tonal" onclick={() => (open = true)}>Open</Button>
     {#if open}
-      <BottomSheet close={() => (open = false)}>Hello</BottomSheet>
+      <BottomSheet close={() => (open = false)}>
+        <BottomSheetContainer>
+          <BottomSheetHandleContainer>
+            <BottomSheetHandle></BottomSheetHandle>
+          </BottomSheetHandleContainer>
+          <div>
+            Hello
+          </div>
+        </BottomSheetContainer>
+      </BottomSheet>
     {/if}
   {/snippet}
 </InternalCard>
