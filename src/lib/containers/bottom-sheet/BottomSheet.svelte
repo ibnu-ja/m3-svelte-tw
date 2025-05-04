@@ -91,12 +91,15 @@
   style="max-height: {height}px"
   use:open
   use:outroClass
-  onmousedown={() => {
-    close?.("click");
+  onmousedown={(e) => {
+    //close only when dialog is clicked
+    if (e.target === e.currentTarget)
+      close?.("click");
   }}
   oncancel={(e) => {
     e.preventDefault();
-    close?.("browser");
+    if (e.target === e.currentTarget)
+      close?.("browser");
   }}
   onwheel={moveWheel}
   in:heightAnim

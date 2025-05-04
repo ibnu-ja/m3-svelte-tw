@@ -9,21 +9,18 @@
   } = $props();
 </script>
 
-<div class="anchor">
+<div class="anchor flex flex-col gap-2">
   <Highlight language={xml} code={minimalDemo} />
 
-  {#each relevantLinks as { title, link }, i}
-    <ButtonLink type={i === 0 ? "filled" : "tonal"} href={link}>{title}</ButtonLink>
-  {/each}
+  <div>
+    {#each relevantLinks as { title, link }, i}
+      <ButtonLink type={i === 0 ? "filled" : "tonal"} href={link}>{title}</ButtonLink>
+    {/each}
+  </div>
 </div>
 
 <style>
     .anchor {
-        display: flex;
-        flex-direction: column;
-        padding: 0 1.5rem;
-        gap: 0.5rem;
-
         :global {
             pre {
                 margin: 0;
