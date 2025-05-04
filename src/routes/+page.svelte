@@ -19,13 +19,6 @@
     BottomSheetHandleContainer,
   } from "$lib";
 
-  import {
-    BottomSheet,
-    BottomSheetContainer,
-    BottomSheetHandle,
-    BottomSheetHandleContainer,
-  } from "$lib";
-
   let innerWidth: number | undefined = $state();
 
   export type DocData = {
