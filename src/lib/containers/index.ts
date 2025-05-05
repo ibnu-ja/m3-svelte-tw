@@ -68,12 +68,6 @@ export const listItem = cva(
       lines: {
         "1": ["h-14"],
         "2": ["h-18"],
-        /*
-        height: 5.5rem;
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-        align-items: flex-start;
-         */
         "3": ["h-22", "py-3", "items-start"],
       },
     },

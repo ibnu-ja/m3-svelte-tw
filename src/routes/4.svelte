@@ -13,7 +13,7 @@
   import ListItemText from "$lib/containers/list-item/ListItemText.svelte";
 
   let lines: "1" | "2" | "3" = $state("1");
-  let type: "div" | "button" | "label" = $state("div");
+  let type: "div" | "button" | "label" | "a" = $state("div");
   const headline = "Hello";
   const supporting = "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom!";
 
@@ -54,7 +54,7 @@ ${"<"}/div>`;
     {lines === "1" ? "line" : "lines"}
   </label>
   <label>
-    <Arrows list={["div", "button", "label"]} bind:value={type} />
+    <Arrows list={["div", "button", "label", "a"]} bind:value={type} />
     {"<" + type + ">"}
   </label>
   {#snippet demo()}
@@ -68,7 +68,7 @@ ${"<"}/div>`;
           <Icon icon={iconCircle} />
         {/if}
       {/snippet}
-      <ListItem as={type} {lines}>
+      <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
         {#snippet leading()}
           {#if type === "label"}
             <div class="flex items-center justify-center shrink-0 w-6 h-6">

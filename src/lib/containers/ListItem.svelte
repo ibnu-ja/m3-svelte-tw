@@ -11,6 +11,8 @@
     supporting?: string;
     leading?: Snippet;
     trailing?: Snippet;
+    //maybe should change prop name
+    clickable?: boolean;
   }
 
   //TODO line height variant props apply clamp on ListItemContent
@@ -25,6 +27,7 @@
     leading,
     trailing,
     children,
+    clickable = false,
     ...attrs
   }: Props = $props();
 
@@ -35,12 +38,12 @@
   {as}
   class={cn(
     listItem({ lines: _lines }),
-    (as === "button" || as === "label" || as === "a") && "cursor-pointer select-none",
+    (as === "button" || as === "label" || as === "a" || clickable) && "cursor-pointer select-none",
     className,
   )}
   {...attrs}
 >
-  {#if as === "button" || as === "label" || as === "a"}
+  {#if as === "button" || as === "label" || as === "a" || clickable}
     <Layer />
   {/if}
   {#if leading}
