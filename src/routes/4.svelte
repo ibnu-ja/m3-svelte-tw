@@ -7,23 +7,17 @@
   //import ListItemButton from "$lib/containers/ListItemButton.svelte";
   //import ListItemLabel from "$lib/containers/ListItemLabel.svelte";
   import Checkbox from "$lib/forms/Checkbox.svelte";
-  import Divider from "$lib/utils/Divider.svelte";
   import type { DocProps } from "./+page.svelte";
   import ListItemIcon from "$lib/containers/list-item/ListItemIcon.svelte";
+  import ListItemContent from "$lib/containers/list-item/ListItemContent.svelte";
+  import ListItemText from "$lib/containers/list-item/ListItemText.svelte";
 
   let lines: "1" | "2" | "3" = $state("1");
   let type: "div" | "button" | "label" = $state("div");
   const headline = "Hello";
-  let supporting = $derived(
-    lines === "1"
-      ? undefined
-      : lines == "2"
-        ? "Welcome to ZomboCom!"
-        : "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom!"
-  );
+  const supporting = "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom!";
 
   //let ListComponent = $derived(type == "div" ? ListItem : type == "button" ? ListItemButton : ListItemLabel);
-
 
   let { showCode }: DocProps = $props();
 
@@ -34,17 +28,23 @@ ${"<"}/div>`;
   const relevantLinks = [
     {
       title: "ListItem.sv",
-      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItem.svelte"
+      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItem.svelte",
     },
     {
       title: "ListItemButton.sv",
-      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItemButton.svelte"
+      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItemButton.svelte",
     },
     {
       title: "ListItemLabel.sv",
-      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItemLabel.svelte"
-    }
+      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/containers/ListItemLabel.svelte",
+    },
   ];
+
+  let clampClass = $derived.by(() => {
+    if (lines === "2") return "line-clamp-1";
+    if (lines === "3") return "line-clamp-2";
+    return undefined;
+  });
 </script>
 
 <InternalCard title="List" showCode={() => showCode({ name: "List", minimalDemo, relevantLinks })}>
@@ -68,12 +68,7 @@ ${"<"}/div>`;
           <Icon icon={iconCircle} />
         {/if}
       {/snippet}
-      <ListItem
-        as={type}
-        {headline}
-        {supporting}
-        lines={lines}
-      >
+      <ListItem as={type} {lines}>
         {#snippet leading()}
           {#if type === "label"}
             <div class="flex items-center justify-center shrink-0 w-6 h-6">
@@ -83,7 +78,13 @@ ${"<"}/div>`;
             <ListItemIcon icon={iconCircle} />
           {/if}
         {/snippet}
-        <!--<svelte:fragment slot="leading">{@render leading()}</svelte:fragment>-->
+        <ListItemContent>
+          <ListItemText type="headline">{headline}</ListItemText>
+          <!--TODO user still handle line-clamp class.-->
+          {#if clampClass}
+            <ListItemText type="supporting" class={clampClass}>{supporting}</ListItemText>
+          {/if}
+        </ListItemContent>
       </ListItem>
       <!--<Divider />-->
     </div>

@@ -74,7 +74,7 @@ export const listItem = cva(
         padding-bottom: 0.75rem;
         align-items: flex-start;
          */
-        "3": ["h-22", "py-4", "items-start"],
+        "3": ["h-22", "py-3", "items-start"],
       },
     },
   },
