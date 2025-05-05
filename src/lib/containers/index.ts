@@ -52,8 +52,8 @@ export const listItemContent = cva(
     variants: {
       type: {
         overline: ["m3-font-label-small", "text-on-surface-variant"],
-        headline: ["m3-font-label-large", "text-on-surface"],
-        supporting: ["m3-font-label-medium", "text-on-surface-variant"],
+        headline: ["m3-font-body-large", "text-on-surface", "line-clamp-1"],
+        supporting: ["m3-font-body-medium", "text-on-surface-variant", "line-clamp-1"],
       },
     },
   },

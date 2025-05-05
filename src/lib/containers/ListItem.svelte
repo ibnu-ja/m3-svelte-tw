@@ -14,6 +14,8 @@
     trailing?: Snippet;
   }
 
+  //TODO line height variant props apply clamp on ListItemContent
+
   let {
     as = "div",
     lines,
@@ -44,12 +46,12 @@
   {/if}
   <div class="grow">
     {#if overline}
-      <ListItemContent>{overline}</ListItemContent>
+      <ListItemContent type="overline">{overline}</ListItemContent>
     {/if}
     <!--<ListItemSupporting></ListItemSupporting>-->
-    <p class="headline m3-font-body-large">{headline}</p>
+    <ListItemContent type="headline">{headline}</ListItemContent>
     {#if supporting}
-      <p class="supporting m3-font-body-medium">{supporting}</p>
+      <ListItemContent type="supporting">{supporting}</ListItemContent>
     {/if}
   </div>
   <!--{@render trailing?.()}-->
@@ -69,14 +71,6 @@
         display: contents;
         color: rgb(var(--m3-scheme-on-surface-variant));
     }
-
-    .leading > :global(svg),
-    .trailing > :global(svg) {
-        width: 1.5rem;
-        height: 1.5rem;
-        flex-shrink: 0;
-    }
-
     p {
         margin: 0;
     }

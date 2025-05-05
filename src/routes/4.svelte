@@ -48,7 +48,6 @@ ${"<"}/div>`;
 </script>
 
 <InternalCard title="List" showCode={() => showCode({ name: "List", minimalDemo, relevantLinks })}>
-
   <label>
     <Arrows list={["1", "2", "3"]} bind:value={lines} />
     {lines}
@@ -77,7 +76,7 @@ ${"<"}/div>`;
       >
         {#snippet leading()}
           {#if type === "label"}
-            <div class="box-wrapper">
+            <div class="flex items-center justify-center shrink-0 w-6 h-6">
               <Checkbox><input type="checkbox" /></Checkbox>
             </div>
           {:else}
@@ -89,20 +88,4 @@ ${"<"}/div>`;
       <!--<Divider />-->
     </div>
   {/snippet}
-
-  <style>
-      /*.demo {*/
-      /*    display: flex;*/
-      /*    flex-direction: column;*/
-      /*}*/
-
-      .box-wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          width: 1.5rem;
-          height: 1.5rem;
-      }
-  </style>
 </InternalCard>
