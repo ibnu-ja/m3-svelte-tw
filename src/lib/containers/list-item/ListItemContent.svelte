@@ -8,7 +8,7 @@
     text?: string;
   }
 
-  let { class: className, as = "p", text, children, type = "headline", ...attrs }: Props = $props();
+  let { class: className, as = "div", text, children, type = "headline", ...attrs }: Props = $props();
 </script>
 
 <Primitive {as} class={cn(listItemContent({ type }), className)} {...attrs}>

@@ -27,14 +27,14 @@
     ...attrs
   }: Props = $props();
 
-  let _lines = $derived(String(lines) as "1" | "2" | "3");
+  let _lines = $derived(typeof lines == "number" ? (String(lines) as "1" | "2" | "3") : lines);
 </script>
 
-<Primitive {as} class={cn(listItem({lines: _lines }), className, (as === "button" || as === "label" || as === "a") && "cursor-pointer")} {...attrs}>
+<Primitive {as}
+           class={cn(listItem({lines: _lines }), className, (as === "button" || as === "label" || as === "a") && "cursor-pointer")}
+           {...attrs}>
   {#if as === "button" || as === "label" || as === "a" }
-    <!--<div>-->
     <Layer />
-    <!--</div>-->
   {/if}
   <!--{@render leading?.()}-->
   {#if leading}
