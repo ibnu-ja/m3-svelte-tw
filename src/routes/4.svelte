@@ -4,12 +4,12 @@
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
   import ListItem from "$lib/containers/ListItem.svelte";
-  import ListItemButton from "$lib/containers/ListItemButton.svelte";
-  import ListItemLabel from "$lib/containers/ListItemLabel.svelte";
+  //import ListItemButton from "$lib/containers/ListItemButton.svelte";
+  //import ListItemLabel from "$lib/containers/ListItemLabel.svelte";
   import Checkbox from "$lib/forms/Checkbox.svelte";
   import Divider from "$lib/utils/Divider.svelte";
   import type { DocProps } from "./+page.svelte";
-  import ListItemLeadingIcon from "$lib/containers/list-item/ListItemLeadingIcon.svelte";
+  import ListItemIcon from "$lib/containers/list-item/ListItemIcon.svelte";
 
   let lines: "1" | "2" | "3" = $state("1");
   let type: "div" | "button" | "label" = $state("div");
@@ -22,7 +22,7 @@
         : "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom!"
   );
 
-  let ListComponent = $derived(type == "div" ? ListItem : type == "button" ? ListItemButton : ListItemLabel);
+  //let ListComponent = $derived(type == "div" ? ListItem : type == "button" ? ListItemButton : ListItemLabel);
 
 
   let { showCode }: DocProps = $props();
@@ -59,55 +59,42 @@ ${"<"}/div>`;
     {"<" + type + ">"}
   </label>
   {#snippet demo()}
-    {#snippet leading()}
-      {#if type === "label"}
-        <div class="box-wrapper">
-          <Checkbox><input type="checkbox" /></Checkbox>
-        </div>
-      {:else}
-        <Icon icon={iconCircle} />
-      {/if}
-    {/snippet}
-    <ListComponent
-      {headline}
-      {supporting}
-      lines={lines}
-    >
+    <div class="flex">
       {#snippet leading()}
         {#if type === "label"}
           <div class="box-wrapper">
             <Checkbox><input type="checkbox" /></Checkbox>
           </div>
         {:else}
-          <ListItemLeadingIcon icon={iconCircle} />
+          <Icon icon={iconCircle} />
         {/if}
       {/snippet}
-      <!--<svelte:fragment slot="leading">{@render leading()}</svelte:fragment>-->
-    </ListComponent>
-    <Divider />
-    <ListComponent
-      {headline}
-      {supporting}
-      lines={lines}
-    >
-      {#snippet leading()}
-        {#if type === "label"}
-          <div class="box-wrapper">
-            <Checkbox><input type="checkbox" /></Checkbox>
-          </div>
-        {:else}
-          <ListItemLeadingIcon icon={iconCircle} />
-        {/if}
-      {/snippet}
-      <!--<svelte:fragment slot="leading">{@render leading()}</svelte:fragment>-->
-    </ListComponent>
+      <ListItem
+        as={type}
+        {headline}
+        {supporting}
+        lines={lines}
+      >
+        {#snippet leading()}
+          {#if type === "label"}
+            <div class="box-wrapper">
+              <Checkbox><input type="checkbox" /></Checkbox>
+            </div>
+          {:else}
+            <ListItemIcon icon={iconCircle} />
+          {/if}
+        {/snippet}
+        <!--<svelte:fragment slot="leading">{@render leading()}</svelte:fragment>-->
+      </ListItem>
+      <!--<Divider />-->
+    </div>
   {/snippet}
 
   <style>
-      .demo {
-          display: flex;
-          flex-direction: column;
-      }
+      /*.demo {*/
+      /*    display: flex;*/
+      /*    flex-direction: column;*/
+      /*}*/
 
       .box-wrapper {
           display: flex;

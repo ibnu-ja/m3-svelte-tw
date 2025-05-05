@@ -60,3 +60,30 @@ export const listItemContent = cva(
 );
 
 export type ListItemContentVariants = VariantProps<typeof listItemContent>;
+
+export const listItem = cva(
+  ["relative", "grow", "flex", "pt-2", "pr-6", "pb-2", "pl-4", "items-center", "gap-4", "text-left"],
+  {
+    variants: {
+      lines: {
+        "1": ["h-14"],
+        "2": ["h-18"],
+        /*
+        height: 5.5rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        align-items: flex-start;
+         */
+        "3": ["h-22", "py-4", "items-start"],
+      },
+    },
+  },
+);
+
+//export type ListItemVariants = VariantProps<typeof listItem>;
+export type ListItemVariants =
+  Omit<VariantProps<typeof listItem>, "lines">
+  & {
+  /** accept either number or string */
+  lines?: 1 | 2 | 3 | "1" | "2" | "3" | null;
+};

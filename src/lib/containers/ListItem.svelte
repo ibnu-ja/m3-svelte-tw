@@ -1,85 +1,92 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
-  import type { HTMLAttributes } from "svelte/elements";
   import type { PrimitiveProps } from "$lib/primitive";
-  import ListItemOverline from "$lib/containers/list-item/ListItemOverline.svelte";
+  import ListItemContent from "$lib/containers/list-item/ListItemContent.svelte";
+  import { cn, Layer } from "$lib/index";
+  import Primitive from "$lib/primitive/Primitive.svelte";
+  import { listItem, type ListItemVariants } from "$lib/containers/index";
 
-  interface Props extends PrimitiveProps {
-    lines: 1 | 2 | 3 | "1" | "2" | "3"
-    overline?: string
-    headline?: string
-    supporting?: string
-    extraOptions?: HTMLAttributes<HTMLDivElement>
-    leading?: Snippet
-    trailing?: Snippet
+  interface Props extends PrimitiveProps, ListItemVariants {
+    overline?: string;
+    headline?: string;
+    supporting?: string;
+    leading?: Snippet;
+    trailing?: Snippet;
   }
 
-  let { lines, overline, headline, supporting, extraOptions, leading, trailing, ...attrs } : Props = $props()
+  let {
+    as = "div",
+    lines,
+    overline,
+    headline,
+    supporting,
+    class: className,
+    leading,
+    trailing,
+    children,
+    ...attrs
+  }: Props = $props();
 
-  let _lines = $derived(lines || (overline && supporting ? 3 : overline || supporting ? 2 : 1));
+  let _lines = $derived(String(lines) as "1" | "2" | "3");
 </script>
 
-<div class="flex pt-2 pr-6 pb-4 pl-4 items-center gap-4 lines-{_lines}" {...extraOptions} {...attrs}>
-  {@render leading?.()}
-  <!--{#if $$slots.leading}-->
-  <!--  <div class="leading">-->
-  <!--    <slot name="leading" />-->
-  <!--  </div>-->
-  <!--{/if}-->
-  <div class="body">
+<Primitive {as} class={cn(listItem({lines: _lines }), className, (as === "button" || as === "label" || as === "a") && "cursor-pointer")} {...attrs}>
+  {#if as === "button" || as === "label" || as === "a" }
+    <!--<div>-->
+    <Layer />
+    <!--</div>-->
+  {/if}
+  <!--{@render leading?.()}-->
+  {#if leading}
+    <div class="leading">
+      {@render leading()}
+    </div>
+  {/if}
+  <div class="grow">
     {#if overline}
-      <ListItemOverline>{overline}</ListItemOverline>
+      <ListItemContent>{overline}</ListItemContent>
     {/if}
-      <!--<ListItemSupporting></ListItemSupporting>-->
+    <!--<ListItemSupporting></ListItemSupporting>-->
     <p class="headline m3-font-body-large">{headline}</p>
     {#if supporting}
       <p class="supporting m3-font-body-medium">{supporting}</p>
     {/if}
   </div>
-  {@render trailing?.()}
-  <!--{#if $$slots.trailing}-->
-  <!--  <div class="trailing m3-font-label-small">-->
-  <!--    <slot name="trailing" />-->
-  <!--  </div>-->
-  <!--{/if}-->
-</div>
+  <!--{@render trailing?.()}-->
+  {#if trailing}
+    <div class="trailing m3-font-label-small">
+      {@render trailing()}
+    </div>
+  {/if}
+</Primitive>
 
 <style>
-  .lines-1 {
-    height: 3.5rem;
-  }
-  .lines-2 {
-    height: 4.5rem;
-  }
-  .lines-3 {
-    height: 5.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    align-items: flex-start;
-  }
-  .body {
-    flex-grow: 1;
-  }
-  .leading,
-  .trailing {
-    display: contents;
-    color: rgb(var(--m3-scheme-on-surface-variant));
-  }
-  .leading > :global(svg),
-  .trailing > :global(svg) {
-    width: 1.5rem;
-    height: 1.5rem;
-    flex-shrink: 0;
-  }
+    /*.body {*/
+    /*  flex-grow: 1;*/
+    /*}*/
+    .leading,
+    .trailing {
+        display: contents;
+        color: rgb(var(--m3-scheme-on-surface-variant));
+    }
 
-  p {
-    margin: 0;
-  }
-  .supporting,
-  .overline {
-    color: rgb(var(--m3-scheme-on-surface-variant));
-  }
-  .headline {
-    color: rgb(var(--m3-scheme-on-surface));
-  }
+    .leading > :global(svg),
+    .trailing > :global(svg) {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .supporting,
+    .overline {
+        color: rgb(var(--m3-scheme-on-surface-variant));
+    }
+
+    .headline {
+        color: rgb(var(--m3-scheme-on-surface));
+    }
 </style>
