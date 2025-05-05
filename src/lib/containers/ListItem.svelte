@@ -1,7 +1,6 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import type { PrimitiveProps } from "$lib/primitive";
-  import ListItemText from "$lib/containers/list-item/ListItemText.svelte";
   import { cn, Layer } from "$lib/index";
   import Primitive from "$lib/primitive/Primitive.svelte";
   import { listItem, type ListItemVariants } from "$lib/containers/index";
@@ -32,23 +31,23 @@
   let _lines = $derived(typeof lines == "number" ? (String(lines) as "1" | "2" | "3") : lines);
 </script>
 
-<Primitive {as}
-           class={cn(listItem({lines: _lines }), className, (as === "button" || as === "label" || as === "a") && "cursor-pointer select-none")}
-           {...attrs}>
-  {#if as === "button" || as === "label" || as === "a" }
+<Primitive
+  {as}
+  class={cn(
+    listItem({ lines: _lines }),
+    (as === "button" || as === "label" || as === "a") && "cursor-pointer select-none",
+    className,
+  )}
+  {...attrs}
+>
+  {#if as === "button" || as === "label" || as === "a"}
     <Layer />
   {/if}
-  <!--{@render leading?.()}-->
   {#if leading}
-    <!--<div class="leading">-->
-      {@render leading()}
-    <!--</div>-->
+    {@render leading()}
   {/if}
   {@render children?.()}
-  <!--{@render trailing?.()}-->
   {#if trailing}
-    <!--<div class="trailing m3-font-label-small">-->
-      {@render trailing()}
-    <!--</div>-->
+    {@render trailing()}
   {/if}
 </Primitive>
