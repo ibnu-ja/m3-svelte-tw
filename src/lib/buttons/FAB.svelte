@@ -8,16 +8,25 @@
   import { type FABVariantProps, fabVariants } from "$lib/buttons/index";
   import { cn } from "$lib/misc/utils";
 
-  interface FABProps extends PrimitiveProps {
+  type Props = PrimitiveProps & {
     size?: FABVariantProps["size"];
     color?: FABVariantProps["color"];
     elevation?: FABVariantProps["elevation"];
     icon?: IconifyIcon;
     text?: string;
     class?: HTMLButtonAttributes["class"];
-  }
+  };
 
-  let { as = "button", color, size, elevation, icon, text, class: className, ...attrs }: FABProps = $props();
+  let {
+    as = "button",
+    color,
+    size,
+    elevation,
+    icon,
+    text,
+    class: className,
+    ...attrs
+  }: Props = $props();
 
   $effect(() => {
     if (!icon && !text) console.warn("you need at least something in a FAB");
@@ -25,11 +34,7 @@
   });
 </script>
 
-<Primitive
-  {as}
-  class={cn(fabVariants({size, elevation, color}), className)}
-  {...attrs}
->
+<Primitive {as} class={cn(fabVariants({ size, elevation, color }), className)} {...attrs}>
   <Layer />
   {#if icon}
     <Icon {icon} />

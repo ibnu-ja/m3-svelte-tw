@@ -5,33 +5,34 @@
   import Icon from "$lib/misc/_icon.svelte";
   import Layer from "$lib/misc/Layer.svelte";
   import type { Snippet } from "svelte";
+  import { cn } from "$lib/misc/utils";
 
-  interface SegmentedButtonProps extends HTMLLabelAttributes {
+  type Props = HTMLLabelAttributes & {
     class?: SvelteHTMLElements["label"]["class"];
     input?: string | null;
-
     icon?: IconifyIcon;
     children: Snippet;
   }
 
-  let { input, icon, children, class: className, ...attrs }: SegmentedButtonProps = $props();
+  let { input, icon, children, class: className, ...attrs }: Props = $props();
 </script>
 
 <label
   for={input}
-  class="{className}
-    m3-font-label-large
-    flex items-center justify-center
-    px-4
-    min-w-[3rem]
-    text-[rgb(var(--m3-scheme-on-surface))]
-    transition-all duration-200
-    cursor-pointer
-    whitespace-nowrap select-none
-    relative overflow-hidden
-    peer-checked:bg-[rgb(var(--m3-scheme-secondary-container))]
-    peer-checked:text-[rgb(var(--m3-scheme-on-secondary-container))]
-  "
+  class={cn(
+    "m3-font-label-large",
+    "flex items-center justify-center",
+    "px-4",
+    "min-w-[3rem]",
+    "text-[rgb(var(--m3-scheme-on-surface))]",
+    "transition-all duration-200",
+    "cursor-pointer",
+    "whitespace-nowrap select-none",
+    "relative overflow-hidden",
+    "peer-checked:bg-[rgb(var(--m3-scheme-secondary-container))]",
+    "peer-checked:text-[rgb(var(--m3-scheme-on-secondary-container))]",
+    className,
+  )}
   {...attrs}
 >
   <Layer />

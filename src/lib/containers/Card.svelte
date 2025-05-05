@@ -7,7 +7,7 @@
   import { cn } from "$lib/misc/utils";
   import { Layer } from "$lib";
 
-  interface CardProps extends PrimitiveProps {
+  type Props = PrimitiveProps & {
     type?: CardVariantProps["type"];
     clickable?: boolean;
     //TODO fix any type
@@ -24,7 +24,7 @@
     onclick,
     children,
     ...attrs
-  }: CardProps = $props();
+  }: Props = $props();
 
   $effect(() => {
     if (clickable) {

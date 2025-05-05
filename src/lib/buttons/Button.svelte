@@ -7,7 +7,7 @@
   import Primitive from "$lib/primitive/Primitive.svelte";
   import type { PrimitiveProps } from "$lib/primitive";
 
-  interface ButtonProps extends PrimitiveProps {
+  type Props = PrimitiveProps & {
     iconType?: ButtonVariantProps["iconType"]
     type?: ButtonVariantProps["type"]
     //TODO handle type any
@@ -17,7 +17,7 @@
     class?: HTMLAttributes<any>["class"],
   }
 
-  let { as = 'button', iconType = "none", type = "elevated", disabled = false, children, class: className, onclick, ...attrs }: ButtonProps = $props();
+  let { as = 'button', iconType = "none", type = "elevated", disabled = false, children, class: className, onclick, ...attrs }: Props = $props();
 
 </script>
 
