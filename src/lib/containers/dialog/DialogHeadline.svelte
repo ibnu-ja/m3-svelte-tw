@@ -3,7 +3,7 @@
   import type { PrimitiveProps } from "$lib/primitive";
   import Primitive from "$lib/primitive/Primitive.svelte";
 
-  interface Props extends PrimitiveProps {
+  type Props = PrimitiveProps & {
     text?: string;
   }
 
