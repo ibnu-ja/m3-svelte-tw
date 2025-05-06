@@ -1,9 +1,9 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import type { PrimitiveProps } from "$lib/primitive";
-  import { cn, Layer } from "$lib/index";
+  import { cn, Layer } from "$lib";
   import Primitive from "$lib/primitive/Primitive.svelte";
-  import { listItem, type ListItemVariants } from "$lib/containers/index";
+  import { listItem, type ListItemVariants } from "$lib/containers";
 
   interface Props extends PrimitiveProps, ListItemVariants {
     overline?: string;

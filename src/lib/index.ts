@@ -16,7 +16,7 @@ export * from "./containers/bottom-sheet";
 export { default as Card } from "./containers/Card.svelte";
 export { default as CardClickable } from "./containers/CardClickable.svelte";
 export * from "./containers/dialog";
-export { default as ListItem } from "./containers/ListItem.svelte";
+export * from "./containers/list";
 export { default as ListItemButton } from "./containers/ListItemButton.svelte";
 export { default as ListItemLabel } from "./containers/ListItemLabel.svelte";
 export { default as Menu } from "./containers/Menu.svelte";

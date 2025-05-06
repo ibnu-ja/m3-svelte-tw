@@ -1,17 +1,10 @@
 <script lang="ts">
   import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
-  import Icon from "$lib/misc/_icon.svelte";
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
-  import ListItem from "$lib/containers/ListItem.svelte";
-  //import ListItemButton from "$lib/containers/ListItemButton.svelte";
-  //import ListItemLabel from "$lib/containers/ListItemLabel.svelte";
   import Checkbox from "$lib/forms/Checkbox.svelte";
   import type { DocProps } from "./+page.svelte";
-  import ListItemIcon from "$lib/containers/list-item/ListItemIcon.svelte";
-  import ListItemContent from "$lib/containers/list-item/ListItemContent.svelte";
-  import ListItemText from "$lib/containers/list-item/ListItemText.svelte";
-  import { Divider } from "$lib";
+  import { Divider, List, ListItem, ListItemContent, ListItemIcon, ListItemText } from "$lib";
 
   let lines: "1" | "2" | "3" = $state("1");
   let type: "div" | "button" | "label" | "a" = $state("div");
@@ -59,7 +52,7 @@ ${"<"}/div>`;
     {"<" + type + ">"}
   </label>
   {#snippet demo()}
-    <div class="flex flex-col">
+    <List>
       <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
         {#snippet leading()}
           {#if type === "label"}
@@ -97,6 +90,6 @@ ${"<"}/div>`;
           {/if}
         </ListItemContent>
       </ListItem>
-    </div>
+    </List>
   {/snippet}
 </InternalCard>

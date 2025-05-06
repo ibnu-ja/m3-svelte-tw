@@ -38,16 +38,6 @@ export type CardVariantProps = VariantProps<typeof cardVariants>;
 
 export const listItemContent = cva(
   ["m-0"],
-  /*
-   * 
-  .supporting,
-  .overline {
-    color: rgb(var(--m3-scheme-on-surface-variant));
-  }
-  .headline {
-    color: rgb(var(--m3-scheme-on-surface));
-  } 
-   */
   {
     variants: {
       type: {
@@ -74,7 +64,6 @@ export const listItem = cva(
   },
 );
 
-//export type ListItemVariants = VariantProps<typeof listItem>;
 export type ListItemVariants =
   Omit<VariantProps<typeof listItem>, "lines">
   & {

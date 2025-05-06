@@ -12,8 +12,4 @@
   let { icon, class: className, ...attrs }: Props = $props();
 </script>
 
-<!--
-    width: 1.5rem;
-    height: 1.5rem;
-    flex-shrink: 0;-->
 <Icon {icon} width="1.5rem" height="1.5rem" class={["shrink-0", className]} />
