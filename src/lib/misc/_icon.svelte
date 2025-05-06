@@ -13,9 +13,9 @@
     [key: string]: any;
   };
 
-  let { icon, width = "1em", height = "1em", class: className }: Props = $props();
+  let { icon, width = "1em", height = "1em", class: className, ...attrs }: Props = $props();
 </script>
 
-<svg {width} {height} class={cn(className)} viewBox="0 0 {icon.width} {icon.height}">
+<svg {width} {height} class={cn(className)} viewBox="0 0 {icon.width} {icon.height}" {...attrs}>
   {@html icon.body}
 </svg>

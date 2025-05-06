@@ -18,14 +18,8 @@ export const cardVariants = cva(
   {
     variants: {
       type: {
-        elevated: [
-          "bg-surface-container-low",
-          "shadow-elevation-1",
-        ],
-        filled: [
-          "bg-surface-container-highest",
-          "forced-colors:outline-[0.125rem]",
-        ],
+        elevated: ["bg-surface-container-low", "shadow-elevation-1"],
+        filled: ["bg-surface-container-highest", "forced-colors:outline-[0.125rem]"],
         outlined: [
           "outline-[0.0625rem]",
           "outline-(--m3-scheme-outline)", // /src/app.css:36
