@@ -41,9 +41,8 @@ export const listItem = cva(
     "relative",
     "grow",
     "flex",
-    "pt-2",
+    "py-2",
     "pr-6",
-    "pb-2",
     "pl-4",
     "items-center",
     "gap-4",
@@ -63,3 +62,11 @@ export const listItem = cva(
 export type ListItemVariants = Omit<VariantProps<typeof listItem>, "lines"> & {
   lines?: 1 | 2 | 3 | "1" | "2" | "3" | null;
 };
+
+export const internalItemListContextKey = Symbol('internalItemListContext');
+
+export type InternalItemListContext = {
+  lines?: "1" | "2" | "3";
+  listItemContentCount: number;
+  listItemImageType: ListItemLeadingImageVariants['type'];
+}
