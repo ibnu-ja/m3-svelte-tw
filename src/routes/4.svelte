@@ -11,6 +11,7 @@
   import ListItemIcon from "$lib/containers/list-item/ListItemIcon.svelte";
   import ListItemContent from "$lib/containers/list-item/ListItemContent.svelte";
   import ListItemText from "$lib/containers/list-item/ListItemText.svelte";
+  import { Divider } from "$lib";
 
   let lines: "1" | "2" | "3" = $state("1");
   let type: "div" | "button" | "label" | "a" = $state("div");
@@ -58,16 +59,7 @@ ${"<"}/div>`;
     {"<" + type + ">"}
   </label>
   {#snippet demo()}
-    <div class="flex">
-      {#snippet leading()}
-        {#if type === "label"}
-          <div class="box-wrapper">
-            <Checkbox><input type="checkbox" /></Checkbox>
-          </div>
-        {:else}
-          <Icon icon={iconCircle} />
-        {/if}
-      {/snippet}
+    <div class="flex flex-col">
       <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
         {#snippet leading()}
           {#if type === "label"}
@@ -86,7 +78,25 @@ ${"<"}/div>`;
           {/if}
         </ListItemContent>
       </ListItem>
-      <!--<Divider />-->
+      <Divider />
+      <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
+        {#snippet leading()}
+          {#if type === "label"}
+            <div class="flex items-center justify-center shrink-0 w-6 h-6">
+              <Checkbox><input type="checkbox" /></Checkbox>
+            </div>
+          {:else}
+            <ListItemIcon icon={iconCircle} />
+          {/if}
+        {/snippet}
+        <ListItemContent>
+          <ListItemText type="headline">{headline}</ListItemText>
+          <!--TODO user still handle line-clamp class.-->
+          {#if clampClass}
+            <ListItemText type="supporting" class={clampClass}>{supporting}</ListItemText>
+          {/if}
+        </ListItemContent>
+      </ListItem>
     </div>
   {/snippet}
 </InternalCard>
