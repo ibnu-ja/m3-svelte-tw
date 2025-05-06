@@ -35,38 +35,3 @@ export const cardVariants = cva(
 );
 
 export type CardVariantProps = VariantProps<typeof cardVariants>;
-
-export const listItemContent = cva(
-  ["m-0"],
-  {
-    variants: {
-      type: {
-        overline: ["m3-font-label-small", "text-on-surface-variant"],
-        headline: ["m3-font-body-large", "text-on-surface", "line-clamp-1"],
-        supporting: ["m3-font-body-medium", "text-on-surface-variant", "line-clamp-1"],
-      },
-    },
-  },
-);
-
-export type ListItemContentVariants = VariantProps<typeof listItemContent>;
-
-export const listItem = cva(
-  ["relative", "grow", "flex", "pt-2", "pr-6", "pb-2", "pl-4", "items-center", "gap-4", "text-left"],
-  {
-    variants: {
-      lines: {
-        "1": ["h-14"],
-        "2": ["h-18"],
-        "3": ["h-22", "py-3", "items-start"],
-      },
-    },
-  },
-);
-
-export type ListItemVariants =
-  Omit<VariantProps<typeof listItem>, "lines">
-  & {
-  /** accept either number or string */
-  lines?: 1 | 2 | 3 | "1" | "2" | "3" | null;
-};

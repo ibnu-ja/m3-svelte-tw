@@ -1,15 +1,13 @@
 <script lang="ts">
-  import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
-  import Checkbox from "$lib/forms/Checkbox.svelte";
   import type { DocProps } from "./+page.svelte";
-  import { Divider, List, ListItem, ListItemContent, ListItemIcon, ListItemText } from "$lib";
+  import { List, ListItem, ListItemContent, ListItemLeadingImage, ListItemText } from "$lib";
 
   let lines: "1" | "2" | "3" = $state("1");
   let type: "div" | "button" | "label" | "a" = $state("div");
   const headline = "Hello";
-  const supporting = "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom!";
+  const supporting = "Welcome to ZomboCom! Anything is possible at ZomboCom! You can do anything at ZomboCom! You can do anything at ZomboCom!";
 
   //let ListComponent = $derived(type == "div" ? ListItem : type == "button" ? ListItemButton : ListItemLabel);
 
@@ -55,32 +53,8 @@ ${"<"}/div>`;
     <List>
       <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
         {#snippet leading()}
-          {#if type === "label"}
-            <div class="flex items-center justify-center shrink-0 w-6 h-6">
-              <Checkbox><input type="checkbox" /></Checkbox>
-            </div>
-          {:else}
-            <ListItemIcon icon={iconCircle} />
-          {/if}
-        {/snippet}
-        <ListItemContent>
-          <ListItemText type="headline">{headline}</ListItemText>
-          <!--TODO user still handle line-clamp class.-->
-          {#if clampClass}
-            <ListItemText type="supporting" class={clampClass}>{supporting}</ListItemText>
-          {/if}
-        </ListItemContent>
-      </ListItem>
-      <Divider />
-      <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
-        {#snippet leading()}
-          {#if type === "label"}
-            <div class="flex items-center justify-center shrink-0 w-6 h-6">
-              <Checkbox><input type="checkbox" /></Checkbox>
-            </div>
-          {:else}
-            <ListItemIcon icon={iconCircle} />
-          {/if}
+          <ListItemLeadingImage type="thumbnail"
+                                src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=128" />
         {/snippet}
         <ListItemContent>
           <ListItemText type="headline">{headline}</ListItemText>

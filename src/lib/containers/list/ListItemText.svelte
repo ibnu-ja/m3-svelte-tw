@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { cn } from "$lib";
+  import { cn, listItemContent, type ListItemContentVariants } from "$lib";
   import type { PrimitiveProps } from "$lib/primitive";
   import Primitive from "$lib/primitive/Primitive.svelte";
-  import { listItemContent, type ListItemContentVariants } from "$lib/containers";
 
   interface Props extends PrimitiveProps, ListItemContentVariants {
     text?: string;
