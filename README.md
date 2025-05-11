@@ -23,8 +23,8 @@ M3 Svelte implements the Material 3 design system in Svelte. See the [website](h
   - [x] ListItem.svelte
   - [ ] ~~ListItemButton.svelte~~
   - [ ] ~~ListItemLabel.svelte~~
-  - [ ] Menu.svelte
-  - [ ] MenuItem.svelte
+  - [x] Menu.svelte
+  - [x] MenuItem.svelte
   - [ ] Snackbar.svelte
   - [ ] SnackbarAnim.svelte
   - [ ] SnackbarItem.svelte
