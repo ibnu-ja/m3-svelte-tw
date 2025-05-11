@@ -29,8 +29,9 @@
     "cursor-pointer",
     "whitespace-nowrap select-none",
     "relative overflow-hidden",
-    "peer-checked:bg-[rgb(var(--m3-scheme-secondary-container))]",
-    "peer-checked:text-[rgb(var(--m3-scheme-on-secondary-container))]",
+    //FIXME pindahkan
+    //"peer-checked:bg-[rgb(var(--m3-scheme-secondary-container))]",
+    //"peer-checked:text-[rgb(var(--m3-scheme-on-secondary-container))]",
     className,
   )}
   {...attrs}
@@ -68,6 +69,10 @@
   :global(input:disabled) + label {
     color: rgb(var(--m3-scheme-on-surface) / 0.38);
     cursor: auto;
+  }
+  :global(input:checked) + label {
+      background-color: rgb(var(--m3-scheme-secondary-container));
+      color: rgb(var(--m3-scheme-on-secondary-container));
   }
 
   :global(input:checked) + label > .check.icon {
