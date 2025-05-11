@@ -63,34 +63,36 @@ ${"<"}/div>`;
   </label>
   {#snippet demo()}
     <List>
-      <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
-        {#snippet leading()}
-          {#if leadingType === "icon"}
-            <ListItemIcon icon={iconAccountCircle} />
-          {:else if leadingType !== "no leading"}
-            <ListItemLeadingImage
-              type={leadingType}
-              src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=128"
-            />
-          {/if}
-        {/snippet}
-        <ListItemContent>
-          <ListItemText type="headline">{headline}</ListItemText>
-          <!--TODO user still handle line-clamp class.-->
-          {#if lines === "2" || lines === "3"}
-            <ListItemText type="supporting">{supporting}</ListItemText>
-          {/if}
-        </ListItemContent>
-        {#snippet trailing()}
-          {#if type === "label"}
-            <div class="flex items-center justify-center shrink-0 w-6 h-6">
-              <Checkbox><input type="checkbox" /></Checkbox>
-            </div>
-          {:else}
-            <ListItemIcon icon={iconCircle} />
-          {/if}
-        {/snippet}
-      </ListItem>
+      {#each Array(2) as _}
+        <ListItem as={type} href={type === "a" ? "/" : undefined} {lines}>
+          {#snippet leading()}
+            {#if leadingType === "icon"}
+              <ListItemIcon icon={iconAccountCircle} />
+            {:else if leadingType !== "no leading"}
+              <ListItemLeadingImage
+                type={leadingType}
+                src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=128"
+              />
+            {/if}
+          {/snippet}
+          <ListItemContent>
+            <ListItemText type="headline">{headline}</ListItemText>
+            <!--TODO user still handle line-clamp class.-->
+            {#if lines === "2" || lines === "3"}
+              <ListItemText type="supporting">{supporting}</ListItemText>
+            {/if}
+          </ListItemContent>
+          {#snippet trailing()}
+            {#if type === "label"}
+              <div class="flex items-center justify-center shrink-0 w-6 h-6">
+                <Checkbox><input type="checkbox" /></Checkbox>
+              </div>
+            {:else}
+              <ListItemIcon icon={iconCircle} />
+            {/if}
+          {/snippet}
+        </ListItem>
+      {/each}
     </List>
   {/snippet}
 </InternalCard>
