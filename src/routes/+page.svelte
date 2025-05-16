@@ -13,6 +13,7 @@
   import Demo5 from "./5.svelte";
   import Demo6 from "./6.svelte";
   import Demo7 from "./7.svelte";
+  import Demo8 from "./8.svelte";
 
   import {
     BottomSheet,
@@ -65,6 +66,7 @@
     <Demo5 {showCode} />
     <Demo6 {showCode} />
     <Demo7 {showCode} />
+    <Demo8 {showCode} />
   </div>
   {#if doc && innerWidth != null && innerWidth >= 600}
     <div
