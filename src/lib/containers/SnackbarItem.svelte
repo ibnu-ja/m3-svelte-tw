@@ -1,74 +1,31 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
+  import Primitive from "$lib/primitive/Primitive.svelte";
+  import { cn } from "$lib/misc/utils";
+  import type { PrimitiveProps } from "$lib/primitive";
 
-  export let display = "flex";
-  export let extraOptions: HTMLAttributes<HTMLDivElement> = {};
+  let { as = "div", class: className, children, ...attrs }: PrimitiveProps = $props();
 </script>
 
-<div class="m3-container" style="display: {display};" {...extraOptions}>
-  <slot />
-</div>
+<Primitive
+  {as}
+  class={cn(
+    "m3-container",
+    "flex",
+    "items-center",
+    "py-0",
+    "px-4",
+    "min-w-80",
+    "max-w-240",
+    "min-h-12",
+    "rounded-xs",
+    "shadow-elevation-3",
+    "bg-inverse-surface",
+    "text-inverse-on-surface",
+    "animate-[snackbarIn_500ms_var(--m3-easing-decel),_opacity_100ms_var(--m3-easing-decel)]",
+    className,
+  )}
+  {...attrs}
+>
+  {@render children?.()}
+</Primitive>
 
-<style>
-  :root {
-    --m3-snackbar-shape: var(--m3-util-rounding-extra-small);
-  }
-  .m3-container {
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    min-width: 20rem;
-    max-width: 60rem;
-    min-height: 3rem;
-    border-radius: var(--m3-snackbar-shape);
-    box-shadow: var(--m3-util-elevation-3);
-    background-color: rgb(var(--m3-scheme-inverse-surface));
-    color: rgb(var(--m3-scheme-inverse-on-surface));
-    animation:
-      snackbarIn 500ms var(--m3-easing-decel),
-      opacity 100ms var(--m3-easing-decel);
-  }
-  /*@TODO: Fix animation with different shaping or something*/
-  @keyframes snackbarIn {
-    0% {
-      clip-path: polygon(
-        -100% 150%,
-        -100% calc(100% + 0.25rem),
-        0% calc(100% + 0.25rem),
-        0.033rem calc(100% + 0.125rem),
-        0.125rem calc(100% + 0.033rem),
-        0.25rem 100%,
-        calc(100% - 0.25rem) 100%,
-        calc(100% - 0.125rem) calc(100% + 0.033rem),
-        calc(100% - 0.033rem) calc(100% + 0.125rem),
-        100% calc(100% + 0.25rem),
-        200% calc(100% + 0.25rem),
-        200% 150%
-      );
-    }
-    100% {
-      clip-path: polygon(
-        -100% 150%,
-        -100% 0.25rem,
-        0% 0.25rem,
-        0.033rem 0.125rem,
-        0.125rem 0.033rem,
-        0.25rem 0%,
-        calc(100% - 0.25rem) 0%,
-        calc(100% - 0.125rem) 0.033rem,
-        calc(100% - 0.033rem) 0.125rem,
-        100% 0.25rem,
-        200% 0.25rem,
-        200% 150%
-      );
-    }
-  }
-  @keyframes opacity {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-</style>
