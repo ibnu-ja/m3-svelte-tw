@@ -8,9 +8,59 @@ M3 Svelte implements the Material 3 design system in Svelte. See the [website](h
 - customize (almost) everything with classes
 - can pass component with Primitive (ie. usage: InertiaLink components), no two components (Button, ButtonLink)
 
-## Conversion to TailwindCSS progress
+## Remake components
 
-- Buttons
+| Status   | Simbol |
+|----------|--------|
+| TODO     | 🔲     |
+| DONE     | ✅     |
+| PENDING  | ⏳     |
+
+- Actions
+  - ⏳ Button groups
+  - 🔲 Buttons
+  - ⏳ Extended FAB
+  - ⏳ FAB Menu
+  - 🔲 FAB
+  - ⏳ Icon buttons
+  - 🔲 Segmented Buttons
+  - ⏳ Split buttons
+- Communication
+  - ⏳ Badges
+  - ⏳ Loading indicator
+  - ⏳ Progress indicator
+  - ⏳ Snackbar
+  - ⏳ Tooltips
+- Containment
+  - 🔲 Bottom sheets
+  - 🔲 Cards
+  - ⏳ Carousel
+  - 🔲 Dialogs
+  - ⏳ Divider
+  - 🔲 Lists
+  - ⏳ Side sheets
+- Navigation
+  - ⏳ App bars
+  - ⏳ Navigation bar
+  - ⏳ Navigation drawer
+  - ⏳ Navigation rail
+  - ⏳ Tabs
+  - ⏳ Toolbar
+- Selection
+  - ⏳ Checkbox
+  - ⏳ Chips
+  - ⏳ Date pickers
+  - ⏳ Menus
+  - ⏳ Radio button
+  - ⏳ Slider
+  - ⏳ Switch
+  - ⏳ Time pickers
+- Text Inputs
+  - ⏳ Search
+  - ⏳ Text fields
+
+## Old progress
+- Buttons 
   - [x] Button.svelte
   - [x] FAB.svelte
   - [x] SegmentedButtonContainer.svelte
