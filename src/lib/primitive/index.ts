@@ -8,11 +8,14 @@ type RemoveIndexSignature<T> = {
 
 type AsTag = keyof RemoveIndexSignature<SvelteHTMLElements>;
 
-export type PrimitiveProps = {
+export type BaseProps = {
   class?: ClassValue;
+  children?: Snippet;
+  [key: string]: any;
+};
+
+export type PrimitiveProps = BaseProps & {
   asChild?: boolean;
   //		DynamicComponent: Component<{ prop: string }>; idk, i cannot read docs
   as?: AsTag | ConstructorOfATypedSvelteComponent | Component<any, any, any> | null;
-  children?: Snippet;
-  [key: string]: any; // rest props
 };
