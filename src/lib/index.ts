@@ -6,11 +6,7 @@ export * from "./misc/utils.js";
 export * from "./misc/easing.js";
 export * from "./misc/serializeScheme.js";
 
-export { default as Button } from "./buttons/Button.svelte";
-export { default as ButtonLink } from "./buttons/ButtonLink.svelte";
-export { default as SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer.svelte";
-export { default as SegmentedButtonItem } from "./buttons/SegmentedButtonItem.svelte";
-export { default as FAB } from "./buttons/FAB.svelte";
+export * from './actions';
 
 export * from "./containers/bottom-sheet";
 export { default as Card } from "./containers/Card.svelte";

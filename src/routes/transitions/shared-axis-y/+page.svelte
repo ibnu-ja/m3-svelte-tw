@@ -1,6 +1,6 @@
 <script>
   import { sharedAxisTransition } from "$lib";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
 
   let page = 0;
   let prevPage = 0;

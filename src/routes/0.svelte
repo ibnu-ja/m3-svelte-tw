@@ -5,7 +5,7 @@
   import Icon from "$lib/misc/_icon.svelte";
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
   import type { DocProps } from "./+page.svelte";
   import { Switch } from "$lib";
 

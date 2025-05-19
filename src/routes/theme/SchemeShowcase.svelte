@@ -8,7 +8,7 @@
   import iconGrab from "@ktibow/iconset-material-symbols/unarchive-outline";
   import { onMount } from "svelte";
 
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
   import ColorCard from "./ColorCard.svelte";
   import { styling } from "../themeStore";
   import { genCSS, pairs } from "$lib/misc/utils";

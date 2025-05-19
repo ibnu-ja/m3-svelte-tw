@@ -5,7 +5,7 @@
   import Layer from "$lib/misc/Layer.svelte";
   import Primitive from "$lib/primitive/Primitive.svelte";
   import type { PrimitiveProps } from "$lib/primitive";
-  import { type FABVariantProps, fabVariants } from "$lib/buttons/index";
+  import { type FABVariantProps, fabVariants } from "$lib/actions";
   import { cn } from "$lib/misc/utils";
 
   type Props = PrimitiveProps & {

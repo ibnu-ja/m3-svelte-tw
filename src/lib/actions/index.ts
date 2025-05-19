@@ -164,3 +164,8 @@ export const fabVariants = cva(
 );
 
 export type FABVariantProps = VariantProps<typeof fabVariants>;
+
+export { default as Button } from './Button.svelte'
+export { default as FAB } from './FAB.svelte'
+export { default as SegmentedButtonContainer } from './SegmentedButtonContainer.svelte'
+export { default as SegmentedButtonItem } from './SegmentedButtonItem.svelte'

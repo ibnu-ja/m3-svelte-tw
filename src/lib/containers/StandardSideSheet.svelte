@@ -1,7 +1,7 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import iconX from "@ktibow/iconset-material-symbols/close";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
   import Icon from "$lib/misc/_icon.svelte";
 
   let {

@@ -4,8 +4,7 @@
   import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
   import Switch from "$lib/forms/Switch.svelte";
   import InternalCard from "./_card.svelte";
-  import SegmentedButtonContainer from "$lib/buttons/SegmentedButtonContainer.svelte";
-  import SegmentedButtonItem from "$lib/buttons/SegmentedButtonItem.svelte";
+  import { SegmentedButtonItem, SegmentedButtonContainer } from "$lib/actions";
   import type { DocData, DocProps } from "./+page.svelte";
 
   const minimalDemo = `<SegmentedButtonContainer>
@@ -26,7 +25,7 @@
     }
   ];
 
-  let multiselect = $state(false)
+  let multiselect = $state(false);
 
   let { showCode }: DocProps = $props();
 </script>

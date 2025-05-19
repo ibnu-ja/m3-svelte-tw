@@ -1,7 +1,8 @@
 <script lang="ts">
-  import ButtonLink from "$lib/buttons/ButtonLink.svelte";
+  //import ButtonLink from "$lib/actions/ButtonLink.svelte";
   import Highlight from "svelte-highlight";
   import xml from "svelte-highlight/languages/xml";
+  import { Button } from "$lib/actions";
 
   const { minimalDemo, relevantLinks = [] }: {
     minimalDemo: string,
@@ -14,7 +15,7 @@
 
   <div>
     {#each relevantLinks as { title, link }, i}
-      <ButtonLink type={i === 0 ? "filled" : "tonal"} href={link}>{title}</ButtonLink>
+      <Button as="a" type={i === 0 ? "filled" : "tonal"} href={link}>{title}</Button>
     {/each}
   </div>
 </div>

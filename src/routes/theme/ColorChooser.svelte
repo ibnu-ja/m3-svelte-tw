@@ -9,7 +9,7 @@
   import iconImage from "@ktibow/iconset-material-symbols/wallpaper";
 
   import { browser } from "$app/environment";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
 
   let sourceColorInput: HTMLInputElement, sourceFileInput: HTMLInputElement;
   export let sourceColor: number;

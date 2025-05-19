@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
 
   export let clearable: boolean;
   export let chosenDate: boolean;

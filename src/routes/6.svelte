@@ -1,6 +1,6 @@
 <script lang="ts">
   import InternalCard from "./_card.svelte";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
   import type { DocProps } from "./+page.svelte";
   import {
     BottomSheet,

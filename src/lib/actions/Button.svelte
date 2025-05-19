@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { HTMLAttributes, MouseEventHandler } from "svelte/elements";
-  import Layer from "$lib/misc/Layer.svelte";
-  import { cn } from "$lib/misc/utils";
-  import { buttonVariants, type ButtonVariantProps } from "$lib/buttons";
+  import { cn, ripple } from "$lib/misc/utils";
   import type { Snippet } from "svelte";
   import Primitive from "$lib/primitive/Primitive.svelte";
   import type { PrimitiveProps } from "$lib/primitive";
+  import { type ButtonVariantProps, buttonVariants } from "./";
 
   type Props = PrimitiveProps & {
     iconType?: ButtonVariantProps["iconType"]
@@ -26,8 +25,8 @@
   {disabled}
   {onclick}
   class={cn(buttonVariants({ type, iconType }), className)}
+  {@attach ripple()}
   {...attrs}
 >
-  <Layer />
   {@render children?.()}
 </Primitive>

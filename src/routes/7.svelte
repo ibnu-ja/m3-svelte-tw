@@ -2,7 +2,7 @@
 <script lang="ts">
   import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
   import InternalCard from "./_card.svelte";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
   import { Dialog, DialogButtonsContainer, DialogContainer } from "$lib/containers/dialog";
   import type { DocProps } from "./+page.svelte";
   import { Icon } from "$lib";

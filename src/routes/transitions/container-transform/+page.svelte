@@ -1,6 +1,6 @@
 <script>
   import { containerTransform } from "$lib";
-  import Button from "$lib/buttons/Button.svelte";
+  import { Button } from "$lib/actions";
 
   let open = false;
   const [send, receive] = containerTransform({ duration: 1000 });

@@ -7,7 +7,7 @@ import Switch from "$lib/forms/Switch.svelte";
 import Icon from "$lib/misc/_icon.svelte";
 import Arrows from "./_arrows.svelte";
 import InternalCard from "./_card.svelte";
-import Button from "$lib/buttons/Button.svelte";
+import { Button } from "$lib/actions";
 import Snackbar, { type SnackbarIn } from "$lib/containers/Snackbar.svelte";
 import SnackbarAnim from "$lib/containers/SnackbarAnim.svelte";
 let animation = true;

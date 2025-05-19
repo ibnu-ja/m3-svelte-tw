@@ -1,6 +1,5 @@
 <script>
-  import SegmentedButtonContainer from "$lib/buttons/SegmentedButtonContainer.svelte";
-  import SegmentedButtonItem from "$lib/buttons/SegmentedButtonItem.svelte";
+  import { SegmentedButtonItem, SegmentedButtonContainer } from "$lib/actions";
   import { base } from "$app/paths";
 
   import Snippet from "../Snippet.svelte";

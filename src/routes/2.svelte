@@ -2,7 +2,7 @@
   import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
   import Arrows from "./_arrows.svelte";
   import InternalCard from "./_card.svelte";
-  import FAB from "$lib/buttons/FAB.svelte";
+  import { FAB } from "$lib/actions";
   import type { DocProps } from "./+page.svelte";
 
   let color: "primary" | "surface" | "secondary" | "tertiary" = $state("primary");
