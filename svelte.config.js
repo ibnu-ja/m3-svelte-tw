@@ -10,6 +10,9 @@ const config = {
     paths: {
       relative: false,
     },
+    prerender: {
+      handleHttpError: "warn",
+    },
   },
   preprocess: [vitePreprocess(), mdsvex({ extensions: [".svx", ".md"] })],
 };
