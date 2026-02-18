@@ -1,11 +1,10 @@
 import type { Plugin } from "vite";
 import { loadDemos } from "./src/load-demos";
 import { glob } from "tinyglobby";
-import { resolve } from "node:path";
 import shiki from "./shiki";
 
 const VIRTUAL_PREFIX = "virtual:demo/";
-const RESOLVED_PREFIX = resolve("src/virtual-demos") + "/";
+const RESOLVED_PREFIX = "\0virtual:demo/";
 
 export function demosPlugin(): Plugin {
   return {
