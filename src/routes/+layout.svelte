@@ -47,7 +47,7 @@
 </svelte:head>
 {@html `<style>${$styling}:root{--density:${$density == "variable" ? 0 : $density};}</style>`}
 <Snackbar />
-<div class="container">
+<div class="containerr">
   <div class="sidebar">
     <NavCMLX variant="auto">
       {#each paths as { path, icon, iconS, label }}
@@ -87,7 +87,7 @@
 </div>
 
 <style>
-  .container {
+  .containerr {
     display: grid;
     min-height: 100dvh;
   }

@@ -8,7 +8,7 @@
   import Doc from "./_doc.svelte";
   import Hero from "./Hero.svelte";
   // import Demo0 from "virtual:demo/0";
-  import Demo1 from "virtual:demo/1";
+  // import Demo1 from "virtual:demo/1";
   // import Demo2 from "virtual:demo/2";
   // import Demo3 from "virtual:demo/3";
   // import Demo4 from "virtual:demo/4";
@@ -34,7 +34,9 @@
   // import Demo24 from "virtual:demo/24";
   // import Demo25 from "virtual:demo/25";
   import { afterNavigate } from "$app/navigation";
-  import ButtonGroups from "./tw-demo/ButtonGroups.svelte"
+
+  import Button from "./tw-demo/Button.svelte"
+  // import ButtonGroups from "./tw-demo/ButtonGroups.svelte"
 
   type DocData = {
     name: string;
@@ -78,9 +80,10 @@
 <div class="side-wrapper">
   <Hero />
   <main>
-<!--    <Demo0 {showCode} />-->
-    <Demo1 {showCode} />
-    <ButtonGroups {showCode} />
+    <!--<Demo0 {showCode} />-->
+    <Button {showCode} />
+<!--    <Demo1 {showCode} />-->
+<!--    <ButtonGroups {showCode} />-->
 <!--    <Demo2 {showCode} />-->
 <!--    <Demo3 {showCode} />-->
 <!--    <Demo4 {showCode} />-->

@@ -5,6 +5,7 @@ import { llmsTxtPlugin } from "./vite-plugin-llms-txt";
 import { shikiPlugin } from "./vite-plugin-shiki";
 import { tokenShaker } from "vite-plugin-token-shaker";
 import { functionsMixins } from "vite-plugin-functions-mixins";
+import UnoCSS from "@unocss/svelte-scoped/vite";
 
 export default defineConfig({
   plugins: [
@@ -14,5 +15,8 @@ export default defineConfig({
     shikiPlugin(),
     tokenShaker(),
     functionsMixins(),
+    UnoCSS({
+      injectReset: "@unocss/reset/normalize.css",
+    }),
   ],
 });
