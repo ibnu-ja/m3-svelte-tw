@@ -39,6 +39,9 @@ importers:
       '@types/node':
         specifier: ^25.2.3
         version: 25.2.3
+      '@unocss/preset-wind4':
+        specifier: ^66.6.0
+        version: 66.6.0
       '@unocss/svelte-scoped':
         specifier: ^66.6.0
         version: 66.6.0

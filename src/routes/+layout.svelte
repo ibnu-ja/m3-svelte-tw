@@ -104,7 +104,7 @@
     :root {
       --m3v-bottom-offset: 5rem;
     }
-    .container {
+    .containerr {
       grid-template-rows: 1fr auto;
     }
     .sidebar {
@@ -116,7 +116,7 @@
     }
   }
   @media (width >= 52.5rem) {
-    .container {
+    .containerr {
       grid-template-columns: auto 1fr;
     }
     .sidebar {
