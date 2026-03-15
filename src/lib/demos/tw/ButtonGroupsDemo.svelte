@@ -5,8 +5,8 @@
     import Switch from "$lib/forms/Switch.svelte";
     import Icon from "$lib/misc/Icon.svelte";
     import Slider from "$lib/forms/Slider.svelte";
-    import Arrows from "/src/routes/_arrows.svelte";
-    import InternalCard from "/src/routes/_card.svelte";
+    import Arrows from "../../../routes/_arrows.svelte";
+    import InternalCard from "../../../routes/_card.svelte";
     import ConnectedButtons from "$lib/tw/buttons/ButtonGroups.svelte";
     import Button from "$lib/tw/buttons/Button.svelte";
     let variant: "filled" | "tonal" = $state("filled");

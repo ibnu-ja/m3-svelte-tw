@@ -35,8 +35,8 @@
   // import Demo25 from "virtual:demo/25";
   import { afterNavigate } from "$app/navigation";
 
-  import Button from "./tw-demo/Button.svelte"
-  // import ButtonGroups from "./tw-demo/ButtonGroups.svelte"
+  import ButtonDemo from "$lib/demos/tw/ButtonDemo.svelte";
+  // import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
 
   type DocData = {
     name: string;
@@ -81,9 +81,9 @@
   <Hero />
   <main>
     <!--<Demo0 {showCode} />-->
-    <Button {showCode} />
+    <ButtonDemo {showCode} />
 <!--    <Demo1 {showCode} />-->
-<!--    <ButtonGroups {showCode} />-->
+<!--    <ButtonGroupsDemo {showCode} />-->
 <!--    <Demo2 {showCode} />-->
 <!--    <Demo3 {showCode} />-->
 <!--    <Demo4 {showCode} />-->

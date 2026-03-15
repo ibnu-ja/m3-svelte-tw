@@ -5,8 +5,8 @@
     import Switch from "$lib/forms/Switch.svelte";
     import Icon from "$lib/misc/Icon.svelte";
     import Slider from "$lib/forms/Slider.svelte";
-    import Arrows from "/src/routes/_arrows.svelte";
-    import InternalCard from "/src/routes/_card.svelte";
+    import Arrows from "../../../routes/_arrows.svelte";
+    import InternalCard from "../../../routes/_card.svelte";
     import Button from "$lib/buttons/Button.svelte";
     let variant: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("filled");
     let action: "click" | "link" | "toggle" = $state("click");
