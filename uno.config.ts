@@ -47,5 +47,34 @@ export default defineConfig({
 }`;
       },
     ],
+
+    // Translucent color utilities - use --translucent() function
+    [
+      /^bg-translucent-([a-z-]+)-(\d+)$/,
+      ([, color, opacity]) => {
+        const opacityValue = Number(opacity) / 100;
+        return {
+          "background-color": `--translucent(var(--m3c-${color}), ${opacityValue})`,
+        };
+      },
+    ],
+    [
+      /^translucent-([a-z-]+)-(\d+)$/,
+      ([, color, opacity]) => {
+        const opacityValue = Number(opacity) / 100;
+        return {
+          color: `--translucent(var(--m3c-${color}), ${opacityValue})`,
+        };
+      },
+    ],
+    [
+      /^outline-translucent-([a-z-]+)-(\d+)$/,
+      ([, color, opacity]) => {
+        const opacityValue = Number(opacity) / 100;
+        return {
+          "outline-color": `--translucent(var(--m3c-${color}), ${opacityValue})`,
+        };
+      },
+    ],
   ],
 });

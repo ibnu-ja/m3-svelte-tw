@@ -2,7 +2,7 @@
   import { tv, type VariantProps } from "tailwind-variants";
 
   export const buttonVariants = tv({
-    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5",
+    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [border-radius:var(--shape)] [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:translucent-on-surface-38 [&:active:not(:disabled)]:[border-radius:var(--pressed-shape)!important]",
     variants: {
       size: {
         xs: "sz-xs h-[calc(2rem+(var(--density)*0.25rem))] px-3 gap-2 font-label-large [--shape:1rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
@@ -38,6 +38,11 @@
     compoundVariants: [
       { size: "l", color: "outlined", class: "outline-2 -outline-offset-2" },
       { size: "xl", color: "outlined", class: "outline-3 -outline-offset-3" },
+      { iconType: "full", size: "xs", class: "[width:calc(2rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "s", class: "[width:calc(2.5rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "m", class: "[width:calc(3.5rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "l", class: "[width:calc(6rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "xl", class: "[width:calc(8.5rem+(var(--density)*0.25rem))] [padding:0]" },
     ],
   });
 
@@ -103,19 +108,6 @@
 {/if}
 
 <style>
-  .tw-btn {
-    border-radius: var(--shape);
-    transition:
-      border-radius var(--m3-easing-fast-spatial),
-      box-shadow var(--m3-easing-fast),
-      background-color var(--m3-easing-fast),
-      color var(--m3-easing-fast);
-  }
-
-  .tw-btn > :global(svg) {
-    fill: currentColor;
-  }
-
   .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))):has(
       > :global(input:checked)
     ) {
@@ -164,54 +156,14 @@
     }
   }
 
-  .tw-btn:disabled,
-  .tw-btn:has(> :global(input:disabled)) {
-    background-color: --translucent(var(--m3c-on-surface), 0.12);
-    color: --translucent(var(--m3c-on-surface), 0.38);
-    cursor: auto;
-  }
-
   .tw-btn.color-outlined:has(> :global(input:disabled)) {
     background-color: transparent;
-    outline-color: --translucent(var(--m3c-on-surface), 0.12);
+    outline-color: oklch(from var(--m3c-on-surface) l c h / 0.12);
   }
 
   .tw-btn.shape-square:not(:has(> :global(input:checked)), :global(:open) > summary),
   .tw-btn:not(.shape-square):is(:has(> :global(input:checked)), :global(:open) > summary) {
     border-radius: var(--square-shape);
-  }
-
-  .tw-btn:active:not(:disabled, :has(> :global(input:disabled))) {
-    border-radius: var(--pressed-shape) !important;
-  }
-
-  .tw-btn > :global(input) {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-  }
-
-  .tw-btn.icon-full {
-    width: calc(2rem + (var(--density) * 0.25rem));
-    padding: 0;
-  }
-
-  .tw-btn.sz-s.icon-full {
-    width: calc(2.5rem + (var(--density) * 0.25rem));
-  }
-
-  .tw-btn.sz-m.icon-full {
-    width: calc(3.5rem + (var(--density) * 0.25rem));
-  }
-
-  .tw-btn.sz-l.icon-full {
-    width: calc(6rem + (var(--density) * 0.25rem));
-  }
-
-  .tw-btn.sz-xl.icon-full {
-    width: calc(8.5rem + (var(--density) * 0.25rem));
   }
 
   @media screen and (forced-colors: active) {
