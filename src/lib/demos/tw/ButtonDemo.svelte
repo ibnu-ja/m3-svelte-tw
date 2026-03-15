@@ -5,7 +5,7 @@
   import InternalCard from "../../../routes/_card.svelte";
   import { Button } from "$lib/tw";
 
-  let color: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("filled");
+  let variant: "elevated" | "filled" | "tonal" | "outlined" | "text" = $state("filled");
   let square = $state(false);
   let iconType: "none" | "left" | "full" = $state("none");
   const sizes = ["xs", "s", "m", "l", "xl"] as const;
@@ -24,7 +24,7 @@
   } = $props();
 
   const minimalDemoHtml =
-    '&lt;Button color="filled" size="s" shape="round" onclick={() =&gt; alert("!")}>' +
+    '&lt;Button variant="filled" size="s" shape="round" onclick={() =&gt; alert("!")}>' +
     "Hello" +
     "&lt;/Button>";
   const relevantLinks: { title: string; link: string }[] = [
@@ -39,10 +39,10 @@
   <label>
     <Arrows
       list={["elevated", "filled", "tonal", "outlined", "text"]}
-      bind:value={color}
+      bind:value={variant}
       initialIndex={1}
     />
-    {color[0].toUpperCase() + color.slice(1)}
+    {variant[0].toUpperCase() + variant.slice(1)}
   </label>
   <label>
     <Switch bind:checked={square} />
@@ -60,7 +60,7 @@
   {#snippet demo()}
     <div>
       <Button
-        {color}
+        {variant}
         shape={square ? "square" : "round"}
         {iconType}
         size={sizes[sizeIndex]}

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { tv } from "tailwind-variants";
+  import { tv, type VariantProps } from "tailwind-variants";
 
   export const buttonVariants = tv({
     base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5",
@@ -40,18 +40,15 @@
       { size: "xl", color: "outlined", class: "outline-3 -outline-offset-3" },
     ],
   });
-</script>
 
-<script lang="ts">
+  export type ButtonSize = VariantProps<typeof buttonVariants>["size"];
+  export type ButtonShape = VariantProps<typeof buttonVariants>["shape"];
+  export type ButtonVariant = VariantProps<typeof buttonVariants>["color"];
+  export type ButtonIconType = VariantProps<typeof buttonVariants>["iconType"];
+
   import type { HTMLButtonAttributes, HTMLAttributes, HTMLLabelAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
   import type { AnchorAttrs, NotLink } from "$lib/misc/typing-utils";
-  import "$lib/etc/layer.js";
-
-  type ButtonSize = "xs" | "s" | "m" | "l" | "xl";
-  type ButtonShape = "round" | "square";
-  type ButtonColor = "elevated" | "filled" | "tonal" | "outlined" | "text";
-  type ButtonIconType = "none" | "left" | "full";
 
   type ActionProps =
     | AnchorAttrs
@@ -59,26 +56,30 @@
     | (NotLink<HTMLAttributes<HTMLElement>> & { summary: true })
     | NotLink<HTMLButtonAttributes>;
 
-  type Props = {
+  export type ButtonProps = {
     size?: ButtonSize;
     shape?: ButtonShape;
-    color?: ButtonColor;
+    variant?: ButtonVariant;
     iconType?: ButtonIconType;
     class?: string;
     children: Snippet;
   } & ActionProps;
+</script>
+
+<script lang="ts">
+  import "$lib/etc/layer.js";
 
   let {
     size = "s",
     shape = "round",
-    color = "filled",
+    variant = "filled",
     iconType = "none",
     class: className = "",
     children,
     ...props
-  }: Props = $props();
+  }: ButtonProps = $props();
 
-  const buttonClass = $derived(buttonVariants({ size, shape, color, iconType, class: className }));
+  const buttonClass = $derived(buttonVariants({ size, shape, color: variant, iconType, class: className }));
 </script>
 
 {#if props.href != undefined}
