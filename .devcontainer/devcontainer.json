@@ -22,5 +22,8 @@
   },
 
   "remoteUser": "root",
-  "runArgs": ["--env-file", "/home/ibnu/WebstormProjects/m3-svelte-tw/.devcontainer/devcontainer.env"]
+  "runArgs": [
+    "--env-file",
+    "/home/ibnu/WebstormProjects/m3-svelte-tw/.devcontainer/devcontainer.env"
+  ]
 }

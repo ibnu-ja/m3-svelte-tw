@@ -10,7 +10,7 @@
 
   import { asset, resolve } from "$app/paths";
   import { page } from "$app/state";
-  import 'virtual:uno.css';
+  import "virtual:uno.css";
   import NavCMLX from "$lib/nav/NavCMLX.svelte";
   import NavCMLXItem from "$lib/nav/NavCMLXItem.svelte";
   import { styling, density } from "./state";
