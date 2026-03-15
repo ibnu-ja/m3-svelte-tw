@@ -7,7 +7,7 @@
 
   import Doc from "./_doc.svelte";
   import Hero from "./Hero.svelte";
-  // import Demo0 from "virtual:demo/0";
+  import Demo0 from "virtual:demo/0";
   // import Demo1 from "virtual:demo/1";
   // import Demo2 from "virtual:demo/2";
   // import Demo3 from "virtual:demo/3";
@@ -80,7 +80,7 @@
 <div class="side-wrapper">
   <Hero />
   <main>
-    <!--<Demo0 {showCode} />-->
+    <Demo0 {showCode} />
     <ButtonDemo {showCode} />
 <!--    <Demo1 {showCode} />-->
 <!--    <ButtonGroupsDemo {showCode} />-->

@@ -1,15 +1,11 @@
 <script lang="ts">
-    import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
-    import iconSquare from "@ktibow/iconset-material-symbols/square-outline";
-    import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
     import Switch from "$lib/forms/Switch.svelte";
-    import Icon from "$lib/misc/Icon.svelte";
     import Slider from "$lib/forms/Slider.svelte";
     import Arrows from "../../../routes/_arrows.svelte";
     import InternalCard from "../../../routes/_card.svelte";
     import ConnectedButtons from "$lib/tw/buttons/ButtonGroups.svelte";
     import Button from "$lib/tw/buttons/Button.svelte";
-    let variant: "filled" | "tonal" = $state("filled");
+    let color: "filled" | "tonal" = $state("filled");
     let multiselect = $state(true);
     const sizes = ["xs", "s", "m", "l", "xl"] as const;
     const sizeLabels = ["Extra small", "Small", "Medium", "Large", "Extra large"] as const;
@@ -30,8 +26,8 @@
 
 <InternalCard title="Connected buttons" showCode={() => showCode("Connected buttons", minimalDemoHtml, relevantLinks)}>
     <label>
-        <Arrows list={["filled", "tonal"]} bind:value={variant} />
-        {variant[0].toUpperCase() + variant.slice(1)}
+        <Arrows list={["filled", "tonal"]} bind:value={color} />
+        {color[0].toUpperCase() + color.slice(1)}
     </label>
     <label>
         <Switch bind:checked={multiselect} />
@@ -41,13 +37,13 @@
     {#snippet demo()}
         {@const size = sizes[sizeIndex]}
         <ConnectedButtons>
-            <Button {variant} {size} square label>
+            <Button {color} {size} shape="square">
                 <input type={multiselect ? "checkbox" : "radio"} checked name="connectedbuttons" />Alpha
             </Button>
-            <Button {variant} {size} square label>
+            <Button {color} {size} shape="square">
                 <input type={multiselect ? "checkbox" : "radio"} name="connectedbuttons" />Beta
             </Button>
-            <Button {variant} {size} square label>
+            <Button {color} {size} shape="square">
                 <input type={multiselect ? "checkbox" : "radio"} name="connectedbuttons" />A
             </Button>
         </ConnectedButtons>
