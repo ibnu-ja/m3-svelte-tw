@@ -16,7 +16,7 @@
         square: "shape-square",
       },
       color: {
-        elevated: "bg-surface-container-low text-primary",
+        elevated: "bg-surface-container-low text-primary shadow-1 hover:shadow-2",
         filled: "bg-primary text-on-primary",
         tonal: "bg-secondary-container text-on-secondary-container",
         outlined:
@@ -38,6 +38,8 @@
     compoundVariants: [
       { size: "l", color: "outlined", class: "outline-2 -outline-offset-2" },
       { size: "xl", color: "outlined", class: "outline-3 -outline-offset-3" },
+      { color: "filled", class: "hover:shadow-1" },
+      { color: "tonal", class: "hover:shadow-1" },
       { iconType: "full", size: "xs", class: "[width:calc(2rem+(var(--density)*0.25rem))] [padding:0]" },
       { iconType: "full", size: "s", class: "[width:calc(2.5rem+(var(--density)*0.25rem))] [padding:0]" },
       { iconType: "full", size: "m", class: "[width:calc(3.5rem+(var(--density)*0.25rem))] [padding:0]" },
@@ -84,7 +86,7 @@
     ...props
   }: ButtonProps = $props();
 
-  const buttonClass = $derived(buttonVariants({ size, shape, color: variant, iconType, class: className }));
+  const buttonClass = $derived(buttonVariants({ size, shape, color: variant, iconType, class: className }) + ` ${variant}`);
 </script>
 
 {#if props.href != undefined}
@@ -108,66 +110,8 @@
 {/if}
 
 <style>
-  .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    background-color: var(--m3c-primary);
-    color: var(--m3c-on-primary);
-  }
-
-  .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))) {
-    box-shadow: var(--m3-elevation-1);
-  }
-
-  @media (hover: hover) {
-    .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))):hover {
-      box-shadow: var(--m3-elevation-2);
-    }
-  }
-
-  .tw-btn.color-filled:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input[type="checkbox"]:not(:checked))
-    ),
-  .tw-btn.color-filled:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input[type="radio"]:not(:checked))
-    ) {
-    background-color: var(--m3c-surface-container);
-    color: var(--m3c-on-surface-variant);
-  }
-
-  .tw-btn.color-tonal:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    background-color: var(--m3c-secondary);
-    color: var(--m3c-on-secondary);
-  }
-
-  .tw-btn.color-outlined:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    outline-color: var(--m3c-inverse-surface);
-    background-color: var(--m3c-inverse-surface);
-    color: var(--m3c-inverse-on-surface);
-  }
-
-  @media (hover: hover) {
-    .tw-btn:is(.color-filled, .color-tonal):not(:disabled, label):hover {
-      box-shadow: var(--m3-elevation-1);
-    }
-  }
-
-  .tw-btn.color-outlined:has(> :global(input:disabled)) {
-    background-color: transparent;
-    outline-color: oklch(from var(--m3c-on-surface) l c h / 0.12);
-  }
-
-  .tw-btn.shape-square:not(:has(> :global(input:checked)), :global(:open) > summary),
-  .tw-btn:not(.shape-square):is(:has(> :global(input:checked)), :global(:open) > summary) {
-    border-radius: var(--square-shape);
-  }
-
   @media screen and (forced-colors: active) {
-    .tw-btn:is(.color-elevated, .color-filled, .color-tonal) {
+    .tw-btn:is(.elevated, .filled, .tonal) {
       background-color: transparent;
       border: 1px solid;
     }
@@ -176,3 +120,5 @@
     }
   }
 </style>
+
+
