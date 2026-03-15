@@ -5,11 +5,11 @@
     base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5",
     variants: {
       size: {
-        xs: "sz-xs h-[calc(2rem+(var(--density)*0.25rem))] px-3 gap-2 m3-font-label-large [--shape:1rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
-        s: "sz-s h-[calc(2.5rem+(var(--density)*0.25rem))] px-4 gap-2 m3-font-label-large [--shape:1.25rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
-        m: "sz-m h-[calc(3.5rem+(var(--density)*0.25rem))] px-6 gap-2 m3-font-title-medium [--shape:1.75rem] [--square-shape:var(--m3-shape-large)] [--pressed-shape:var(--m3-shape-medium)] [&>svg]:w-6 [&>svg]:h-6",
-        l: "sz-l h-[calc(6rem+(var(--density)*0.25rem))] px-12 gap-3 m3-font-headline-small [--shape:3rem] [--square-shape:var(--m3-shape-extra-large)] [--pressed-shape:var(--m3-shape-large)] [&>svg]:w-8 [&>svg]:h-8",
-        xl: "sz-xl h-[calc(8.5rem+(var(--density)*0.25rem))] px-16 gap-4 m3-font-headline-large [--shape:4.25rem] [--square-shape:var(--m3-shape-extra-large)] [--pressed-shape:var(--m3-shape-large)] [&>svg]:w-10 [&>svg]:h-10",
+        xs: "sz-xs h-[calc(2rem+(var(--density)*0.25rem))] px-3 gap-2 font-label-large [--shape:1rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
+        s: "sz-s h-[calc(2.5rem+(var(--density)*0.25rem))] px-4 gap-2 font-label-large [--shape:1.25rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
+        m: "sz-m h-[calc(3.5rem+(var(--density)*0.25rem))] px-6 gap-2 font-title-medium [--shape:1.75rem] [--square-shape:var(--m3-shape-large)] [--pressed-shape:var(--m3-shape-medium)] [&>svg]:w-6 [&>svg]:h-6",
+        l: "sz-l h-[calc(6rem+(var(--density)*0.25rem))] px-12 gap-3 font-headline-small [--shape:3rem] [--square-shape:var(--m3-shape-extra-large)] [--pressed-shape:var(--m3-shape-large)] [&>svg]:w-8 [&>svg]:h-8",
+        xl: "sz-xl h-[calc(8.5rem+(var(--density)*0.25rem))] px-16 gap-4 font-headline-large [--shape:4.25rem] [--square-shape:var(--m3-shape-extra-large)] [--pressed-shape:var(--m3-shape-large)] [&>svg]:w-10 [&>svg]:h-10",
       },
       shape: {
         round: "shape-round",
@@ -193,19 +193,9 @@
     pointer-events: none;
   }
 
-  .tw-btn.icon-left > :global(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
   .tw-btn.icon-full {
     width: calc(2rem + (var(--density) * 0.25rem));
     padding: 0;
-  }
-
-  .tw-btn.icon-full > :global(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
   }
 
   .tw-btn.sz-s.icon-full {
@@ -216,27 +206,12 @@
     width: calc(3.5rem + (var(--density) * 0.25rem));
   }
 
-  .tw-btn.sz-m.icon-full > :global(svg) {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
   .tw-btn.sz-l.icon-full {
     width: calc(6rem + (var(--density) * 0.25rem));
   }
 
-  .tw-btn.sz-l.icon-full > :global(svg) {
-    width: 2rem;
-    height: 2rem;
-  }
-
   .tw-btn.sz-xl.icon-full {
     width: calc(8.5rem + (var(--density) * 0.25rem));
-  }
-
-  .tw-btn.sz-xl.icon-full > :global(svg) {
-    width: 2.5rem;
-    height: 2.5rem;
   }
 
   @media screen and (forced-colors: active) {
