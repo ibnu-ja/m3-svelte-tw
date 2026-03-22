@@ -2,7 +2,7 @@
   import { tv, type VariantProps } from "tailwind-variants";
 
   export const buttonVariants = tv({
-    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [border-radius:var(--shape)] [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:translucent-on-surface-38 [&:active:not(:disabled)]:[border-radius:var(--pressed-shape)!important]",
+    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [border-radius:var(--shape)] [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:translucent-on-surface-38 [&:active:not(:disabled)]:[border-radius:var(--pressed-shape)!important] disabled:forced-colors:opacity-38",
     variants: {
       size: {
         xs: "sz-xs h-[calc(2rem+(var(--density)*0.25rem))] px-3 gap-2 font-label-large [--shape:1rem] [--square-shape:var(--m3-shape-medium)] [--pressed-shape:var(--m3-shape-small)]",
@@ -16,17 +16,17 @@
         square: "shape-square",
       },
       color: {
-        elevated: "bg-surface-container-low text-primary",
-        filled: "bg-primary text-on-primary",
-        tonal: "bg-secondary-container text-on-secondary-container",
+        elevated: "bg-surface-container-low text-primary color-elevated forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
+        filled: "bg-primary text-on-primary color-filled forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
+        tonal: "bg-secondary-container text-on-secondary-container color-tonal forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
         outlined:
-          "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant",
-        text: "bg-transparent text-primary",
+          "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant color-outlined",
+        text: "bg-transparent text-primary color-text",
       },
       iconType: {
         none: "",
         left: "icon-left",
-        full: "icon-full",
+        full: "[w-auto] [p-0!]",
       },
     },
     defaultVariants: {
@@ -108,71 +108,8 @@
 {/if}
 
 <style>
-  .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    background-color: var(--m3c-primary);
-    color: var(--m3c-on-primary);
-  }
-
-  .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))) {
-    box-shadow: var(--m3-elevation-1);
-  }
-
-  @media (hover: hover) {
-    .tw-btn.color-elevated:not(:disabled, :has(> :global(input:disabled))):hover {
-      box-shadow: var(--m3-elevation-2);
-    }
-  }
-
-  .tw-btn.color-filled:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input[type="checkbox"]:not(:checked))
-    ),
-  .tw-btn.color-filled:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input[type="radio"]:not(:checked))
-    ) {
-    background-color: var(--m3c-surface-container);
-    color: var(--m3c-on-surface-variant);
-  }
-
-  .tw-btn.color-tonal:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    background-color: var(--m3c-secondary);
-    color: var(--m3c-on-secondary);
-  }
-
-  .tw-btn.color-outlined:not(:disabled, :has(> :global(input:disabled))):has(
-      > :global(input:checked)
-    ) {
-    outline-color: var(--m3c-inverse-surface);
-    background-color: var(--m3c-inverse-surface);
-    color: var(--m3c-inverse-on-surface);
-  }
-
-  @media (hover: hover) {
-    .tw-btn:is(.color-filled, .color-tonal):not(:disabled, label):hover {
-      box-shadow: var(--m3-elevation-1);
-    }
-  }
-
-  .tw-btn.color-outlined:has(> :global(input:disabled)) {
-    background-color: transparent;
-    outline-color: oklch(from var(--m3c-on-surface) l c h / 0.12);
-  }
-
-  .tw-btn.shape-square:not(:has(> :global(input:checked)), :global(:open) > summary),
-  .tw-btn:not(.shape-square):is(:has(> :global(input:checked)), :global(:open) > summary) {
+  :global(.shape-square:not(:has(> input:checked))),
+  :global(.shape-round:is(:has(> input:checked))) {
     border-radius: var(--square-shape);
-  }
-
-  @media screen and (forced-colors: active) {
-    .tw-btn:is(.color-elevated, .color-filled, .color-tonal) {
-      background-color: transparent;
-      border: 1px solid;
-    }
-    .tw-btn:disabled {
-      opacity: 0.38;
-    }
   }
 </style>
