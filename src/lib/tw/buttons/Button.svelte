@@ -16,14 +16,10 @@
         square: "shape-square",
       },
       color: {
-        elevated:
-          "bg-surface-container-low text-primary shadow-1 not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-primary hover:not-disabled:not-has-[>input:disabled]:shadow-2 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        filled:
-          "bg-primary text-on-primary has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:bg-surface-container has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:text-on-surface-variant hover:not-disabled:not-has-[>input:disabled]:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        tonal:
-          "bg-secondary-container text-on-secondary-container not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-secondary hover:not-disabled:not-has-[>input:disabled]:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        outlined:
-          "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant not-disabled:not-has-[>input:disabled]:has-[>input:checked]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-inverse-on-surface has-[>input:disabled]:outline-translucent-on-surface-12 has-[>input:disabled]:bg-transparent",
+        elevated: "bg-surface-container-low text-primary shadow-1 not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-primary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-primary hover:not-disabled:not-has-[>input:disabled]:shadow-2 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
+        filled: "bg-primary text-on-primary data-[state=off]:bg-surface-container data-[state=off]:text-on-surface-variant has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:bg-surface-container has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:text-on-surface-variant hover:not-disabled:not-has-[>input:disabled]:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
+        tonal: "bg-secondary-container text-on-secondary-container not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-secondary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-secondary hover:not-disabled:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
+        outlined: "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant not-disabled:not-has-[>input:disabled]:data-[state=on]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:text-inverse-on-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-inverse-on-surface has-[>input:disabled]:outline-translucent-on-surface-12 has-[>input:disabled]:bg-transparent",
         text: "bg-transparent text-primary",
       },
       iconType: {
@@ -41,31 +37,11 @@
     compoundVariants: [
       { size: "l", color: "outlined", class: "outline-2 -outline-offset-2" },
       { size: "xl", color: "outlined", class: "outline-3 -outline-offset-3" },
-      {
-        iconType: "full",
-        size: "xs",
-        class: "[width:calc(2rem+(var(--density)*0.25rem))] [padding:0]",
-      },
-      {
-        iconType: "full",
-        size: "s",
-        class: "[width:calc(2.5rem+(var(--density)*0.25rem))] [padding:0]",
-      },
-      {
-        iconType: "full",
-        size: "m",
-        class: "[width:calc(3.5rem+(var(--density)*0.25rem))] [padding:0]",
-      },
-      {
-        iconType: "full",
-        size: "l",
-        class: "[width:calc(6rem+(var(--density)*0.25rem))] [padding:0]",
-      },
-      {
-        iconType: "full",
-        size: "xl",
-        class: "[width:calc(8.5rem+(var(--density)*0.25rem))] [padding:0]",
-      },
+      { iconType: "full", size: "xs", class: "[width:calc(2rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "s", class: "[width:calc(2.5rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "m", class: "[width:calc(3.5rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "l", class: "[width:calc(6rem+(var(--density)*0.25rem))] [padding:0]" },
+      { iconType: "full", size: "xl", class: "[width:calc(8.5rem+(var(--density)*0.25rem))] [padding:0]" },
     ],
   });
 
@@ -74,9 +50,11 @@
   export type ButtonVariant = VariantProps<typeof buttonVariants>["color"];
   export type ButtonIconType = VariantProps<typeof buttonVariants>["iconType"];
 
-  import type { HTMLButtonAttributes, HTMLAttributes, HTMLLabelAttributes } from "svelte/elements";
+  import type { HTMLButtonAttributes, HTMLAttributes, HTMLAnchorAttributes, HTMLLabelAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
-  import type { AnchorAttrs, NotLink } from "$lib/misc/typing-utils";
+  import type { NotLink } from "$lib/misc/typing-utils";
+
+  type AnchorAttrs = HTMLAnchorAttributes & { href: string };
 
   type ActionProps =
     | AnchorAttrs
@@ -90,7 +68,8 @@
     variant?: ButtonVariant;
     iconType?: ButtonIconType;
     class?: string;
-    children: Snippet;
+    children?: Snippet;
+    ref?: HTMLElement | null;
   } & ActionProps;
 </script>
 
@@ -104,37 +83,52 @@
     iconType = "none",
     class: className = "",
     children,
+    ref = $bindable(null),
     ...props
   }: ButtonProps = $props();
 
-  const buttonClass = $derived(
-    buttonVariants({ size, shape, color: variant, iconType, class: className }),
-  );
+  const buttonClass = $derived(buttonVariants({ size, shape, color: variant, iconType, class: className }));
 </script>
 
-{#if props.href != undefined}
-  <a class={buttonClass} {...props}>
-    {@render children()}
+{#if "href" in props && props.href != undefined}
+  {@const { disabled, href, ...rest } = props as AnchorAttrs & { disabled?: boolean }}
+  <a
+    bind:this={ref}
+    data-slot="button"
+    class={buttonClass}
+    href={disabled ? undefined : href}
+    aria-disabled={disabled ? true : undefined}
+    role={disabled ? "link" : undefined}
+    tabindex={disabled ? -1 : undefined}
+    {...rest}
+  >
+    {@render children?.()}
   </a>
 {:else if "label" in props}
   {@const { label: _, ...extra } = props}
-  <label class={buttonClass} {...extra}>
-    {@render children()}
+  <label bind:this={ref} data-slot="button" class={buttonClass} {...extra}>
+    {@render children?.()}
   </label>
 {:else if "summary" in props}
   {@const { summary: _, ...extra } = props}
-  <summary class={buttonClass} {...extra}>
-    {@render children()}
+  <summary bind:this={ref} data-slot="button" class={buttonClass} {...extra}>
+    {@render children?.()}
   </summary>
 {:else}
-  <button type={props.onclick ? "button" : "submit"} class={buttonClass} {...props}>
-    {@render children()}
+  <button
+    bind:this={ref}
+    data-slot="button"
+    type="button"
+    class={buttonClass}
+    {...props}
+  >
+    {@render children?.()}
   </button>
 {/if}
 
 <style>
-  :global(.shape-square:not(:has(> input:checked))),
-  :global(.shape-round:is(:has(> input:checked))) {
+  :global(.shape-square:not(:has(> input:checked)):not([data-state=on])),
+  :global(.shape-round:is(:has(> input:checked), [data-state=on])) {
     border-radius: var(--square-shape);
   }
 </style>

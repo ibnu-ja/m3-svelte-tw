@@ -1,17 +1,11 @@
 <script lang="ts">
+  import { ToggleGroup } from "bits-ui";
   import Switch from "$lib/forms/Switch.svelte";
   import Slider from "$lib/forms/Slider.svelte";
   import Arrows from "../../../routes/_arrows.svelte";
   import InternalCard from "../../../routes/_card.svelte";
-  import ConnectedButtons from "$lib/tw/buttons/ButtonGroups.svelte";
-  import { Button } from "$lib/tw";
+  import { Button, buttonGroupVariants } from "$lib/tw";
   import type { ButtonVariant, ButtonSize } from "$lib/tw/buttons/Button.svelte";
-
-  let variant: ButtonVariant = $state("filled");
-  let multiselect = $state(true);
-  const sizes = ["xs", "s", "m", "l", "xl"] as const satisfies ButtonSize[];
-  const sizeLabels = ["Extra small", "Small", "Medium", "Large", "Extra large"] as const;
-  let sizeIndex = $state(1);
 
   let {
     showCode,
@@ -23,16 +17,26 @@
     ) => void;
   } = $props();
 
-  const minimalDemoHtml = `\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">&#x3C;\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">ConnectedButtons\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>\x3C/span>
-\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">  &#x3C;\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">Button\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>&#x3C;\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">input\x3C/span>\x3Cspan style="color:light-dark(#0550AE,#79C0FF)"> type\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">=\x3C/span>\x3Cspan style="color:light-dark(#0A3069,#A5D6FF)">"checkbox"\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)"> bind\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">:\x3C/span>\x3Cspan style="color:light-dark(#953800,#FFA657)">checked\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">=\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)">{\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">itemA\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)">}\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)"> />A&#x3C;/\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">Button\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>\x3C/span>
-\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">  &#x3C;\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">Button\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>&#x3C;\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">input\x3C/span>\x3Cspan style="color:light-dark(#0550AE,#79C0FF)"> type\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">=\x3C/span>\x3Cspan style="color:light-dark(#0A3069,#A5D6FF)">"checkbox"\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)"> bind\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">:\x3C/span>\x3Cspan style="color:light-dark(#953800,#FFA657)">checked\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">=\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)">{\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">itemB\x3C/span>\x3Cspan style="color:light-dark(#CF222E,#FF7B72)">}\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)"> />B&#x3C;/\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">Button\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>\x3C/span>
-\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">&#x3C;/\x3C/span>\x3Cspan style="color:light-dark(#116329,#7EE787)">ConnectedButtons\x3C/span>\x3Cspan style="color:light-dark(#1F2328,#E6EDF3)">>\x3C/span>`;
+  let variant: NonNullable<ButtonVariant> = $state("filled");
+  const sizes = ["xs", "s", "m", "l", "xl"] as const satisfies NonNullable<ButtonSize>[];
+  const sizeLabels = ["Extra small", "Small", "Medium", "Large", "Extra large"] as const;
+  let sizeIndex = $state(1);
+  let multiselect = $state(true);
+  let groupDisabled = $state(false);
+  let rovingFocus = $state(true);
+  let itemCDisabled = $state(false);
+  let singleValue = $state("");
+  let multiValue = $state<string[]>([]);
+
   const relevantLinks: { title: string; link: string }[] = [
     {
-      title: "ButtonGroups.svelte",
-      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/buttons/ConnectedButtons.svelte",
+      title: "ButtonGroup.svelte",
+      link: "https://github.com/KTibow/m3-svelte/blob/main/src/lib/tw/buttons/ButtonGroup.svelte",
     },
   ];
+  const minimalDemoHtml =
+    '<ToggleGroup.Root type="multiple" class={buttonGroupVariants()} bind:value={selected}>...' +
+    "</ToggleGroup.Root>";
 </script>
 
 <InternalCard
@@ -41,25 +45,76 @@
 >
   <label>
     <Arrows list={["filled", "tonal"]} bind:value={variant} />
-    {variant![0].toUpperCase() + variant!.slice(1)}
+    {variant[0].toUpperCase() + variant.slice(1)}
   </label>
   <label>
     <Switch bind:checked={multiselect} />
     {multiselect ? "Multi-select" : "Single-select"}
   </label>
+  <label>
+    <Switch bind:checked={rovingFocus} />
+    Roving focus: {rovingFocus ? "on" : "off"}
+  </label>
+  <label>
+    <Switch bind:checked={groupDisabled} />
+    Group: {groupDisabled ? "disabled" : "enabled"}
+  </label>
+  <label>
+    <Switch bind:checked={itemCDisabled} />
+    Item "A": {itemCDisabled ? "disabled" : "enabled"}
+  </label>
   <Slider bind:value={sizeIndex} min={0} max={4} step={1} stops format={(n) => sizeLabels[n]} />
+
   {#snippet demo()}
     {@const size = sizes[sizeIndex]}
-    <ConnectedButtons>
-      <Button {variant} {size} shape="square" label>
-        <input type={multiselect ? "checkbox" : "radio"} checked name="connectedbuttons" />Alpha
-      </Button>
-      <Button {variant} {size} shape="square" label>
-        <input type={multiselect ? "checkbox" : "radio"} name="connectedbuttons" />Beta
-      </Button>
-      <Button {variant} {size} shape="square" label>
-        <input type={multiselect ? "checkbox" : "radio"} name="connectedbuttons" />A
-      </Button>
-    </ConnectedButtons>
+    {@const items = [
+      { label: "Alpha", value: "alpha", disabled: false },
+      { label: "Beta",  value: "beta",  disabled: false },
+      { label: "A",     value: "a",     disabled: itemCDisabled },
+    ]}
+
+    {#if multiselect}
+      <ToggleGroup.Root
+        type="multiple"
+        bind:value={multiValue}
+        disabled={groupDisabled}
+        {rovingFocus}
+        class={buttonGroupVariants()}
+      >
+        {#each items as item}
+          <ToggleGroup.Item value={item.value} disabled={item.disabled}>
+            {#snippet child({ props: toggleProps })}
+              <Button {variant} {size} shape="square" {...toggleProps}>
+                {item.label}
+              </Button>
+            {/snippet}
+          </ToggleGroup.Item>
+        {/each}
+      </ToggleGroup.Root>
+      <p class="text-body-small text-on-surface-variant">
+        Selected: {multiValue.join(", ") || "none"}
+      </p>
+    {:else}
+      <ToggleGroup.Root
+        type="single"
+        bind:value={singleValue}
+        disabled={groupDisabled}
+        {rovingFocus}
+        class={buttonGroupVariants()}
+      >
+        {#each items as item}
+          <ToggleGroup.Item value={item.value} disabled={item.disabled}>
+            {#snippet child({ props: toggleProps })}
+              <Button {variant} {size} shape="square" {...toggleProps}>
+                {item.label}
+              </Button>
+            {/snippet}
+          </ToggleGroup.Item>
+        {/each}
+      </ToggleGroup.Root>
+      <p class="text-body-small text-on-surface-variant">
+        Selected: {singleValue || "none"}
+      </p>
+    {/if}
   {/snippet}
 </InternalCard>
