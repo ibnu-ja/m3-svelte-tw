@@ -9,11 +9,11 @@
   import Hero from "./Hero.svelte";
   import Demo0 from "virtual:demo/0";
   import Demo1 from "virtual:demo/1";
-  // import Demo2 from "virtual:demo/2";
+  import Demo2 from "virtual:demo/2";
   // import Demo3 from "virtual:demo/3";
   // import Demo4 from "virtual:demo/4";
   // import Demo5 from "virtual:demo/5";
-  // import Demo6 from "virtual:demo/6";
+  import Demo6 from "virtual:demo/6";
   // import Demo7 from "virtual:demo/7";
   // import Demo8 from "virtual:demo/8";
   // import Demo9 from "virtual:demo/9";
@@ -37,6 +37,8 @@
 
   import ButtonDemo from "$lib/demos/tw/ButtonDemo.svelte";
   import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
+  import SplitButtonGroupsDemo from "$lib/demos/tw/SplitButtonGroupsDemo.svelte";
+  import MenuDemo from "$lib/demos/tw/MenuDemo.svelte";
 
   type DocData = {
     name: string;
@@ -84,11 +86,13 @@
     <ButtonDemo {showCode} />
     <Demo1 {showCode} />
     <ButtonGroupsDemo {showCode} />
-    <!--    <Demo2 {showCode} />-->
+    <Demo2 {showCode} />
+    <SplitButtonGroupsDemo {showCode} />
     <!--    <Demo3 {showCode} />-->
     <!--    <Demo4 {showCode} />-->
     <!--    <Demo5 {showCode} />-->
-    <!--    <Demo6 {showCode} />-->
+    <Demo6 {showCode} />
+    <MenuDemo {showCode} />
     <!--    <Demo7 {showCode} />-->
     <!--    <Demo8 {showCode} />-->
     <!--    <Demo9 {showCode} />-->

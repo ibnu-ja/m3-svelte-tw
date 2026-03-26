@@ -49,35 +49,35 @@
     {variant[0].toUpperCase() + variant.slice(1)}
   </label>
   <label>
-    <Switch bind:checked={multiselect} />
+    <Switch bind:checked={multiselect}/>
     {multiselect ? "Multi-select" : "Single-select"}
   </label>
   {#if !multiselect}
     <label>
-      <Switch bind:checked={mandatory} />
+      <Switch bind:checked={mandatory}/>
       Mandatory: {mandatory ? "on" : "off"}
     </label>
   {/if}
   <label>
-    <Switch bind:checked={rovingFocus} />
+    <Switch bind:checked={rovingFocus}/>
     Roving focus: {rovingFocus ? "on" : "off"}
   </label>
   <label>
-    <Switch bind:checked={groupDisabled} />
+    <Switch bind:checked={groupDisabled}/>
     Group: {groupDisabled ? "disabled" : "enabled"}
   </label>
   <label>
-    <Switch bind:checked={itemCDisabled} />
+    <Switch bind:checked={itemCDisabled}/>
     Item "A": {itemCDisabled ? "disabled" : "enabled"}
   </label>
-  <Slider bind:value={sizeIndex} min={0} max={4} step={1} stops format={(n) => sizeLabels[n]} />
+  <Slider bind:value={sizeIndex} min={0} max={4} step={1} stops format={(n) => sizeLabels[n]}/>
 
   {#snippet demo()}
     {@const size = sizes[sizeIndex]}
     {@const items = [
-      { label: "Alpha", value: "alpha", disabled: false },
-      { label: "Beta",  value: "beta",  disabled: false },
-      { label: "A",     value: "a",     disabled: itemCDisabled },
+      {label: "Alpha", value: "alpha", disabled: false},
+      {label: "Beta", value: "beta", disabled: false},
+      {label: "A", value: "a", disabled: itemCDisabled},
     ]}
 
     {#if multiselect}
@@ -90,7 +90,7 @@
       >
         {#each items as item}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
-            {#snippet child({ props: toggleProps })}
+            {#snippet child({props: toggleProps})}
               <Button {variant} {size} shape="square" {...toggleProps}>
                 {item.label}
               </Button>
@@ -114,7 +114,7 @@
       >
         {#each items as item}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
-            {#snippet child({ props: toggleProps })}
+            {#snippet child({props: toggleProps})}
               <Button {variant} {size} shape="square" {...toggleProps}>
                 {item.label}
               </Button>

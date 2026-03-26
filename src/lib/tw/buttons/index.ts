@@ -9,3 +9,8 @@ export {
 } from "./Button.svelte";
 
 export { buttonGroupVariants } from "./ButtonGroup.svelte";
+
+export {
+  default as SplitButton,
+  type SplitButtonProps,
+} from "./SplitButton.svelte";
