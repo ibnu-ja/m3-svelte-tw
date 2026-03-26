@@ -25,8 +25,9 @@
   let groupDisabled = $state(false);
   let rovingFocus = $state(true);
   let itemCDisabled = $state(false);
-  let singleValue = $state("");
-  let multiValue = $state<string[]>([]);
+  let mandatory = $state(false);
+  let multiValue = $state<string[]>(["alpha"]);
+  let singleValue = $state("alpha");
 
   const relevantLinks: { title: string; link: string }[] = [
     {
@@ -51,6 +52,12 @@
     <Switch bind:checked={multiselect} />
     {multiselect ? "Multi-select" : "Single-select"}
   </label>
+  {#if !multiselect}
+    <label>
+      <Switch bind:checked={mandatory} />
+      Mandatory: {mandatory ? "on" : "off"}
+    </label>
+  {/if}
   <label>
     <Switch bind:checked={rovingFocus} />
     Roving focus: {rovingFocus ? "on" : "off"}
@@ -97,7 +104,10 @@
     {:else}
       <ToggleGroup.Root
         type="single"
-        bind:value={singleValue}
+        bind:value={
+          () => { return singleValue },
+          (v) => { singleValue = (!mandatory || v !== "") ? v : singleValue; }
+        }
         disabled={groupDisabled}
         {rovingFocus}
         class={buttonGroupVariants()}
