@@ -8,7 +8,7 @@
   import Doc from "./_doc.svelte";
   import Hero from "./Hero.svelte";
   import Demo0 from "virtual:demo/0";
-  // import Demo1 from "virtual:demo/1";
+  import Demo1 from "virtual:demo/1";
   // import Demo2 from "virtual:demo/2";
   // import Demo3 from "virtual:demo/3";
   // import Demo4 from "virtual:demo/4";
@@ -36,7 +36,7 @@
   import { afterNavigate } from "$app/navigation";
 
   import ButtonDemo from "$lib/demos/tw/ButtonDemo.svelte";
-  // import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
+  import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
 
   type DocData = {
     name: string;
@@ -82,35 +82,35 @@
   <main>
     <Demo0 {showCode} />
     <ButtonDemo {showCode} />
-<!--    <Demo1 {showCode} />-->
-<!--    <ButtonGroupsDemo {showCode} />-->
-<!--    <Demo2 {showCode} />-->
-<!--    <Demo3 {showCode} />-->
-<!--    <Demo4 {showCode} />-->
-<!--    <Demo5 {showCode} />-->
-<!--    <Demo6 {showCode} />-->
-<!--    <Demo7 {showCode} />-->
-<!--    <Demo8 {showCode} />-->
-<!--    <Demo9 {showCode} />-->
-<!--    <Demo10 {showCode} />-->
-<!--    <Demo11 {showCode} />-->
-<!--    <Demo12 {showCode} />-->
-<!--    <Demo13 {showCode} />-->
-<!--    <Demo14 {showCode} />-->
-<!--    <Demo15 {showCode} />-->
-<!--    <Demo16 {showCode} />-->
-<!--    <Demo17 {showCode} />-->
-<!--    <Demo18 {showCode} />-->
-<!--    <Demo19 {showCode} />-->
-<!--    <Demo20 {showCode} />-->
-<!--    <Demo21 {showCode} />-->
-<!--    <Demo22 {showCode} />-->
-<!--    <Demo23 {showCode} />-->
-<!--    <Demo24 {showCode} />-->
-<!--    <Demo25 {showCode} />-->
-<!--    {#await import("virtual:demo/26") then { default: LastDemo }}-->
-<!--      <LastDemo {showCode} />-->
-<!--    {/await}-->
+    <Demo1 {showCode} />
+    <ButtonGroupsDemo {showCode} />
+    <!--    <Demo2 {showCode} />-->
+    <!--    <Demo3 {showCode} />-->
+    <!--    <Demo4 {showCode} />-->
+    <!--    <Demo5 {showCode} />-->
+    <!--    <Demo6 {showCode} />-->
+    <!--    <Demo7 {showCode} />-->
+    <!--    <Demo8 {showCode} />-->
+    <!--    <Demo9 {showCode} />-->
+    <!--    <Demo10 {showCode} />-->
+    <!--    <Demo11 {showCode} />-->
+    <!--    <Demo12 {showCode} />-->
+    <!--    <Demo13 {showCode} />-->
+    <!--    <Demo14 {showCode} />-->
+    <!--    <Demo15 {showCode} />-->
+    <!--    <Demo16 {showCode} />-->
+    <!--    <Demo17 {showCode} />-->
+    <!--    <Demo18 {showCode} />-->
+    <!--    <Demo19 {showCode} />-->
+    <!--    <Demo20 {showCode} />-->
+    <!--    <Demo21 {showCode} />-->
+    <!--    <Demo22 {showCode} />-->
+    <!--    <Demo23 {showCode} />-->
+    <!--    <Demo24 {showCode} />-->
+    <!--    <Demo25 {showCode} />-->
+    <!--    {#await import("virtual:demo/26") then { default: LastDemo }}-->
+    <!--      <LastDemo {showCode} />-->
+    <!--    {/await}-->
   </main>
   {#if doc && innerWidth.current && innerWidth.current >= 600}
     <div class="sheet" transition:slide={{ easing: easeEmphasized, duration: 500, axis: "x" }}>
