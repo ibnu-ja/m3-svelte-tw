@@ -10,7 +10,7 @@
   import Demo0 from "virtual:demo/0";
   import Demo1 from "virtual:demo/1";
   import Demo2 from "virtual:demo/2";
-  // import Demo3 from "virtual:demo/3";
+  import Demo3 from "virtual:demo/3";
   // import Demo4 from "virtual:demo/4";
   // import Demo5 from "virtual:demo/5";
   import Demo6 from "virtual:demo/6";
@@ -88,7 +88,7 @@
     <ButtonGroupsDemo {showCode} />
     <Demo2 {showCode} />
     <SplitButtonGroupsDemo {showCode} />
-    <!--    <Demo3 {showCode} />-->
+    <Demo3 {showCode} />
     <!--    <Demo4 {showCode} />-->
     <!--    <Demo5 {showCode} />-->
     <Demo6 {showCode} />

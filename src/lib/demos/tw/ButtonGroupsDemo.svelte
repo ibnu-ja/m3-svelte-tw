@@ -2,7 +2,7 @@
   import { ToggleGroup } from "bits-ui";
   import Switch from "$lib/forms/Switch.svelte";
   import Slider from "$lib/forms/Slider.svelte";
-  import Arrows from "../../../routes/_arrows.svelte";
+  import Arrows from "../../../routes/_arrowsnew.svelte";
   import InternalCard from "../../../routes/_card.svelte";
   import { Button, buttonGroupVariants } from "$lib/tw";
   import type { ButtonVariant, ButtonSize } from "$lib/tw/buttons/Button.svelte";
@@ -44,10 +44,9 @@
   title="Connected buttons"
   showCode={() => showCode("Connected buttons", minimalDemoHtml, relevantLinks)}
 >
-  <label>
-    <Arrows list={["filled", "tonal"]} bind:value={variant} />
+  <Arrows list={["filled", "tonal"]} bind:value={variant} label="Variant">
     {variant[0].toUpperCase() + variant.slice(1)}
-  </label>
+  </Arrows>
   <label>
     <Switch bind:checked={multiselect}/>
     {multiselect ? "Multi-select" : "Single-select"}

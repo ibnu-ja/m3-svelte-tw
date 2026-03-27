@@ -3,7 +3,7 @@
   import iconSquare from "@ktibow/iconset-material-symbols/square-outline";
   import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
   import Icon from "$lib/misc/Icon.svelte";
-  import Arrows from "/src/routes/_arrows.svelte";
+  import Arrows from "/src/routes/_arrowsnew.svelte";
   import InternalCard from "/src/routes/_card.svelte";
   import { SplitButton, menuVariants, menuItemVariants } from "$lib/tw";
   import type { ButtonVariant, ButtonSize, SplitButtonProps } from "$lib/tw";
@@ -46,26 +46,21 @@
 </script>
 
 <InternalCard title="Split button" showCode={() => showCode("Split button", minimalDemoHtml, relevantLinks)}>
-  <label>
-    <Arrows list={["filled", "tonal", "elevated", "outlined"]} bind:value={variant} initialIndex={0} />
+  <Arrows list={["filled", "tonal", "elevated", "outlined"]} bind:value={variant} initialIndex={0} label="Variant">
     {variant[0].toUpperCase() + variant.slice(1)}
-  </label>
-  <label>
-    <Arrows list={["s", "xs", "m", "l", "xl"]} bind:value={size} />
+  </Arrows>
+  <Arrows list={["s", "xs", "m", "l", "xl"]} bind:value={size} label="Size">
     Size: {size}
-  </label>
-  <label>
-    <Arrows list={["bottom", "top"]} bind:value={side} />
+  </Arrows>
+  <Arrows list={["bottom", "top"]} bind:value={side} label="Side">
     Side: {side}
-  </label>
-  <label>
-    <Arrows list={["start", "center", "end"]} bind:value={align} />
+  </Arrows>
+  <Arrows list={["start", "center", "end"]} bind:value={align} label="Align">
     Align: {align}
-  </label>
-  <label>
-    <Arrows list={["none", "left", "full"]} bind:value={iconType} />
+  </Arrows>
+  <Arrows list={["none", "left", "full"]} bind:value={iconType} label="Icon type">
     {iconType === "none" ? "No icon" : iconType === "left" ? "Left icon" : "Icon"}
-  </label>
+  </Arrows>
 
   {#snippet demo()}
     <div>

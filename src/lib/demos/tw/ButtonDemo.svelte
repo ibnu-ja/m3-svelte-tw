@@ -1,7 +1,7 @@
 <script lang="ts">
   import Switch from "$lib/forms/Switch.svelte";
   import Slider from "$lib/forms/Slider.svelte";
-  import Arrows from "../../../routes/_arrows.svelte";
+  import Arrows from "../../../routes/_arrowsnew.svelte";
   import InternalCard from "../../../routes/_card.svelte";
   import { Button } from "$lib/tw";
   import type { ButtonVariant, ButtonSize, ButtonIconType } from "$lib/tw/buttons/Button.svelte";
@@ -37,22 +37,17 @@
 </script>
 
 <InternalCard title="Button" showCode={() => showCode("Button", minimalDemoHtml, relevantLinks)}>
-  <label>
-    <Arrows
-      list={["elevated", "filled", "tonal", "outlined", "text"]}
-      bind:value={variant}
-      initialIndex={1}
-    />
+  <Arrows list={["elevated", "filled", "tonal", "outlined", "text"]} bind:value={variant} initialIndex={1} label="Variant">
     {variant[0].toUpperCase() + variant.slice(1)}
-  </label>
+  </Arrows>
   <label>
     <Switch bind:checked={square} />
     {square ? "Square" : "Round"}
   </label>
-  <label>
-    <Arrows list={["none", "left", "full"]} bind:value={iconType} initialIndex={0} />
-    Icon: {iconType}
-  </label>
+
+  <Arrows list={["none", "left", "full"]} bind:value={iconType} initialIndex={0} label="Icon">
+    {iconType[0].toUpperCase() + iconType.slice(1)}
+  </Arrows>
   <Slider bind:value={sizeIndex} min={0} max={4} step={1} stops format={(n) => sizeLabels[n]} />
   <label>
     <Switch bind:checked={enabled} />
