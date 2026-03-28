@@ -59,7 +59,7 @@ export default defineConfig({
       },
     ],
     [
-      /^translucent-([a-z-]+)-(\d+)$/,
+      /^text-translucent-([a-z-]+)-(\d+)$/,
       ([, color, opacity]) => {
         const opacityValue = Number(opacity) / 100;
         return {
@@ -77,15 +77,15 @@ export default defineConfig({
       },
     ],
     [
-      /^w-d-(.+)$/,
+      /^w-d-(\d+(?:\.\d+)?|\[.+])$/,
       ([, size]) => ({
-        width: `calc(${size} + (var(--density) * 0.25rem))`,
+        width: size.startsWith("[") ? size.slice(1, -1) : `calc(${size} * 0.25rem)`,
       }),
     ],
     [
-      /^h-d-(.+)$/,
+      /^h-d-(\d+(?:\.\d+)?|\[.+])$/,
       ([, size]) => ({
-        height: `calc(${size} + (var(--density) * 0.25rem))`,
+        height: size.startsWith("[") ? size.slice(1, -1) : `calc(${size} * 0.25rem)`,
       }),
     ],
   ],

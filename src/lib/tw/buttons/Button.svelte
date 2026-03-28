@@ -2,30 +2,30 @@
   import { tv, type VariantProps } from "tailwind-variants";
 
   export const buttonVariants = tv({
-    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto has-[>input:disabled]:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38 forced-colors:disabled:opacity-38",
+    base: "m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto has-[>input:disabled]:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38 forced-colors:disabled:opacity-38",
     variants: {
       size: {
-        xs: "sz-xs h-d-2rem px-3 gap-2 font-label-large rounded-[1rem]",
-        s: "sz-s h-d-2.5rem px-4 gap-2 font-label-large rounded-[1.25rem]",
-        m: "sz-m h-d-3.5rem px-6 gap-2 font-title-medium rounded-[1.75rem] [&>svg]:w-6 [&>svg]:h-6",
-        l: "sz-l h-d-6rem px-12 gap-3 font-headline-small rounded-[3rem] [&>svg]:w-8 [&>svg]:h-8",
-        xl: "sz-xl h-d-8.5rem px-16 gap-4 font-headline-large rounded-[4.25rem] [&>svg]:w-10 [&>svg]:h-10",
+        xs: "sz-xs h-d-8 px-3 gap-2 font-label-large",
+        s: "sz-s h-d-10 px-4 gap-2 font-label-large",
+        m: "sz-m h-d-14 px-6 gap-2 font-title-medium [&>svg]:w-6 [&>svg]:h-6",
+        l: "sz-l h-d-24 px-12 gap-3 font-headline-small [&>svg]:w-8 [&>svg]:h-8",
+        xl: "sz-xl h-d-34 px-16 gap-4 font-headline-large [&>svg]:w-10 [&>svg]:h-10",
       },
       shape: {
         round: "",
         square: "",
       },
       color: {
-        elevated: "bg-surface-container-low text-primary shadow-1 not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-primary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-primary hover:not-disabled:not-has-[>input:disabled]:shadow-2 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        filled: "bg-primary text-on-primary data-[state=off]:bg-surface-container data-[state=off]:text-on-surface-variant has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:bg-surface-container has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:text-on-surface-variant hover:not-disabled:not-has-[>input:disabled]:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        tonal: "bg-secondary-container text-on-secondary-container not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-secondary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-secondary hover:not-disabled:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
-        outlined: "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant not-disabled:not-has-[>input:disabled]:data-[state=on]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:text-inverse-on-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-inverse-on-surface has-[>input:disabled]:outline-translucent-on-surface-12 has-[>input:disabled]:bg-transparent",
-        text: "bg-transparent text-primary",
+        elevated: "bg-surface-container-low text-primary shadow-1 not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-primary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-primary hover:not-disabled:not-has-[>input:disabled]:shadow-2 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38",
+        filled: "bg-primary text-on-primary data-[state=off]:bg-surface-container data-[state=off]:text-on-surface-variant has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:bg-surface-container has-[>input:is([type=checkbox],[type=radio]):not(:checked)]:text-on-surface-variant hover:not-disabled:not-has-[>input:disabled]:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38",
+        tonal: "bg-secondary-container text-on-secondary-container not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-secondary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-secondary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-secondary hover:not-disabled:shadow-1 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38",
+        outlined: "bg-transparent text-on-surface-variant outline outline-1 -outline-offset-1 outline-outline-variant not-disabled:not-has-[>input:disabled]:data-[state=on]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:data-[state=on]:text-inverse-on-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:outline-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-inverse-surface not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-inverse-on-surface has-[>input:disabled]:outline-translucent-on-surface-12 has-[>input:disabled]:bg-transparent disabled:bg-transparent disabled:text-on-surface-variant",
+        text: "bg-transparent text-primary disabled:bg-transparent disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-transparent has-[>input:disabled]:text-translucent-on-surface-38",
       },
       iconType: {
         none: "",
         left: "icon-left",
-        full: "w-auto p-0!",
+        full: "w-auto p-0",
       },
     },
     defaultVariants: {
@@ -37,29 +37,30 @@
     compoundVariants: [
       { size: "l", color: "outlined", class: "outline-2 -outline-offset-2" },
       { size: "xl", color: "outlined", class: "outline-3 -outline-offset-3" },
-      { iconType: "full", size: "xs", class: "w-d-2rem" },
-      { iconType: "full", size: "s", class: "w-d-2.5rem" },
-      { iconType: "full", size: "m", class: "w-d-3.5rem" },
-      { iconType: "full", size: "l", class: "w-d-6rem" },
-      { iconType: "full", size: "xl", class: "w-d-8.5rem" },
-      // pressed shape
-      { size: "xs", class: "[&:active:not(:disabled)]:rounded-[8px]!" },
-      { size: "s",  class: "[&:active:not(:disabled)]:rounded-[8px]!" },
-      { size: "m",  class: "[&:active:not(:disabled)]:rounded-[12px]!" },
-      { size: "l",  class: "[&:active:not(:disabled)]:rounded-[16px]!" },
-      { size: "xl", class: "[&:active:not(:disabled)]:rounded-[16px]!" },
-      // square shape
-      { size: "xs", shape: "square", class: "rounded-[12px]!" },
-      { size: "s",  shape: "square", class: "rounded-[12px]!" },
-      { size: "m",  shape: "square", class: "rounded-[16px]!" },
-      { size: "l",  shape: "square", class: "rounded-[28px]!" },
-      { size: "xl", shape: "square", class: "rounded-[28px]!" },
-      // round toggled to square when checked/on (not-disabled)
-      { size: "xs", shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[12px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[12px]!" },
-      { size: "s",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[12px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[12px]!" },
-      { size: "m",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[16px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[16px]!" },
-      { size: "l",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[28px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[28px]!" },
-      { size: "xl", shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[28px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[28px]!" },
+
+      { iconType: "full", size: "xs", class: "w-d-8" },
+      { iconType: "full", size: "s", class: "w-d-10" },
+      { iconType: "full", size: "m", class: "w-d-14" },
+      { iconType: "full", size: "l", class: "w-d-24" },
+      { iconType: "full", size: "xl", class: "w-d-34" },
+
+      { size: "xs", shape: "round", class: "rounded-2xl not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-xl not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-xl" },
+      { size: "s", shape: "round", class: "rounded-[1.25rem] not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-xl not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-xl" },
+      { size: "m", shape: "round", class: "rounded-[1.75rem] not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-2xl not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-2xl" },
+      { size: "l", shape: "round", class: "rounded-[3rem] not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[1.75rem] not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[1.75rem]" },
+      { size: "xl", shape: "round", class: "rounded-[4.25rem] not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[1.75rem] not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[1.75rem]" },
+
+      { size: "xs", shape: "square", class: "rounded-xl" },
+      { size: "s", shape: "square", class: "rounded-xl" },
+      { size: "m", shape: "square", class: "rounded-2xl" },
+      { size: "l", shape: "square", class: "rounded-[1.75rem]" },
+      { size: "xl", shape: "square", class: "rounded-[1.75rem]" },
+
+      { size: "xs", class: "[&:active:not(:disabled)]:rounded-lg" },
+      { size: "s", class: "[&:active:not(:disabled)]:rounded-lg" },
+      { size: "m", class: "[&:active:not(:disabled)]:rounded-xl" },
+      { size: "l", class: "[&:active:not(:disabled)]:rounded-2xl" },
+      { size: "xl", class: "[&:active:not(:disabled)]:rounded-2xl" },
     ],
   });
 
@@ -67,7 +68,9 @@
   export type ButtonShape = VariantProps<typeof buttonVariants>["shape"];
   export type ButtonVariant = VariantProps<typeof buttonVariants>["color"];
   export type ButtonIconType = VariantProps<typeof buttonVariants>["iconType"];
+</script>
 
+<script lang="ts">
   import type { HTMLButtonAttributes, HTMLAttributes, HTMLAnchorAttributes, HTMLLabelAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
   import type { NotLink } from "$lib/misc/typing-utils";
@@ -89,9 +92,7 @@
     children?: Snippet;
     ref?: HTMLElement | null;
   } & ActionProps;
-</script>
 
-<script lang="ts">
   import "$lib/etc/layer.js";
 
   let {
@@ -143,4 +144,3 @@
     {@render children?.()}
   </button>
 {/if}
-
