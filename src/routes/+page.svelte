@@ -39,6 +39,7 @@
   import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
   import SplitButtonGroupsDemo from "$lib/demos/tw/SplitButtonGroupsDemo.svelte";
   import MenuDemo from "$lib/demos/tw/MenuDemo.svelte";
+  import FABDemo from "$lib/demos/tw/FABDemo.svelte";
 
   type DocData = {
     name: string;
@@ -89,6 +90,7 @@
     <Demo2 {showCode} />
     <SplitButtonGroupsDemo {showCode} />
     <Demo3 {showCode} />
+    <FABDemo {showCode} />
     <!--    <Demo4 {showCode} />-->
     <!--    <Demo5 {showCode} />-->
     <Demo6 {showCode} />
