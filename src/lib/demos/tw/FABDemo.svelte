@@ -1,7 +1,7 @@
 <script lang="ts">
   import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
-  import Arrows from "/src/routes/_arrowsnew.svelte";
-  import InternalCard from "/src/routes/_card.svelte";
+  import Arrows from "../../../routes/_arrowsnew.svelte";
+  import InternalCard from "../../../routes/_card.svelte";
   import Slider from "$lib/forms/Slider.svelte";
   import FAB from "$lib/tw/buttons/FAB.svelte";
   import type { FABSize, FABColor } from "$lib/tw/buttons/FAB.svelte";

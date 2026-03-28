@@ -4,7 +4,7 @@
   import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
   import Switch from "$lib/forms/Switch.svelte";
   import Icon from "$lib/misc/Icon.svelte";
-  import InternalCard from "/src/routes/_card.svelte";
+  import InternalCard from "../../../routes/_card.svelte";
   import { menuVariants, menuItemVariants } from "$lib/tw";
   import PressElement from "$lib/tw/primitive/PressElement.svelte";
 

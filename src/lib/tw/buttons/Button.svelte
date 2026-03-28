@@ -73,7 +73,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import PressElement from "$lib/tw/primitive/PressElement.svelte";
-  import type { PressElementProps } from "$lib/tw/primitive/PressElement.svelte";
 
   type ActionProps =
     | AnchorAttrs
@@ -92,6 +91,8 @@
   } & ActionProps;
 
   import "$lib/etc/layer.js";
+  import type { AnchorAttrs, NotLink } from "$lib/misc/typing-utils";
+  import type { HTMLAttributes, HTMLButtonAttributes, HTMLLabelAttributes } from "svelte/elements";
 
   let {
     size = "s",

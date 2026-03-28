@@ -3,8 +3,8 @@
   import iconSquare from "@ktibow/iconset-material-symbols/square-outline";
   import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
   import Icon from "$lib/misc/Icon.svelte";
-  import Arrows from "/src/routes/_arrowsnew.svelte";
-  import InternalCard from "/src/routes/_card.svelte";
+  import Arrows from "../../../routes/_arrowsnew.svelte";
+  import InternalCard from "../../../routes/_card.svelte";
   import { SplitButton, menuVariants, menuItemVariants } from "$lib/tw";
   import type { ButtonVariant, ButtonSize, SplitButtonProps } from "$lib/tw";
 
