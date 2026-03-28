@@ -26,16 +26,20 @@ export default defineConfig({
     ),
 
     // Transition utilities
-    ...easings.map(
-      (e) =>
+    ...easings.map((e) => {
+      const name = e === "" ? "standard" : e.replace(/^-/, "");
+      return [
+        [`ease-m3-${name}`, { "transition-timing-function": `var(--m3-timing-function${e})` }] as StaticRule,
+        [`duration-m3-${name}`, { "transition-duration": `var(--m3-duration${e})` }] as StaticRule,
         [
-          `transition${e}`,
+          `transition-m3-${name}`,
           {
             "transition-timing-function": `var(--m3-timing-function${e})`,
             "transition-duration": `var(--m3-duration${e})`,
           },
         ] as StaticRule,
-    ),
+      ];
+    }).flat(),
 
     // Font utilities - fully controlled rule using @apply from src/lib/etc/styles.css
     [
