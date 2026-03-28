@@ -31,11 +31,11 @@
   }: SplitButtonProps = $props();
 </script>
 
-<div class="inline-grid grid-cols-[1fr_auto] gap-[0.125rem] [--outer:1.25rem] [--half:var(--m3-shape-medium)] [--inner:var(--m3-shape-extra-small)] [print-color-adjust:exact]">
+<div class="inline-grid grid-cols-[1fr_auto] gap-[0.125rem] [print-color-adjust:exact]">
   <Button
     {variant}
     {size}
-    class="![border-start-start-radius:var(--outer)] ![border-end-start-radius:var(--outer)] ![border-start-end-radius:var(--inner)] ![border-end-end-radius:var(--inner)] hover:![border-start-end-radius:var(--half)] hover:![border-end-end-radius:var(--half)] active:![border-start-end-radius:var(--half)] active:![border-end-end-radius:var(--half)]"
+    class="rounded-ss-[1.25rem] rounded-es-[1.25rem] rounded-se-xs rounded-ee-xs hover:rounded-se-xl hover:rounded-ee-xl active:rounded-se-xl active:rounded-ee-xl"
     {...props}
   >
     {@render children()}
@@ -47,7 +47,7 @@
         <Button
           {variant}
           {size}
-          class="!w-12 ![border-start-start-radius:var(--inner)] ![border-end-start-radius:var(--inner)] ![border-start-end-radius:var(--outer)] ![border-end-end-radius:var(--outer)] hover:![border-start-start-radius:var(--half)] hover:![border-end-start-radius:var(--half)] active:![border-start-start-radius:var(--half)] active:![border-end-start-radius:var(--half)] data-[state=open]:![border-start-start-radius:var(--outer)] data-[state=open]:![border-end-start-radius:var(--outer)] [&>svg]:[transition:rotate_var(--m3-easing-fast)] data-[state=open]:[&>svg]:[rotate:180deg]"
+          class="w-12 rounded-ss-xs rounded-es-xs rounded-se-[1.25rem] rounded-ee-[1.25rem] hover:rounded-ss-xl hover:rounded-es-xl active:rounded-ss-xl active:rounded-es-xl data-[state=open]:rounded-ss-xs data-[state=open]:rounded-es-xs [&>svg]:transition-transform [&>svg]:ease-m3-fast [&>svg]:duration-m3-fast data-[state=open]:[&>svg]:rotate-180"
           {...triggerProps}
         >
           <Icon icon={iconExpand} size={22} />

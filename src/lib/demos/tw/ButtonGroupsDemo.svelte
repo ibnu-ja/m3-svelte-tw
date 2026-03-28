@@ -90,7 +90,12 @@
         {#each items as item}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
             {#snippet child({props: toggleProps})}
-              <Button {variant} {size} shape="square" {...toggleProps}>
+              <Button
+                {variant}
+                {size}
+                shape={toggleProps["data-state"] === "on" ? "round" : "square"}
+                {...toggleProps}
+              >
                 {item.label}
               </Button>
             {/snippet}
@@ -114,7 +119,12 @@
         {#each items as item}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
             {#snippet child({props: toggleProps})}
-              <Button {variant} {size} shape="square" {...toggleProps}>
+              <Button
+                {variant}
+                {size}
+                shape={toggleProps["data-state"] === "on" ? "round" : "square"}
+                {...toggleProps}
+              >
                 {item.label}
               </Button>
             {/snippet}
