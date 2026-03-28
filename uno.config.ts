@@ -76,5 +76,17 @@ export default defineConfig({
         };
       },
     ],
+    [
+      /^w-d-(.+)$/,
+      ([, size]) => ({
+        width: `calc(${size} + (var(--density) * 0.25rem))`,
+      }),
+    ],
+    [
+      /^h-d-(.+)$/,
+      ([, size]) => ({
+        height: `calc(${size} + (var(--density) * 0.25rem))`,
+      }),
+    ],
   ],
 });
