@@ -71,11 +71,9 @@
 </script>
 
 <script lang="ts">
-  import type { HTMLButtonAttributes, HTMLAttributes, HTMLAnchorAttributes, HTMLLabelAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
-  import type { NotLink } from "$lib/misc/typing-utils";
-
-  type AnchorAttrs = HTMLAnchorAttributes & { href: string };
+  import PressElement from "$lib/tw/primitive/PressElement.svelte";
+  import type { PressElementProps } from "$lib/tw/primitive/PressElement.svelte";
 
   type ActionProps =
     | AnchorAttrs
@@ -109,38 +107,11 @@
   const buttonClass = $derived(buttonVariants({ size, shape, color: variant, iconType, class: className }));
 </script>
 
-{#if "href" in props && props.href != undefined}
-  {@const { disabled, href, ...rest } = props as AnchorAttrs & { disabled?: boolean }}
-  <a
-    bind:this={ref}
-    data-slot="button"
-    class={buttonClass}
-    href={disabled ? undefined : href}
-    aria-disabled={disabled ? true : undefined}
-    role={disabled ? "link" : undefined}
-    tabindex={disabled ? -1 : undefined}
-    {...rest}
-  >
-    {@render children?.()}
-  </a>
-{:else if "label" in props}
-  {@const { label: _, ...extra } = props}
-  <label bind:this={ref} data-slot="button" class={buttonClass} {...extra}>
-    {@render children?.()}
-  </label>
-{:else if "summary" in props}
-  {@const { summary: _, ...extra } = props}
-  <summary bind:this={ref} data-slot="button" class={buttonClass} {...extra}>
-    {@render children?.()}
-  </summary>
-{:else}
-  <button
-    bind:this={ref}
-    data-slot="button"
-    type="button"
-    class={buttonClass}
-    {...props}
-  >
-    {@render children?.()}
-  </button>
-{/if}
+<PressElement
+  bind:ref
+  data-slot="button"
+  class={buttonClass}
+  {...props}
+>
+  {@render children?.()}
+</PressElement>

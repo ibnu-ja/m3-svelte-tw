@@ -6,6 +6,7 @@
   import Icon from "$lib/misc/Icon.svelte";
   import InternalCard from "/src/routes/_card.svelte";
   import { menuVariants, menuItemVariants } from "$lib/tw";
+  import PressElement from "$lib/tw/primitive/PressElement.svelte";
 
   let icons = $state(false);
 
@@ -40,14 +41,14 @@
   {#snippet demo()}
     <div class={menuVariants()}>
       {#each items as item}
-        <button class={menuItemVariants()} disabled={item.disabled}>
+        <PressElement class={menuItemVariants()} disabled={item.disabled}>
           {#if icons}
             <span class="w-6 h-6 shrink-0 text-on-surface-variant [&>svg]:w-6 [&>svg]:h-6 [&>svg]:fill-current">
               <Icon icon={item.icon} size={24} />
             </span>
           {/if}
           {item.label}
-        </button>
+        </PressElement>
       {/each}
     </div>
   {/snippet}

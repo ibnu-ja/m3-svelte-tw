@@ -52,8 +52,9 @@
 
 <script lang="ts">
   import type { IconifyIcon } from "@iconify/types";
-  import type { HTMLButtonAttributes } from "svelte/elements";
   import Icon from "$lib/misc/Icon.svelte";
+  import PressElement from "$lib/tw/primitive/PressElement.svelte";
+  import type { PressElementProps } from "$lib/tw/primitive/PressElement.svelte";
   import { slide } from "svelte/transition";
   import { easeEmphasized } from "$lib/misc/easing";
 
@@ -70,7 +71,7 @@
     elevation?: FABElevation;
     class?: string;
     ref?: HTMLElement | null;
-  } & ContentProps & HTMLButtonAttributes;
+  } & ContentProps & PressElementProps;
 
   let {
     size = "normal",
@@ -92,13 +93,7 @@
   );
 </script>
 
-<button
-  bind:this={ref}
-  type="button"
-  data-slot="fab"
-  class={fabClass}
-  {...props}
->
+<PressElement bind:ref data-slot="fab" class={fabClass} {...props}>
   {#if icon}
     <Icon {icon} size={iconSize} />
   {/if}
@@ -110,4 +105,4 @@
       {text}
     </span>
   {/if}
-</button>
+</PressElement>
