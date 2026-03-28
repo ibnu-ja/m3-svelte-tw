@@ -61,17 +61,17 @@ export default defineConfig(
           ],
         },
       ],
-      "no-restricted-syntax": [
-        "error",
-        {
-          selector: "BinaryExpression[operator='===']",
-          message: "Use == instead of ===",
-        },
-        {
-          selector: "BinaryExpression[operator='!==']",
-          message: "Use != instead of !==",
-        },
-      ],
+      // "no-restricted-syntax": [
+      //   "error",
+      //   {
+      //     selector: "BinaryExpression[operator='===']",
+      //     message: "Use == instead of ===",
+      //   },
+      //   {
+      //     selector: "BinaryExpression[operator='!==']",
+      //     message: "Use != instead of !==",
+      //   },
+      // ],
     },
   },
 );
