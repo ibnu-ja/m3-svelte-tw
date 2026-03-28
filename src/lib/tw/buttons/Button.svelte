@@ -2,18 +2,18 @@
   import { tv, type VariantProps } from "tailwind-variants";
 
   export const buttonVariants = tv({
-    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto has-[>input:disabled]:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38 [&:active:not(:disabled)]:rounded-[var(--pressed-shape)!important] forced-colors:disabled:opacity-38",
+    base: "tw-btn m3-layer inline-flex items-center justify-center border-none align-middle select-none [print-color-adjust:exact] cursor-pointer disabled:cursor-auto has-[>input:disabled]:cursor-auto [&>svg]:shrink-0 [&>*]:shrink-0 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current [transition:border-radius_var(--m3-easing-fast-spatial),_box-shadow_var(--m3-easing-fast),_background-color_var(--m3-easing-fast),_color_var(--m3-easing-fast)] [&>input]:absolute [&>input]:opacity-0 [&>input]:w-0 [&>input]:h-0 [&>input]:pointer-events-none disabled:bg-translucent-on-surface-12 disabled:text-translucent-on-surface-38 has-[>input:disabled]:bg-translucent-on-surface-12 has-[>input:disabled]:text-translucent-on-surface-38 forced-colors:disabled:opacity-38",
     variants: {
       size: {
-        xs: "sz-xs h-d-2rem px-3 gap-2 font-label-large rounded-[1rem] [--square-shape:12px] [--pressed-shape:8px]",
-        s: "sz-s h-d-2.5rem px-4 gap-2 font-label-large rounded-[1.25rem] [--square-shape:12px] [--pressed-shape:8px]",
-        m: "sz-m h-d-3.5rem px-6 gap-2 font-title-medium rounded-[1.75rem] [--square-shape:16px] [--pressed-shape:12px] [&>svg]:w-6 [&>svg]:h-6",
-        l: "sz-l h-d-6rem px-12 gap-3 font-headline-small rounded-[3rem] [--square-shape:28px] [--pressed-shape:16px] [&>svg]:w-8 [&>svg]:h-8",
-        xl: "sz-xl h-d-8.5rem px-16 gap-4 font-headline-large rounded-[4.25rem] [--square-shape:28px] [--pressed-shape:16px] [&>svg]:w-10 [&>svg]:h-10",
+        xs: "sz-xs h-d-2rem px-3 gap-2 font-label-large rounded-[1rem]",
+        s: "sz-s h-d-2.5rem px-4 gap-2 font-label-large rounded-[1.25rem]",
+        m: "sz-m h-d-3.5rem px-6 gap-2 font-title-medium rounded-[1.75rem] [&>svg]:w-6 [&>svg]:h-6",
+        l: "sz-l h-d-6rem px-12 gap-3 font-headline-small rounded-[3rem] [&>svg]:w-8 [&>svg]:h-8",
+        xl: "sz-xl h-d-8.5rem px-16 gap-4 font-headline-large rounded-[4.25rem] [&>svg]:w-10 [&>svg]:h-10",
       },
       shape: {
-        round: "shape-round",
-        square: "shape-square",
+        round: "",
+        square: "",
       },
       color: {
         elevated: "bg-surface-container-low text-primary shadow-1 not-disabled:not-has-[>input:disabled]:data-[state=on]:bg-primary not-disabled:not-has-[>input:disabled]:data-[state=on]:text-on-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:bg-primary not-disabled:not-has-[>input:disabled]:has-[>input:checked]:text-on-primary hover:not-disabled:not-has-[>input:disabled]:shadow-2 forced-colors:bg-transparent forced-colors:border forced-colors:border-solid",
@@ -42,6 +42,24 @@
       { iconType: "full", size: "m", class: "w-d-3.5rem" },
       { iconType: "full", size: "l", class: "w-d-6rem" },
       { iconType: "full", size: "xl", class: "w-d-8.5rem" },
+      // pressed shape
+      { size: "xs", class: "[&:active:not(:disabled)]:rounded-[8px]!" },
+      { size: "s",  class: "[&:active:not(:disabled)]:rounded-[8px]!" },
+      { size: "m",  class: "[&:active:not(:disabled)]:rounded-[12px]!" },
+      { size: "l",  class: "[&:active:not(:disabled)]:rounded-[16px]!" },
+      { size: "xl", class: "[&:active:not(:disabled)]:rounded-[16px]!" },
+      // square shape
+      { size: "xs", shape: "square", class: "rounded-[12px]!" },
+      { size: "s",  shape: "square", class: "rounded-[12px]!" },
+      { size: "m",  shape: "square", class: "rounded-[16px]!" },
+      { size: "l",  shape: "square", class: "rounded-[28px]!" },
+      { size: "xl", shape: "square", class: "rounded-[28px]!" },
+      // round toggled to square when checked/on (not-disabled)
+      { size: "xs", shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[12px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[12px]!" },
+      { size: "s",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[12px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[12px]!" },
+      { size: "m",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[16px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[16px]!" },
+      { size: "l",  shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[28px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[28px]!" },
+      { size: "xl", shape: "round", class: "not-disabled:not-has-[>input:disabled]:has-[>input:checked]:rounded-[28px]! not-disabled:not-has-[>input:disabled]:data-[state=on]:rounded-[28px]!" },
     ],
   });
 
@@ -126,9 +144,3 @@
   </button>
 {/if}
 
-<style>
-  :global(.shape-square:not(:has(> input:checked)):not([data-state=on])),
-  :global(.shape-round:is(:has(> input:checked), [data-state=on])) {
-    border-radius: var(--square-shape) !important;
-  }
-</style>
