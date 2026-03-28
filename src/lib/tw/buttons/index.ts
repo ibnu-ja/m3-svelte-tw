@@ -14,3 +14,12 @@ export {
   default as SplitButton,
   type SplitButtonProps,
 } from "./SplitButton.svelte";
+
+export {
+  default as FAB,
+  fabVariants,
+  type FABProps,
+  type FABSize,
+  type FABColor,
+  type FABElevation,
+} from "./FAB.svelte";

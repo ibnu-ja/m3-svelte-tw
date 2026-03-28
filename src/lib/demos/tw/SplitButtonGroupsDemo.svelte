@@ -7,6 +7,7 @@
   import InternalCard from "../../../routes/_card.svelte";
   import { SplitButton, menuVariants, menuItemVariants } from "$lib/tw";
   import type { ButtonVariant, ButtonSize, SplitButtonProps } from "$lib/tw";
+  import PressElement from "$lib/tw/primitive/PressElement.svelte";
 
   let variant: NonNullable<ButtonVariant> = $state("filled");
   let size: NonNullable<ButtonSize> = $state("s");
@@ -75,12 +76,12 @@
         {#snippet menu()}
           <div class={menuVariants()}>
             {#each items as item}
-              <button class={menuItemVariants()}>
-              <span class="w-6 h-6 shrink-0 text-on-surface-variant [&>svg]:w-6 [&>svg]:h-6 [&>svg]:fill-current">
-                <Icon icon={item.icon} size={24} />
-              </span>
+              <PressElement class={menuItemVariants()}>
+                <span class="w-6 h-6 shrink-0 text-on-surface-variant [&>svg]:w-6 [&>svg]:h-6 [&>svg]:fill-current">
+                  <Icon icon={item.icon} size={24}/>
+                </span>
                 {item.label}
-              </button>
+              </PressElement>
             {/each}
           </div>
         {/snippet}

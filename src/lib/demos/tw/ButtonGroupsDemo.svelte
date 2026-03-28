@@ -4,8 +4,7 @@
   import Slider from "$lib/forms/Slider.svelte";
   import Arrows from "../../../routes/_arrowsnew.svelte";
   import InternalCard from "../../../routes/_card.svelte";
-  import { Button, buttonGroupVariants } from "$lib/tw";
-  import type { ButtonVariant, ButtonSize } from "$lib/tw/buttons/Button.svelte";
+  import { Button, buttonGroupVariants, type ButtonVariant, type ButtonSize } from "$lib/tw";
 
   let {
     showCode,
