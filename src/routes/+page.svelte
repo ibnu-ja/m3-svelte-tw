@@ -36,7 +36,7 @@
   import { afterNavigate } from "$app/navigation";
 
   import ButtonDemo from "$lib/demos/tw/ButtonDemo.svelte";
-  import ButtonGroupsDemo from "$lib/demos/tw/ButtonGroupsDemo.svelte";
+  import ButtonGroupsDemo from "$lib/demos/tw/ConnectedButtons.svelte";
   import SplitButtonGroupsDemo from "$lib/demos/tw/SplitButtonGroupsDemo.svelte";
   import MenuDemo from "$lib/demos/tw/MenuDemo.svelte";
   import FABDemo from "$lib/demos/tw/FABDemo.svelte";
