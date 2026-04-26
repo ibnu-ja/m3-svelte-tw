@@ -87,13 +87,15 @@
         class={buttonGroupVariants()}
       >
         {#each items as item}
+          {@const isSelected = multiValue.includes(item.value)}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
             {#snippet child({props: toggleProps})}
               <Button
                 {variant}
                 {size}
-                shape={toggleProps["data-state"] === "on" ? "round" : "square"}
                 {...toggleProps}
+                shape={isSelected ? "round" : "square"}
+                data-state={isSelected ? "on" : "off"}
               >
                 {item.label}
               </Button>
@@ -116,13 +118,15 @@
         class={buttonGroupVariants()}
       >
         {#each items as item}
+          {@const isSelected = singleValue === item.value}
           <ToggleGroup.Item value={item.value} disabled={item.disabled}>
             {#snippet child({props: toggleProps})}
               <Button
                 {variant}
                 {size}
-                shape={toggleProps["data-state"] === "on" ? "round" : "square"}
                 {...toggleProps}
+                shape={isSelected ? "round" : "square"}
+                data-state={isSelected ? "on" : "off"}
               >
                 {item.label}
               </Button>
