@@ -93,7 +93,7 @@
             {/if}
             <ListItemHeadline>{item.headline}</ListItemHeadline>
             {#if showSupporting}
-              <ListItemSupporting>{item.supporting}</ListItemSupporting>
+              <ListItemSupporting title={item.supporting}>{item.supporting}</ListItemSupporting>
             {/if}
           </ListItemContent>
           {#if showTrailing}
