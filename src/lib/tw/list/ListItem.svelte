@@ -23,6 +23,7 @@
 	export type ListItemContextType = {
 		hasOverline: boolean;
 		hasSupporting: boolean;
+		resolvedLines: ListItemLines;
 	};
 	export type ListItemVariants = VariantProps<typeof listItemVariants>;
 </script>
@@ -53,13 +54,17 @@
 		...rest
 	}: Props = $props();
 
-	const ctx: ListItemContextType = $state({ hasOverline: false, hasSupporting: false });
+	const ctx: ListItemContextType = $state({ hasOverline: false, hasSupporting: false, resolvedLines: 1 });
 	setContext(LIST_ITEM_CTX, ctx);
 
 	const autoLines = $derived<ListItemLines>(
 		ctx.hasOverline && ctx.hasSupporting ? 3 : ctx.hasOverline || ctx.hasSupporting ? 2 : 1,
 	);
 	const resolvedLines = $derived<ListItemLines>((lines ?? autoLines) as ListItemLines);
+
+	$effect.pre(() => {
+		ctx.resolvedLines = resolvedLines;
+	});
 
 	const itemClass = $derived(
 		listItemVariants({ lines: resolvedLines, interactive, class: className }),

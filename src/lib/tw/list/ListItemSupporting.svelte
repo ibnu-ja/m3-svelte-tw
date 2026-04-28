@@ -17,11 +17,18 @@
 			ctx.hasSupporting = false;
 		};
 	});
+
+	const clampClass = $derived(
+		ctx.resolvedLines === 1 ? "hidden" :
+		ctx.resolvedLines === 2 ? "line-clamp-1" :
+		"line-clamp-2",
+	);
 </script>
 
 <span
 	class={cn(
 		"font-body-medium text-on-surface-variant group-data-[state=on]:text-on-secondary-container group-disabled:text-translucent-on-surface-38",
+		clampClass,
 		className,
 	)}
 	{...rest}

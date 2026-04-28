@@ -35,7 +35,7 @@
   const items = [
     { headline: "Inbox", overline: "Mail", supporting: "3 new messages", trailing: "10:30", icon: iconInbox },
     { headline: "Starred", overline: "Mail", supporting: "No new messages", trailing: "Yesterday", icon: iconStar },
-    { headline: "Trash", overline: "Mail", supporting: "Empty", trailing: "1 week ago", icon: iconDelete },
+    { headline: "Trash", overline: "Mail", supporting: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium alias et quas, voluptate tempora sequi, iste cumque minima blanditiis repellat temporibus repudiandae accusamus nemo inventore nobis, exercitationem harum voluptas aliquid!", trailing: "1 week ago", icon: iconDelete },
   ];
 
   const minimalDemoHtml =
