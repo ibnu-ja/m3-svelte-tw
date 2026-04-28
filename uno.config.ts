@@ -8,16 +8,33 @@ const easings = ["-fast-spatial", "-spatial", "-slow-spatial", "-fast", "", "-sl
 
 const shadows = ["1", "2", "3", "4", "5"];
 
+// Surface container variants that may not be in colorNames (use raw CSS var directly)
+const surfaceContainerExtras = [
+  "surface-dim",
+  "surface-bright",
+  "surface-container-lowest",
+  "surface-container-high",
+  "surface-container-highest",
+];
+
 export default defineConfig({
   presets: [presetWind4(), m3SveltePreset()],
   rules: [
-    // Color utilities (bg, text, outline)
+    // Color utilities (bg, text, outline, border)
     ...colorNames.map(
       (name) => [`bg-${name}`, { "background-color": `var(--m3c-${name})` }] as StaticRule,
     ),
     ...colorNames.map((name) => [`text-${name}`, { color: `var(--m3c-${name})` }] as StaticRule),
     ...colorNames.map(
       (name) => [`outline-${name}`, { "outline-color": `var(--m3c-${name})` }] as StaticRule,
+    ),
+    ...colorNames.map(
+      (name) => [`border-${name}`, { "border-color": `var(--m3c-${name})` }] as StaticRule,
+    ),
+
+    // Surface container extras (ensure bg- utilities exist regardless of colorNames)
+    ...surfaceContainerExtras.map(
+      (name) => [`bg-${name}`, { "background-color": `var(--m3c-${name})` }] as StaticRule,
     ),
 
     // Shadow utilities

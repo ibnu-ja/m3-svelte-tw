@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { cn } from "tailwind-variants";
   import Switch from "$lib/forms/Switch.svelte";
   import Checkbox from "$lib/forms/Checkbox.svelte";
   import RadioAnim1 from "$lib/forms/RadioAnim1.svelte";
@@ -8,6 +9,7 @@
   import InternalCard from "../../../routes/_card.svelte";
   import iconInbox from "@ktibow/iconset-material-symbols/inbox-outline";
   import iconStar from "@ktibow/iconset-material-symbols/star-outline";
+  import iconStarFill from "@ktibow/iconset-material-symbols/star";
   import iconDelete from "@ktibow/iconset-material-symbols/delete-outline";
   import iconChevronRight from "@ktibow/iconset-material-symbols/chevron-right";
   import iconImage from "@ktibow/iconset-material-symbols/image-outline";
@@ -17,6 +19,7 @@
   import iconBluetooth from "@ktibow/iconset-material-symbols/bluetooth";
   import iconNotifications from "@ktibow/iconset-material-symbols/notifications-outline";
   import {
+    List,
     ListItem,
     ListItemContent,
     ListItemHeadline,
@@ -24,6 +27,8 @@
     ListItemSupporting,
     ListItemLeading,
     ListItemTrailing,
+    ListItemPrimary,
+    ListItemTrailingAction,
   } from "$lib/tw";
 
   let {
@@ -36,43 +41,39 @@
     ) => void;
   } = $props();
 
+  // ── Shared settings ──
+  let variant = $state<"baseline" | "expressive">("baseline");
+  let listType = $state<"standard" | "segmented">("standard");
+  let showDividers = $state(true);
+
   // ── Main demo ──
   let leadingType = $state("icon");
   let trailingType = $state("none");
   let showOverline = $state(false);
   let showSupporting = $state(false);
-  let interactive = $state(false);
-  let selectedIdx = $state<number | null>(null);
+  let selectionMode = $state<"none" | "single" | "multiple">("none");
+  let selectedIdxs = $state(new Set<number>());
 
   $effect(() => {
-    if (!interactive) selectedIdx = null;
+    selectionMode;
+    selectedIdxs = new Set();
   });
 
+  function handleSelect(i: number) {
+    if (selectionMode === "single") {
+      selectedIdxs = selectedIdxs.has(i) ? new Set() : new Set([i]);
+    } else if (selectionMode === "multiple") {
+      const next = new Set(selectedIdxs);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      selectedIdxs = next;
+    }
+  }
+
   const items = [
-    {
-      headline: "Inbox",
-      overline: "Mail",
-      supporting: "3 new messages waiting",
-      trailing: "10:30",
-      icon: iconInbox,
-      initial: "I",
-    },
-    {
-      headline: "Starred",
-      overline: "Favourites",
-      supporting: "No new messages since last week",
-      trailing: "Yesterday",
-      icon: iconStar,
-      initial: "S",
-    },
-    {
-      headline: "Trash",
-      overline: "System",
-      supporting: "Lorem ipsum dolor sit amet consectetur adipiscing",
-      trailing: "1 week ago",
-      icon: iconDelete,
-      initial: "T",
-    },
+    { headline: "Inbox", overline: "Mail", supporting: "3 new messages waiting", trailing: "10:30", icon: iconInbox, initial: "I" },
+    { headline: "Starred", overline: "Favourites", supporting: "No new messages since last week", trailing: "Yesterday", icon: iconStar, initial: "S" },
+    { headline: "Trash", overline: "System", supporting: "Lorem ipsum dolor sit amet consectetur adipiscing", trailing: "1 week ago", icon: iconDelete, initial: "T" },
   ];
 
   // ── Draggable ──
@@ -85,13 +86,8 @@
   let dragFromIdx = $state<number | null>(null);
   let dragOverIdx = $state<number | null>(null);
 
-  function handleDragStart(i: number) {
-    dragFromIdx = i;
-  }
-  function handleDragOver(e: DragEvent, i: number) {
-    e.preventDefault();
-    dragOverIdx = i;
-  }
+  function handleDragStart(i: number) { dragFromIdx = i; }
+  function handleDragOver(e: DragEvent, i: number) { e.preventDefault(); dragOverIdx = i; }
   function handleDrop(toIdx: number) {
     if (dragFromIdx === null) return;
     if (dragFromIdx !== toIdx) {
@@ -103,16 +99,16 @@
     dragFromIdx = null;
     dragOverIdx = null;
   }
-  function handleDragEnd() {
-    dragFromIdx = null;
-    dragOverIdx = null;
-  }
+  function handleDragEnd() { dragFromIdx = null; dragOverIdx = null; }
 
   // ── Actions ──
   let actionType = $state("checkbox");
   let checkedItems = $state([false, false, false]);
   let switchItems = $state([true, false, true]);
   let radioSelected = $state<number | null>(null);
+  let showMultiAction = $state(false);
+  let primaryOpened = $state([false, false, false]);
+  let bookmarked = $state([false, false, false]);
 
   const actionItems = [
     { headline: "Wi-Fi", supporting: "Connected to Home-5G", icon: iconWifi },
@@ -121,54 +117,48 @@
   ];
 
   const relevantLinks = [
-    {
-      title: "list/index.ts",
-      link: "https://github.com/ibnu-ja/m3-svelte-tw/blob/feat/lists/src/lib/tw/list/index.ts",
-    },
+    { title: "list/index.ts", link: "https://github.com/ibnu-ja/m3-svelte-tw/blob/feat/lists/src/lib/tw/list/index.ts" },
   ];
 
   const minimalDemoHtml =
-    "&lt;ListItem&gt;\n" +
-    "  &lt;ListItemContent&gt;\n" +
-    "    &lt;ListItemHeadline&gt;Inbox&lt;/ListItemHeadline&gt;\n" +
-    "  &lt;/ListItemContent&gt;\n" +
-    "&lt;/ListItem&gt;";
+    "&lt;List&gt;\n" +
+    "  &lt;ListItem&gt;\n" +
+    "    &lt;ListItemContent&gt;\n" +
+    "      &lt;ListItemHeadline&gt;Inbox&lt;/ListItemHeadline&gt;\n" +
+    "    &lt;/ListItemContent&gt;\n" +
+    "  &lt;/ListItem&gt;\n" +
+    "&lt;/List&gt;";
 
   const draggableHtml =
     "&lt;ListItem draggable={true} ondragstart={...} ondragover={...} ondrop={...}&gt;\n" +
-    "  &lt;ListItemLeading&gt;\n" +
-    "    &lt;span class=\"cursor-grab\"&gt;\n" +
-    "      &lt;Icon icon={iconDragIndicator} size={24} /&gt;\n" +
-    "    &lt;/span&gt;\n" +
-    "  &lt;/ListItemLeading&gt;\n" +
+    "  &lt;ListItemLeading&gt;&lt;Icon icon={iconDragIndicator} /&gt;&lt;/ListItemLeading&gt;\n" +
     "  &lt;ListItemContent&gt;...&lt;/ListItemContent&gt;\n" +
     "&lt;/ListItem&gt;";
 
   const actionsHtml =
-    "&lt;!-- Checkbox (select multiple) --&gt;\n" +
-    "&lt;ListItem interactive onclick={() =&gt; checkedItems[i] = !checkedItems[i]}&gt;\n" +
-    "  &lt;ListItemContent&gt;...&lt;/ListItemContent&gt;\n" +
-    "  &lt;ListItemTrailing&gt;\n" +
-    "    &lt;label&gt;&lt;Checkbox&gt;&lt;input type=\"checkbox\" /&gt;&lt;/Checkbox&gt;&lt;/label&gt;\n" +
-    "  &lt;/ListItemTrailing&gt;\n" +
+    "&lt;ListItem class=\"gap-0 px-0\"&gt;\n" +
+    "  &lt;ListItemPrimary onclick={...}&gt;\n" +
+    "    &lt;ListItemLeading&gt;...&lt;/ListItemLeading&gt;\n" +
+    "    &lt;ListItemContent&gt;...&lt;/ListItemContent&gt;\n" +
+    "  &lt;/ListItemPrimary&gt;\n" +
+    "  &lt;ListItemTrailingAction onclick={...}&gt;\n" +
+    "    &lt;Icon icon={iconStar} /&gt;\n" +
+    "  &lt;/ListItemTrailingAction&gt;\n" +
     "&lt;/ListItem&gt;";
 </script>
 
+<!-- Card 1: List -->
 <InternalCard title="List" showCode={() => showCode("List", minimalDemoHtml, relevantLinks)}>
-  <Arrows
-    list={["none", "icon", "avatar", "image", "video"]}
-    bind:value={leadingType}
-    initialIndex={1}
-    label="Leading"
-  >
+  <Arrows list={["baseline", "expressive"]} bind:value={variant} initialIndex={0} label="Variant">
+    {variant[0].toUpperCase() + variant.slice(1)}
+  </Arrows>
+  <Arrows list={["standard", "segmented"]} bind:value={listType} initialIndex={0} label="Type">
+    {listType[0].toUpperCase() + listType.slice(1)}
+  </Arrows>
+  <Arrows list={["none", "icon", "avatar", "image", "video"]} bind:value={leadingType} initialIndex={1} label="Leading">
     {leadingType[0].toUpperCase() + leadingType.slice(1)}
   </Arrows>
-  <Arrows
-    list={["none", "text", "icon"]}
-    bind:value={trailingType}
-    initialIndex={0}
-    label="Trailing"
-  >
+  <Arrows list={["none", "text", "icon"]} bind:value={trailingType} initialIndex={0} label="Trailing">
     {trailingType[0].toUpperCase() + trailingType.slice(1)}
   </Arrows>
   <label>
@@ -180,42 +170,40 @@
     {showSupporting ? "Supporting" : "No supporting"}
   </label>
   <label>
-    <Switch bind:checked={interactive} />
-    {interactive ? "Interactive" : "Static"}
+    <Switch bind:checked={showDividers} />
+    {showDividers ? "Dividers" : "No dividers"}
   </label>
+  <Arrows list={["none", "single", "multiple"]} bind:value={selectionMode} initialIndex={0} label="Selection">
+    {selectionMode[0].toUpperCase() + selectionMode.slice(1)}
+  </Arrows>
+  <p class="text-body-small text-on-surface-variant">{variant}, {listType}, leading: {leadingType}, trailing: {trailingType}, {showOverline ? "overline" : "no overline"}, {showSupporting ? "supporting" : "no supporting"}, {showDividers ? "dividers" : "no dividers"}, selection: {selectionMode}</p>
 
   {#snippet demo()}
-    <div class="w-full">
+    <List type={listType} {variant} class="w-full">
       {#each items as item, i}
-        {#if i > 0}
+        {#if showDividers && i > 0 && listType !== "segmented"}
           <Divider />
         {/if}
         <ListItem
-          {interactive}
-          selected={interactive && selectedIdx === i}
-          onclick={interactive ? () => { selectedIdx = selectedIdx === i ? null : i; } : undefined}
+          interactive={selectionMode !== "none"}
+          selected={selectedIdxs.has(i)}
+          onclick={selectionMode !== "none" ? () => handleSelect(i) : undefined}
         >
           {#if leadingType !== "none"}
             <ListItemLeading>
               {#if leadingType === "icon"}
-                <Icon icon={item.icon} size={24} />
+                <Icon icon={item.icon} size={variant === "expressive" ? 20 : 24} />
               {:else if leadingType === "avatar"}
-                <div
-                  class="size-10 rounded-full bg-primary-container text-on-primary-container font-title-medium flex items-center justify-center"
-                >
+                <div class="size-10 rounded-full bg-primary-container text-on-primary-container font-title-medium flex items-center justify-center">
                   {item.initial}
                 </div>
               {:else if leadingType === "image"}
-                <div
-                  class="w-d-14 h-d-14 bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden"
-                >
-                  <Icon icon={iconImage} size={24} />
+                <div class={cn("w-d-14 h-d-14 bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden", variant === "expressive" && "rounded-sm")}>
+                  <Icon icon={iconImage} size={variant === "expressive" ? 20 : 24} />
                 </div>
               {:else if leadingType === "video"}
-                <div
-                  class="w-[100px] h-d-14 rounded-sm bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden"
-                >
-                  <Icon icon={iconPlayCircle} size={24} />
+                <div class="w-[100px] h-d-14 rounded-sm bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden">
+                  <Icon icon={iconPlayCircle} size={variant === "expressive" ? 20 : 24} />
                 </div>
               {/if}
             </ListItemLeading>
@@ -234,36 +222,33 @@
               {#if trailingType === "text"}
                 {item.trailing}
               {:else if trailingType === "icon"}
-                <Icon icon={iconChevronRight} size={24} />
+                <Icon icon={iconChevronRight} size={variant === "expressive" ? 20 : 24} />
               {/if}
             </ListItemTrailing>
           {/if}
         </ListItem>
       {/each}
-    </div>
+    </List>
   {/snippet}
 </InternalCard>
 
-<!-- Draggable -->
-<InternalCard
-  title="List — Draggable"
-  showCode={() => showCode("List — Draggable", draggableHtml, relevantLinks)}
->
+<!-- Card 2: Draggable -->
+<InternalCard title="List — Draggable" showCode={() => showCode("List — Draggable", draggableHtml, relevantLinks)}>
+  <p class="text-body-small text-on-surface-variant">{variant}, {listType}, {showDividers ? "dividers" : "no dividers"}, {draggableItems.length} items</p>
+
   {#snippet demo()}
-    <div class="w-full">
+    <List type={listType} {variant} class="w-full">
       {#each draggableItems as item, i}
-        {#if i > 0}
+        {#if showDividers && i > 0 && listType !== "segmented"}
           <Divider />
         {/if}
         <ListItem
-          class={[
-            dragFromIdx === i ? "opacity-40" : "",
+          class={cn(
+            dragFromIdx === i ? "bg-error-container" : "",
             dragOverIdx === i && dragFromIdx !== null && dragFromIdx !== i
-              ? "bg-translucent-primary-8"
+              ? "bg-translucent-on-surface-12"
               : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
+          )}
           draggable={true}
           ondragstart={() => handleDragStart(i)}
           ondragover={(e: DragEvent) => handleDragOver(e, i)}
@@ -272,7 +257,7 @@
         >
           <ListItemLeading>
             <span class="cursor-grab text-on-surface-variant">
-              <Icon icon={iconDragIndicator} size={24} />
+              <Icon icon={iconDragIndicator} size={variant === "expressive" ? 20 : 24} />
             </span>
           </ListItemLeading>
           <ListItemContent>
@@ -281,77 +266,90 @@
           </ListItemContent>
         </ListItem>
       {/each}
-    </div>
+    </List>
   {/snippet}
 </InternalCard>
 
-<!-- Actions -->
-<InternalCard
-  title="List — Actions"
-  showCode={() => showCode("List — Actions", actionsHtml, relevantLinks)}
->
-  <Arrows
-    list={["checkbox", "switch", "radio"]}
-    bind:value={actionType}
-    initialIndex={0}
-    label="Control"
-  >
+<!-- Card 3: Actions -->
+<InternalCard title="List — Actions" showCode={() => showCode("List — Actions", actionsHtml, relevantLinks)}>
+  <Arrows list={["checkbox", "switch", "radio"]} bind:value={actionType} initialIndex={0} label="Control">
     {actionType[0].toUpperCase() + actionType.slice(1)}
   </Arrows>
+  <label>
+    <Switch bind:checked={showMultiAction} />
+    {showMultiAction ? "Multi-action" : "Single-action"}
+  </label>
+  <p class="text-body-small text-on-surface-variant">{variant}, {listType}, {actionType}, {showMultiAction ? "multi-action" : "single-action"}, {showDividers ? "dividers" : "no dividers"}</p>
 
   {#snippet demo()}
-    <div class="w-full">
+    <List type={listType} {variant} class="w-full">
       {#each actionItems as item, i}
-        {#if i > 0}
+        {#if showDividers && i > 0 && listType !== "segmented"}
           <Divider />
         {/if}
-        <ListItem
-          interactive
-          selected={actionType === "checkbox"
-            ? checkedItems[i]
-            : actionType === "switch"
-              ? switchItems[i]
-              : radioSelected === i}
-          onclick={() => {
-            if (actionType === "checkbox") checkedItems[i] = !checkedItems[i];
-            else if (actionType === "switch") switchItems[i] = !switchItems[i];
-            else radioSelected = i;
-          }}
-        >
-          <ListItemLeading>
-            <Icon icon={item.icon} size={24} />
-          </ListItemLeading>
-          <ListItemContent>
-            <ListItemHeadline>{item.headline}</ListItemHeadline>
-            <ListItemSupporting>{item.supporting}</ListItemSupporting>
-          </ListItemContent>
-          <ListItemTrailing>
-            <!-- pointer-events-none: row click drives all interaction -->
-            <span class="pointer-events-none">
-              {#if actionType === "checkbox"}
-                <label>
-                  <Checkbox>
-                    <input type="checkbox" checked={checkedItems[i]} tabindex="-1" />
-                  </Checkbox>
-                </label>
-              {:else if actionType === "switch"}
-                <Switch checked={switchItems[i]} />
-              {:else if actionType === "radio"}
-                <label>
-                  <RadioAnim1>
-                    <input
-                      type="radio"
-                      name="list-actions-radio"
-                      checked={radioSelected === i}
-                      tabindex="-1"
-                    />
-                  </RadioAnim1>
-                </label>
-              {/if}
-            </span>
-          </ListItemTrailing>
-        </ListItem>
+        {#if showMultiAction}
+          <ListItem class="gap-0 px-0" selected={primaryOpened[i]}>
+            <ListItemPrimary
+              onclick={() => { primaryOpened[i] = !primaryOpened[i]; }}
+              class="pl-4 pr-1 gap-3"
+            >
+              <ListItemLeading>
+                <Icon icon={item.icon} size={variant === "expressive" ? 20 : 24} />
+              </ListItemLeading>
+              <ListItemContent>
+                <ListItemHeadline>{item.headline}</ListItemHeadline>
+                <ListItemSupporting>{item.supporting}</ListItemSupporting>
+              </ListItemContent>
+            </ListItemPrimary>
+            <ListItemTrailingAction
+              onclick={() => { bookmarked[i] = !bookmarked[i]; }}
+            >
+              <Icon icon={bookmarked[i] ? iconStarFill : iconStar} size={20} />
+            </ListItemTrailingAction>
+          </ListItem>
+        {:else}
+          <ListItem
+            interactive
+            selected={actionType === "checkbox"
+              ? checkedItems[i]
+              : actionType === "switch"
+                ? switchItems[i]
+                : radioSelected === i}
+            onclick={() => {
+              if (actionType === "checkbox") checkedItems[i] = !checkedItems[i];
+              else if (actionType === "switch") switchItems[i] = !switchItems[i];
+              else radioSelected = i;
+            }}
+          >
+            <ListItemLeading>
+              <Icon icon={item.icon} size={variant === "expressive" ? 20 : 24} />
+            </ListItemLeading>
+            <ListItemContent>
+              <ListItemHeadline>{item.headline}</ListItemHeadline>
+              <ListItemSupporting>{item.supporting}</ListItemSupporting>
+            </ListItemContent>
+            <ListItemTrailing>
+              <span class="pointer-events-none">
+                {#if actionType === "checkbox"}
+                  <label>
+                    <Checkbox>
+                      <input type="checkbox" checked={checkedItems[i]} tabindex="-1" />
+                    </Checkbox>
+                  </label>
+                {:else if actionType === "switch"}
+                  <Switch checked={switchItems[i]} />
+                {:else if actionType === "radio"}
+                  <label>
+                    <RadioAnim1>
+                      <input type="radio" name="list-actions-radio" checked={radioSelected === i} tabindex="-1" />
+                    </RadioAnim1>
+                  </label>
+                {/if}
+              </span>
+            </ListItemTrailing>
+          </ListItem>
+        {/if}
       {/each}
-    </div>
+    </List>
   {/snippet}
 </InternalCard>
