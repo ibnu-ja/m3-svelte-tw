@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "tailwind-variants";
 	import { getContext } from "svelte";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
@@ -19,7 +20,10 @@
 </script>
 
 <span
-	class={["font-label-small text-on-surface-variant", className].filter(Boolean).join(" ")}
+	class={cn(
+		"font-label-small text-on-surface-variant group-data-[state=on]:text-on-secondary-container group-disabled:text-translucent-on-surface-38",
+		className,
+	)}
 	{...rest}
 >
 	{@render children?.()}

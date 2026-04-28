@@ -4,15 +4,15 @@
 	export const LIST_ITEM_CTX = Symbol("list-item");
 
 	export const listItemVariants = tv({
-		base: "flex w-full gap-4 px-4 text-left bg-transparent text-on-surface [print-color-adjust:exact] outline-none",
+		base: "group flex w-full gap-3 px-4 text-left bg-surface text-on-surface [print-color-adjust:exact] data-[state=on]:bg-secondary-container data-[state=on]:rounded-lg",
 		variants: {
 			lines: {
-				1: "min-h-d-14 py-2 items-center",
-				2: "min-h-d-18 py-2 items-center",
-				3: "min-h-d-22 py-3 items-start",
+				1: "h-d-14 py-2.5 items-center",
+				2: "h-d-18 py-2.5 items-center",
+				3: "h-d-22 py-2.5 items-start",
 			},
 			interactive: {
-				true: "m3-layer cursor-pointer border-none disabled:opacity-38 disabled:cursor-auto",
+				true: "m3-layer cursor-pointer border-none disabled:text-translucent-on-surface-38 disabled:cursor-auto data-[state=on]:disabled:bg-translucent-on-surface-38",
 				false: "",
 			},
 		},
@@ -36,6 +36,7 @@
 	type Props = {
 		lines?: ListItemLines;
 		interactive?: boolean;
+		selected?: boolean;
 		class?: string;
 		children?: Snippet;
 		href?: string | null;
@@ -44,6 +45,7 @@
 	let {
 		lines = undefined,
 		interactive = false,
+		selected = false,
 		class: className,
 		children,
 		href,
@@ -62,18 +64,20 @@
 	const itemClass = $derived(
 		listItemVariants({ lines: resolvedLines, interactive, class: className }),
 	);
+
+	const dataState = $derived(selected ? "on" : undefined);
 </script>
 
 {#if href}
-	<a {href} class={itemClass} {onclick} {...rest}>
+	<a {href} class={itemClass} {onclick} data-state={dataState} {...rest}>
 		{@render children?.()}
 	</a>
 {:else if onclick || interactive}
-	<button type="button" class={itemClass} {onclick} {...rest}>
+	<button type="button" class={itemClass} {onclick} data-state={dataState} {...rest}>
 		{@render children?.()}
 	</button>
 {:else}
-	<div class={itemClass} {...rest}>
+	<div class={itemClass} data-state={dataState} {...rest}>
 		{@render children?.()}
 	</div>
 {/if}

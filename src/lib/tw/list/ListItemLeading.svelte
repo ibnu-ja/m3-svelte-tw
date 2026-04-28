@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "tailwind-variants";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -8,12 +9,10 @@
 </script>
 
 <div
-	class={[
-		"flex items-center shrink-0 text-on-surface-variant [&>svg]:size-6 [&>svg]:shrink-0",
+	class={cn(
+		"flex items-center shrink-0 text-on-surface-variant [&>svg]:size-6 [&>svg]:shrink-0 group-data-[state=on]:text-on-secondary-container group-disabled:opacity-38",
 		className,
-	]
-		.filter(Boolean)
-		.join(" ")}
+	)}
 	{...rest}
 >
 	{@render children?.()}

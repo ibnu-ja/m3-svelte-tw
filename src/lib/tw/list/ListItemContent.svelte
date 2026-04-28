@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "tailwind-variants";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -7,9 +8,6 @@
 	let { children, class: className, ...rest }: Props = $props();
 </script>
 
-<div
-	class={["flex flex-col flex-1 min-w-0", className].filter(Boolean).join(" ")}
-	{...rest}
->
+<div class={cn("flex flex-col flex-1 min-w-0", className)} {...rest}>
 	{@render children?.()}
 </div>
