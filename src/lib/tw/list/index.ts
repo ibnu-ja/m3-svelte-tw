@@ -12,4 +12,3 @@ export { default as ListItemOverline } from "./ListItemOverline.svelte";
 export { default as ListItemSupporting } from "./ListItemSupporting.svelte";
 export { default as ListItemLeading } from "./ListItemLeading.svelte";
 export { default as ListItemTrailing } from "./ListItemTrailing.svelte";
-export { default as ListItemDivider } from "./ListItemDivider.svelte";

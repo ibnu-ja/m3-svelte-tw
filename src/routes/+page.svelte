@@ -12,7 +12,7 @@
   import Demo2 from "virtual:demo/2";
   import Demo3 from "virtual:demo/3";
   // import Demo4 from "virtual:demo/4";
-  // import Demo5 from "virtual:demo/5";
+  import Demo5 from "virtual:demo/5";
   import Demo6 from "virtual:demo/6";
   // import Demo7 from "virtual:demo/7";
   // import Demo8 from "virtual:demo/8";
@@ -40,6 +40,7 @@
   import SplitButtonGroupsDemo from "$lib/demos/tw/SplitButtonGroupsDemo.svelte";
   import MenuDemo from "$lib/demos/tw/MenuDemo.svelte";
   import FABDemo from "$lib/demos/tw/FABDemo.svelte";
+  import ListDemo from "$lib/demos/tw/ListDemo.svelte";
 
   type DocData = {
     name: string;
@@ -92,7 +93,8 @@
     <Demo3 {showCode} />
     <FABDemo {showCode} />
     <!--    <Demo4 {showCode} />-->
-    <!--    <Demo5 {showCode} />-->
+    <ListDemo {showCode} />
+    <Demo5 {showCode} />
     <Demo6 {showCode} />
     <MenuDemo {showCode} />
     <!--    <Demo7 {showCode} />-->
