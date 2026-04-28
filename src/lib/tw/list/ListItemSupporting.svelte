@@ -21,7 +21,7 @@
 	const clampClass = $derived(
 		ctx.resolvedLines === 1 ? "hidden" :
 		ctx.resolvedLines === 2 ? "line-clamp-1" :
-		"line-clamp-2",
+		ctx.hasOverline ? "line-clamp-1" : "line-clamp-2",
 	);
 </script>
 
