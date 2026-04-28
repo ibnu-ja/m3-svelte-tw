@@ -1,11 +1,10 @@
 import type { Plugin } from "vite";
 import { loadDemos } from "./src/load-demos";
 import { glob } from "tinyglobby";
-import { resolve } from "node:path";
 import shiki from "./shiki";
 
 const VIRTUAL_PREFIX = "virtual:demo/";
-const RESOLVED_PREFIX = resolve("src/virtual-demos") + "/";
+const RESOLVED_PREFIX = "\0virtual:demo/";
 
 export function demosPlugin(): Plugin {
   return {
@@ -64,10 +63,9 @@ export function demosPlugin(): Plugin {
         .replaceAll("$", "\\$")
         .replaceAll("<", "\\x3C");
 
-      const relevantLinksJson = JSON.stringify(relevantLinksData);
+      const relevantLinksJson = JSON.stringify(relevantLinksData)
       const friendlyNameJson = JSON.stringify(friendlyName);
-
-      return `<script lang="ts">
+      const component = `<script lang="ts">
 import iconCircle from "@ktibow/iconset-material-symbols/circle-outline";
 import iconSquare from "@ktibow/iconset-material-symbols/square-outline";
 import iconTriangle from "@ktibow/iconset-material-symbols/change-history-outline";
@@ -91,8 +89,9 @@ const relevantLinks: { title: string; link: string }[] = ${relevantLinksJson};
 
 <InternalCard title="${friendlyName}" showCode={() => showCode(${friendlyNameJson}, minimalDemoHtml, relevantLinks)}>
 ${fullDemoSvelte}
-</InternalCard>
-`;
+</InternalCard>`;
+      // console.log(component)
+      return component;
     },
   };
 }

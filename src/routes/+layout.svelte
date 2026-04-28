@@ -10,6 +10,7 @@
 
   import { asset, resolve } from "$app/paths";
   import { page } from "$app/state";
+  import "virtual:uno.css";
   import NavCMLX from "$lib/nav/NavCMLX.svelte";
   import NavCMLXItem from "$lib/nav/NavCMLXItem.svelte";
   import { styling, density } from "./state";
@@ -50,7 +51,7 @@
 </svelte:head>
 {@html `<style>${$styling}:root{--density:${$density == "variable" ? 0 : $density};}</style>`}
 <Snackbar />
-<div class="container">
+<div class="containerr">
   <div class="sidebar">
     <NavCMLX variant="auto">
       {#each paths as { path, icon, iconS, label }}
@@ -90,7 +91,7 @@
 </div>
 
 <style>
-  .container {
+  .containerr {
     display: grid;
     min-height: 100dvh;
   }
@@ -107,7 +108,7 @@
     :root {
       --m3v-bottom-offset: 5rem;
     }
-    .container {
+    .containerr {
       grid-template-rows: 1fr auto;
     }
     .sidebar {
@@ -119,7 +120,7 @@
     }
   }
   @media (width >= 52.5rem) {
-    .container {
+    .containerr {
       grid-template-columns: auto 1fr;
     }
     .sidebar {
