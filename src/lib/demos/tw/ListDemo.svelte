@@ -2,10 +2,14 @@
   import Switch from "$lib/forms/Switch.svelte";
   import Icon from "$lib/misc/Icon.svelte";
   import Divider from "$lib/misc/Divider.svelte";
+  import Arrows from "../../../routes/_arrowsnew.svelte";
   import InternalCard from "../../../routes/_card.svelte";
   import iconInbox from "@ktibow/iconset-material-symbols/inbox-outline";
   import iconStar from "@ktibow/iconset-material-symbols/star-outline";
   import iconDelete from "@ktibow/iconset-material-symbols/delete-outline";
+  import iconChevronRight from "@ktibow/iconset-material-symbols/chevron-right";
+  import iconImage from "@ktibow/iconset-material-symbols/image-outline";
+  import iconPlayCircle from "@ktibow/iconset-material-symbols/play-circle-outline";
   import {
     ListItem,
     ListItemContent,
@@ -26,16 +30,42 @@
     ) => void;
   } = $props();
 
+  let leadingType = $state("icon");
+  let trailingType = $state("none");
   let showOverline = $state(false);
   let showSupporting = $state(false);
-  let showLeading = $state(false);
-  let showTrailing = $state(false);
   let interactive = $state(false);
+  let selectedIdx = $state<number | null>(null);
+
+  $effect(() => {
+    if (!interactive) selectedIdx = null;
+  });
 
   const items = [
-    { headline: "Inbox", overline: "Mail", supporting: "3 new messages", trailing: "10:30", icon: iconInbox },
-    { headline: "Starred", overline: "Mail", supporting: "No new messages", trailing: "Yesterday", icon: iconStar },
-    { headline: "Trash", overline: "Mail", supporting: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium alias et quas, voluptate tempora sequi, iste cumque minima blanditiis repellat temporibus repudiandae accusamus nemo inventore nobis, exercitationem harum voluptas aliquid!", trailing: "1 week ago", icon: iconDelete },
+    {
+      headline: "Inbox",
+      overline: "Mail",
+      supporting: "3 new messages waiting",
+      trailing: "10:30",
+      icon: iconInbox,
+      initial: "I",
+    },
+    {
+      headline: "Starred",
+      overline: "Favourites",
+      supporting: "No new messages since last week",
+      trailing: "Yesterday",
+      icon: iconStar,
+      initial: "S",
+    },
+    {
+      headline: "Trash",
+      overline: "System",
+      supporting: "Lorem ipsum dolor sit amet consectetur adipiscing",
+      trailing: "1 week ago",
+      icon: iconDelete,
+      initial: "T",
+    },
   ];
 
   const minimalDemoHtml =
@@ -54,6 +84,22 @@
 </script>
 
 <InternalCard title="List" showCode={() => showCode("List", minimalDemoHtml, relevantLinks)}>
+  <Arrows
+    list={["none", "icon", "avatar", "image", "video"]}
+    bind:value={leadingType}
+    initialIndex={1}
+    label="Leading"
+  >
+    {leadingType[0].toUpperCase() + leadingType.slice(1)}
+  </Arrows>
+  <Arrows
+    list={["none", "text", "icon"]}
+    bind:value={trailingType}
+    initialIndex={0}
+    label="Trailing"
+  >
+    {trailingType[0].toUpperCase() + trailingType.slice(1)}
+  </Arrows>
   <label>
     <Switch bind:checked={showOverline} />
     {showOverline ? "Overline" : "No overline"}
@@ -61,14 +107,6 @@
   <label>
     <Switch bind:checked={showSupporting} />
     {showSupporting ? "Supporting" : "No supporting"}
-  </label>
-  <label>
-    <Switch bind:checked={showLeading} />
-    {showLeading ? "Leading icon" : "No leading"}
-  </label>
-  <label>
-    <Switch bind:checked={showTrailing} />
-    {showTrailing ? "Trailing" : "No trailing"}
   </label>
   <label>
     <Switch bind:checked={interactive} />
@@ -81,10 +119,34 @@
         {#if i > 0}
           <Divider />
         {/if}
-        <ListItem {interactive}>
-          {#if showLeading}
+        <ListItem
+          {interactive}
+          selected={interactive && selectedIdx === i}
+          onclick={interactive ? () => { selectedIdx = selectedIdx === i ? null : i; } : undefined}
+        >
+          {#if leadingType !== "none"}
             <ListItemLeading>
-              <Icon icon={item.icon} size={24} />
+              {#if leadingType === "icon"}
+                <Icon icon={item.icon} size={24} />
+              {:else if leadingType === "avatar"}
+                <div
+                  class="size-10 rounded-full bg-primary-container text-on-primary-container font-title-medium flex items-center justify-center"
+                >
+                  {item.initial}
+                </div>
+              {:else if leadingType === "image"}
+                <div
+                  class="w-d-14 h-d-14 bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden"
+                >
+                  <Icon icon={iconImage} size={24} />
+                </div>
+              {:else if leadingType === "video"}
+                <div
+                  class="w-[100px] h-d-14 rounded-sm bg-secondary-container text-on-secondary-container flex items-center justify-center overflow-hidden"
+                >
+                  <Icon icon={iconPlayCircle} size={24} />
+                </div>
+              {/if}
             </ListItemLeading>
           {/if}
           <ListItemContent>
@@ -96,8 +158,14 @@
               <ListItemSupporting title={item.supporting}>{item.supporting}</ListItemSupporting>
             {/if}
           </ListItemContent>
-          {#if showTrailing}
-            <ListItemTrailing>{item.trailing}</ListItemTrailing>
+          {#if trailingType !== "none"}
+            <ListItemTrailing>
+              {#if trailingType === "text"}
+                {item.trailing}
+              {:else if trailingType === "icon"}
+                <Icon icon={iconChevronRight} size={24} />
+              {/if}
+            </ListItemTrailing>
           {/if}
         </ListItem>
       {/each}
